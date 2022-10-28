@@ -1,47 +1,47 @@
 Minimizer: MINUIT
 MINUIT:
-  #doErrors: Hesse #uncomment to make error bands
+  #doErrors: Pumplin #uncomment to make error bands
   Commands: |
-    minimize #uncomment to run the fit
+    #minimize #uncomment to run the fit
     call fcn 3
 
 Parameters:
-  #Av:  SUMRULE
+  Av:  SUMRULE
   #Bv: [ 0.75,0.03]
   #Cv: [ 0.95,0.04, 0,10]
   #Dv: [ 0.791884, 0.05]
   Bv0: [ 0., 0.03]
   Cv0: [ 0., 0.04,-0.95,9.05]
-  Dv0: [ 0., 0.5]
+  Dv0: 0.
   #As: [ 0.21,0.5]
   #Bs: [ 0.5 ,0.1,-1,10]
   #Cs: [ 8,3]
   #Ds: [ 0.0183965, 0.005]
-  Bs0: [ 0., 0.1,-0.5,9.5]
+  Bs0: 0.
   Cs0: [ 0., 3]
-  Ds0: [ 0.,0.5]
+  Ds0: 0.
   #Ag:  SUMRULE
   #Bg:   0.
   #Cg: [ 3,1]
   #Dg: [ 0.117222, 0.05]
   Bg0: 	 0.
   Cg0: [ 0., 1]
-  Dg0: [ 0., 0.5]
-  vifl:	 10.
-  sifl:	 4.
+  Dg0: 0.
+  vifl:	 2.
+  sifl:	 1.
   gifl:	 0.
   ZERO: [ 0. ] 
 
 Parameterisations:
   v:
     class: Fantomas
-    parameters: [ZERO,Bv0,Cv0,Dv0,vifl]
+    parameters: [Av,Bv0,Cv0,Dv0,vifl]
   S:
     class: Fantomas
-    parameters: [ZERO,Bs0,Cs0,Ds0,sifl]
+    parameters: [As,Bs0,Cs0,Ds0,sifl]
   g:
     class: Fantomas
-    parameters: [ZERO,Bg0,Cg0,Dg0,gifl]
+    parameters: [Ag,Bg0,Cg0,Dg0,gifl]
 
 Decompositions:
   pion:
