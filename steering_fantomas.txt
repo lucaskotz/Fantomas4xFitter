@@ -1,11 +1,11 @@
 # gluon  -- metamorph 0
 #  ifl  Nm  MappingMode	xPower	Sc(0)	Sc(1)
-0  0	2   1.		0.	3.
+0  0	2   1.		0.	   3.
 # Xs	Sm  fp		fm
 0.1		FIX
 # sea  -- metamorph 1
 #  ifl  Nm  MappingMode  xPower Sc(0)  Sc(1)
-1  0	2   1.		 0.5	8
+1  0	2   1.		 0.47	 8
 # Xs	Sm  fp		 fm
 0.05	FIX
 # v  -- metamorph 2
