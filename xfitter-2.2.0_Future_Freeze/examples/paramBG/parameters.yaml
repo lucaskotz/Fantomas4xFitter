@@ -1,0 +1,114 @@
+# These settings test FONLL GM-FVNS with displayced thresholds.
+# Note that APFEL must be used for PDF evolution to have FONLL calculations.
+# The PDF parameters are from the default HERAPDF2.0 fit using RT 
+# (i.e. they were not re-fitted with FONLL).
+
+Minimizer: MINUIT
+MINUIT:
+  Commands: |
+    set str 2
+    call fcn 3
+
+Parameters:
+  Ag   :  DEPENDENT
+  Bg   : [ -0.5009,   0.0060 ]
+  Cg   : [  4.4885,   0.1944 ]
+  Fg   : [  0.2156,   0.0005 ]
+  Gg   : [  0.0119,   0.0010 ]
+  Auv  :  DEPENDENT
+  Buv  : [  0.7392,   0.0021 ]
+  Cuv  : [  4.5845,   0.0170 ]
+  Euv  : [  2.7839,   0.0633 ]
+  Fuv  : [  0.3416,   0.0027 ]
+  Guv  : [  0.0470,   0.0040 ]
+  Adv  :  DEPENDENT
+  Bdv  : [  0.9882,   0.0108 ]
+  Cdv  : [  4.6983,   0.0742 ]
+  Cubar: [ 10.9607,   0.2749 ]
+  Dubar: [ 17.2935,   0.2808 ]
+  Adbar: [  0.0854,   0.0241 ]
+  Bdbar: [ -0.3354,   0.0031 ]
+  Cdbar: [ 23.8266,   0.9917 ]
+  Ddbar: [ 35.0368,   4.5302 ]
+  Fdbar: [  0.0744,   0.0011 ]
+  ZERO : 0
+  fs : [ 0.4, 0.0 ]
+
+Parameterisations:
+  par_uv:
+    class: Expression
+    expression: "Auv*(x^Buv*(1-x)^Cuv)*(1+Euv*x^2+Fuv*ln(x)+Guv*ln(x)^2)"
+  par_dv:
+    class: Expression
+    expression: "Adv*(x^Bdv*(1-x)^Cdv)"
+  par_ubar:
+    class: Expression
+    expression: "Adbar*(x^Bdbar*(1-x)^Cubar)*(1+Dubar*x+Fdbar*ln(x))"
+  par_dbar:
+    class: Expression
+    expression: "Adbar*(x^Bdbar*(1-x)^Cdbar)*(1+Ddbar*x+Fdbar*ln(x))"
+  par_s:
+    class: Expression
+    expression: "Adbar*fs/(1-fs)*(x^Bdbar*(1-x)^Cdbar)*(1+Ddbar*x+Fdbar*ln(x))"
+  par_g:
+    class: Expression
+    expression: "Ag*(x^Bg*(1-x)^Cg)*(1+Fg*ln(x)+Gg*ln(x)^2)"
+
+DefaultDecomposition: proton
+Decompositions:
+  proton:
+    class: UvDvUbarDbarS
+    xuv: par_uv
+    xdv: par_dv
+    xubar: par_ubar
+    xdbar: par_dbar
+    xs: par_s
+    xg: par_g
+
+DefaultEvolution: proton-APFELff
+
+Evolutions:
+  proton-APFELff:
+    ? !include evolutions/APFEL.yaml
+    decomposition: proton
+    kmc : 1.12 # ratio between charm quark threshold and mass
+    nllxResummation : "On"
+
+
+# QCD parameters
+Order: NNLO
+NFlavour: 5
+isFFNS: 0
+Q0 : 1.6 # Initial scale =sqrt(2.56)
+alphas : 0.118
+
+? !include constants.yaml
+
+mch : 1.46
+
+
+byReaction:
+  # FONLL scheme settings:
+  FONLL_DISNC:
+    ? !include reactions/FONLL_DISNC.yaml
+  FONLL_DISCC:
+    ? !include reactions/FONLL_DISCC.yaml
+
+# Specify HF scheme used for DIS NC processes:
+hf_scheme_DISNC :
+  defaultValue : 'FONLL_DISNC'     # global specification
+
+# Specify HF scheme used for DIS CC processes:
+hf_scheme_DISCC :
+  defaultValue : 'FONLL_DISCC'     # global specification
+
+WriteLHAPDF6:
+  name: "proton"
+  evolution: proton-APFELff
+  Xrange: [1e-4, 1]
+  Qrange: [1.6,1000]
+  Xnpoints: 200
+  Qnpoints: 120
+  description: "..."
+  authors: "..."
+  reference: "..."

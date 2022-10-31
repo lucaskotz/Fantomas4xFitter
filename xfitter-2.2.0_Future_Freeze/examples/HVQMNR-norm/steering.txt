@@ -1,0 +1,124 @@
+*  Namelist to control input data
+*
+
+&InFiles
+  ! Number of intput files
+    NInputFiles = 14
+
+   InputFileNames =
+    'datafiles/hera/h1zeusCombined/inclusiveDis/0911.0884/H1ZEUS_CC_e-p_HERA1.0-thexp.dat',
+    'datafiles/hera/h1zeusCombined/inclusiveDis/0911.0884/H1ZEUS_CC_e+p_HERA1.0-thexp.dat',
+    'datafiles/hera/h1zeusCombined/inclusiveDis/0911.0884/H1ZEUS_NC_e-p_HERA1.0-thexp.dat',
+    'datafiles/hera/h1zeusCombined/inclusiveDis/0911.0884/H1ZEUS_NC_e+p_HERA1.0-thexp.dat',
+    'datafiles/hera/h1zeusCombined/charmProduction/1211.1182/H1ZEUS_Charm_combined-thexp.dat',
+    'datafiles/hera/zeus/beautyProduction/1405.6915/ZEUS_Beauty_vertex-thexp.dat',
+    'datafiles/lhc/lhcb/charmProduction/1302.2864/LHCb_7TeV_Charm_Dzero_pty_Normy-thexp.dat',
+    'datafiles/lhc/lhcb/charmProduction/1302.2864/LHCb_7TeV_Charm_Dch_pty_Normy-thexp.dat',
+    'datafiles/lhc/lhcb/charmProduction/1302.2864/LHCb_7TeV_Charm_Dstar_pty_Normy-thexp.dat',
+    'datafiles/lhc/lhcb/charmProduction/1302.2864/LHCb_7TeV_Charm_Ds_pty_Normy-thexp.dat',
+    'datafiles/lhc/lhcb/charmProduction/1302.2864/LHCb_7TeV_Charm_Lambdac_y_Normy-thexp.dat',
+    'datafiles/lhc/lhcb/beautyProduction/1306.3663/LHCb_7TeV_Beauty_Bch_pty_Normy-thexp.dat',
+    'datafiles/lhc/lhcb/beautyProduction/1306.3663/LHCb_7TeV_Beauty_Bzero_pty_Normy-thexp.dat',
+    'datafiles/lhc/lhcb/beautyProduction/1306.3663/LHCb_7TeV_Beauty_Bs_pty_Normy-thexp.dat',
+&End
+
+&xFitter 
+ ! XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+ !
+ ! Chi2 definition. Following options are supported:
+ !  
+ ! -- Bias corrections for uncertainties --
+ ! 'StatScale'    :  'Poisson',  'NoRescale' ( see also 'ExtraSystRescale' below )
+ ! 'UncorSysScale':  'Poisson',  'Linear',  'NoRescale'
+ ! 'CorSysScale'  :  'Linear',   'NoRescale'
+ ! 
+ ! -- Treatment of systematics in chi2 ---
+ ! 'UncorChi2Type':  'Diagonal'  
+ ! 'CorChi2Type'  :  'Hessian', 'Matrix', 'Offset'
+ !
+ ! -- Extra corrections ---
+ !   are given as comma separated list for Chi2ExtraParam, they are off by default.
+ !  'PoissonCorr'            : extra log correction accounting for changing uncertainties 
+ !  'FirstIterationRescale' : re-scale uncertainties at the first iteration only 
+ !  'ExtraSystRescale'      : additional re-scaling of stat. uncertainty to account for syst. shifts.
+
+   CHI2SettingsName = 'StatScale', 'UncorSysScale', 'CorSysScale', 'UncorChi2Type', 'CorChi2Type'
+   Chi2Settings     = 'Poisson'  , 'Linear',        'Linear'     , 'Diagonal'     , 'Hessian'
+   Chi2ExtraParam = 'PoissonCorr'
+
+
+
+ ! Debug flag
+  LDEBUG     = False
+
+
+ ! Quadratic approximation for asymmetric uncertainties
+ ! AsymErrorsIterations = 10
+&End
+
+
+*
+* Output steering cards
+*
+&Output 
+  ! -- Q2 values at which the pdfs & errors are done (up to 20)
+  Q2VAL = 1.4,1.9, 3.0, 4.0, 5., 10., 100., 6464, 8317 
+!  Q2VAL = 1.9, 4., 10., 100., 6464, 8317 
+
+  ! How many x points to write (standard = 101)
+  OUTNX = 101
+
+  ! x-range of output (standard = 1E-4 1.0)
+  OUTXRANGE = 1E-6, 0.9999
+
+  ! Write out LHAPDF5 output
+  ! WriteLHAPDF5 = false
+&End
+
+
+
+*
+* Process dependent cuts
+*
+&Cuts
+
+  !--------------------- NC ep  --------------------------
+
+  ! Rule #1: Q2 cuts
+   ProcessName(1)     = 'NC e+-p'
+   Variable(1)        = 'Q2'
+   CutValueMin(1)     = 3.5
+   CutValueMax(1)     = 1000000.0
+
+  ! Rule #2: x cuts
+   ProcessName(2)     = 'NC e+-p'
+   Variable(2)        = 'x'
+   CutValueMin(2)     = 0.000001 
+   CutValueMax(2)     = 1.0
+
+  !---------------------  CC ep  ------------------
+
+   ProcessName(3)     = 'CC e+-p'
+   Variable(3)        = 'Q2'
+   CutValueMin(3)     = 3.5
+   CutValueMax(3)     = 1000000.0
+
+   ProcessName(4)     = 'CC e+-p'
+   Variable(4)        = 'x'
+   CutValueMin(4)     = 0.000001 
+   CutValueMax(4)     = 1.0
+
+
+  !--------------------- NC ep charm ----------------
+
+   ProcessName(9)     = 'NC e+-p charm'
+   Variable(9)        = 'Q2'
+   CutValueMin(9)     = 1.5 
+   CutValueMax(9)     = 10000.0
+
+   ProcessName(10)     = 'NC e+-p charm'
+   Variable(10)        = 'x'
+   CutValueMin(10)     = 0.000001 
+   CutValueMax(10)     = 1.0
+   
+&End

@@ -1,0 +1,93 @@
+*  Namelist to control input data
+*
+
+&InFiles
+  ! Number of input files
+    NInputFiles = 1
+ 
+  ! Input files:
+    InputFileNames(1) = 'datafiles/lhc/atlas/topProduction/1406.5375/Diff_ttbar_ATL_7TeV_TOT-Hathor-thexp.dat'
+&End
+
+&xFitter 
+ ! XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+ !
+ ! Chi2 definition. Following options are supported:
+ !  
+ ! -- Bias corrections for uncertainties --
+ ! 'StatScale'    :  'Poisson',  'NoRescale' ( see also 'ExtraSystRescale' below )
+ ! 'UncorSysScale':  'Poisson',  'Linear',  'NoRescale'
+ ! 'CorSysScale'  :  'Linear',   'NoRescale'
+ ! 
+ ! -- Treatment of systematics in chi2 ---
+ ! 'UncorChi2Type':  'Diagonal'  
+ ! 'CorChi2Type'  :  'Hessian', 'Matrix', 'Offset'
+ !
+ ! -- Extra corrections ---
+ !   are given as comma separated list for Chi2ExtraParam, they are off by default.
+ !  'PoissonCorr'            : extra log correction accounting for changing uncertainties 
+ !  'FirstIterationRescale' : re-scale uncertainties at the first iteration only 
+ !  'ExtraSystRescale'      : additional re-scaling of stat. uncertainty to account for syst. shifts.
+
+   CHI2SettingsName = 'StatScale', 'UncorSysScale', 'CorSysScale', 'UncorChi2Type', 'CorChi2Type'
+   Chi2Settings     = 'Poisson'  , 'Linear',        'Linear'     , 'Diagonal'     , 'Hessian'
+   Chi2ExtraParam = 'PoissonCorr'
+
+ ! Debug flag
+  LDEBUG     = False
+
+
+ ! Quadratic approximation for asymmetric uncertainties
+ ! AsymErrorsIterations = 10
+&End
+
+
+*
+* Output steering cards
+*
+&Output 
+  ! -- Q2 values at which the pdfs & errors are done (up to 20)
+  Q2VAL = 1.9, 3.0, 4.0, 5., 10., 100., 6464, 8317 
+!  Q2VAL = 1.9, 4., 10., 100., 6464, 8317 
+
+  ! How many x points to write (standard = 101)
+  OUTNX = 101
+
+  ! x-range of output (standard = 1E-4 1.0)
+  OUTXRANGE = 1E-4, 0.9999
+
+  ! Write out LHAPDF5 output
+  ! WriteLHAPDF5 = false
+&End
+
+*
+* Process dependent cuts
+*
+&Cuts   
+&End
+
+
+&chi2scan
+  SCAN = true
+  LABEL = 'm_{t} [GeV]'
+  CENTRAL = 165
+  Values = 160.0,162.0,164.0,166.0,168.0,170.0
+
+  DATAID  = 1
+  TERM(:,1) = 'R'
+
+  TheorySources(:,1,1) =
+  		       'SqrtS=7000:precisionLevel=1:mtp=160.0',
+		       'SqrtS=7000:precisionLevel=1:mtp=162.0',
+		       'SqrtS=7000:precisionLevel=1:mtp=164.0',
+		       'SqrtS=7000:precisionLevel=1:mtp=166.0',
+		       'SqrtS=7000:precisionLevel=1:mtp=168.0',
+		       'SqrtS=7000:precisionLevel=1:mtp=170.0'
+!  DataToTheo = false
+
+  pdferrors = true
+  pdfprofile = true
+  scaleprofile = true
+  CHI2LHAPDFREF = 'MMHT2014nnlo68cl'
+  CHI2LHAPDFSET = 'MMHT2014nnlo68cl'
+&End

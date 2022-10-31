@@ -1,0 +1,40 @@
+*~
+bin/
+xfitter/xfitter
+tools/MakeLHAPDF/tolhapdf
+tools/draw/src/xfitter-draw
+tools/process/xfitter-process
+pdf2yaml/tests
+xfitter-config
+lib/
+share/
+include/xfitter
+*.m4
+SACOT/src/mdispac.mod
+doc/html/
+build/
+datafiles/*
+!datafiles/hera/h1zeusCombined/inclusiveDis/1506.06042
+!datafiles/README
+*cmake*
+CMakeFiles
+*so
+*dylib
+src/xfitter
+
+#Automake generated files
+*.o
+*.lo
+*.a
+*.la
+Makefile
+Makefile.in
+.deps
+.libs
+
+#QCDNUM cached tables
+unpolarised.wgt
+zmstf.wgt
+
+# vim swap file
+*.swp

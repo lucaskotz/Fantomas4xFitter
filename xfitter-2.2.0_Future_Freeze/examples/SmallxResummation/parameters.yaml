@@ -1,0 +1,109 @@
+# These settings test FONLL GM-FVNS with displayced thresholds.
+# Note that APFEL must be used for PDF evolution to have FONLL calculations.
+# The PDF parameters are from the default HERAPDF2.0 fit using RT 
+# (i.e. they were not re-fitted with FONLL).
+
+Minimizer: MINUIT
+MINUIT:
+  Commands: |
+    set str 2
+    call fcn 3
+
+Parameters:
+  Ag   :  DEPENDENT
+  Bg   : [  0.0580,   0.0170 ]
+  Cg   : [  5.8390,   0.2039 ]
+  Agp  : [ -0.2111,   0.0322 ]  # negative gluon ....
+  Bgp  : [ -0.2012,   0.0072 ]
+  Cgp  : [ 25.0, 0.]  # fix C of negative gluon
+  Auv  :  DEPENDENT
+  Buv  : [ 0.7897,   0.0038 ]
+  Cuv  : [ 4.8997,   0.0231 ]
+  Duv  : [    0     ]
+  Euv  : [ 9.7890,   0.2234 ]
+  Adv  :  DEPENDENT
+  Bdv  : [ 1.0236,   0.0178 ]
+  Cdv  : [ 4.9197,   0.1140 ]
+  Aubar: [ 0.0, 0.0 ] # not used (Adbar=Adbar)
+  Bubar: [ 0.0, 0.0  ] # not used (Bdbar=Bdbar)
+  Cubar: [ 3.7690,   0.3359 ]
+  Dubar: [ -2.4329,   0.1384 ]
+  Adbar: [  0.1851,   0.0020 ]
+  Bdbar: [ -0.1324,   0.0011 ]
+  Cdbar: # another example of providing value, step etc.
+    value: 12.1991
+    step: 4.5059
+  ZERO: 0
+  fs: 0.4
+
+Parameterisations:
+  par_uv:
+    class: HERAPDF
+    parameters: [Auv,Buv,Cuv,Duv,Euv]
+  par_dv:
+    class: HERAPDF
+    parameters: [Adv,Bdv,Cdv]
+  par_ubar:
+    class: HERAPDF
+    parameters: [Adbar,Bdbar,Cubar,Dubar]
+  par_dbar:
+    class: HERAPDF
+    parameters: [Adbar,Bdbar,Cdbar]
+  par_s:
+    class: Expression
+    expression: "Adbar*fs/(1-fs)*(x^Bdbar*(1-x)^Cdbar)"
+  par_g:
+    class: NegativeGluon
+    parameters: [Ag,Bg,Cg,ZERO,ZERO,Agp,Bgp,Cgp]
+
+DefaultDecomposition: proton
+Decompositions:
+  proton:
+    class: UvDvUbarDbarS
+    xuv: par_uv
+    xdv: par_dv
+    xubar: par_ubar
+    xdbar: par_dbar
+    xs: par_s
+    xg: par_g
+
+DefaultEvolution: proton-APFELff
+
+Evolutions:
+  proton-APFELff:
+    ? !include evolutions/APFEL.yaml
+    decomposition: proton
+    kmc : 1.2 # ratio between charm quark threshold and mass
+    nllxResummation : "On"
+
+# QCD parameters
+Order: NNLO
+NFlavour: 5
+isFFNS: 0
+Q0 : 1.6733200531 # Initial scale =sqrt(2.8)
+alphas : 0.118
+
+? !include constants.yaml
+
+
+
+byReaction:
+  # FONLL scheme settings:
+  FONLL_DISNC:
+    ? !include reactions/FONLL_DISNC.yaml
+  FONLL_DISCC:
+    ? !include reactions/FONLL_DISCC.yaml
+
+# Specify HF scheme used for DIS NC processes:
+hf_scheme_DISNC :
+  defaultValue : 'FONLL_DISNC'     # global specification
+
+# Specify HF scheme used for DIS CC processes:
+hf_scheme_DISCC :
+  defaultValue : 'FONLL_DISCC'     # global specification
+
+WriteLHAPDF6:
+  name: "proton"
+  evolution: proton-APFELff
+  Xrange: [1e-4, 1]
+  Qrange: [1.6,1000]

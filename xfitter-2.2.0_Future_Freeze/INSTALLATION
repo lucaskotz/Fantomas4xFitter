@@ -1,0 +1,61 @@
+               ------------------------------------------------
+                  XFITTER   --- PDF fit program from HERA.
+               ------------------------------------------------
+
+ For the description and usage of the package please refer to the README file.               
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+                 Installation and Usage Instructions
+
+0) Pre-requirements.
+====================
+
+-- cmake version at least 2.8.12.2
+
+-- Link to recent Root libraries (e.g. version 5.34). This is optional, but recommended to enable drawing tools, APPLgrid.
+
+-- libyaml (required for xfitter-process) and libyaml-cpp (required for xFitter itself). If not installed on the system,
+   they can be installed using tools/install-yaml script
+
+-- libblas and liblapack. These libraries can be also compiled using tools/install-lapack, however central installation is recommended.
+
+-- Optional, but highly recommended:
+   QCDNUM version at least qcdnum-17-01/14, can be found at 
+   http://www.nikhef.nl/~h24/qcdnum/QcdnumDownload.html
+
+-- Optional: APPLgrid, LHAPDF, APFEL, APFELxx, Ceres, Hathor
+
+
+1) INSTALLATION (basic installation)
+====================================
+
+  a) Run:
+
+    ./make.sh install
+
+		cmake will try to locate libraries automatically.
+
+  b) make sure that "/your/installation/path/bin" is in your PATH.
+    --> you should get "xfitter" executable file installed.
+
+  c) Run a check from the source folder:
+
+    xfitter
+
+  d) Storing of the outputs: output/ (default, name can be changed in the steering.txt)
+	- minuit.out.txt  			(minuit output)
+	- Results.txt 				(chiquare and the systematic shifts)
+	- lhapdf.block.txt			(ready to use LHAPDF5.X style grids, run tools/tolhapdf.cmd)
+	- xfitter_pdf	          	(directory with the ready to use LHAPDF6.X style grids)
+	- fittedresults.txt			(theory predictions for each fitted data point)
+	- pulls.first/last.txt		(pulls at the start and end of the fit)
+	- pdfs_q2val_0i.txt			(user defined PDF sets at predefined Q2 values, as set in the steering.txt)	
+
+  e) To get more data files, one can use xfitter-getdata.sh script 
+  type: ./xfitter-getdata.sh -h for help. Alternatively, data files can be downloaded from the hepforge page:
+
+      http://xfitter.hepforge.org/data.html
+
+For more information, see the xfitter wiki on CERN gitlab:
+https://gitlab.cern.ch/fitters/xfitter/-/wikis/Installation
