@@ -29,6 +29,9 @@
 
 // lk22 added routine to print out sum rules in Pion
 #include <fstream>
+#ifdef FANTOMAS
+#include "../pdfparams/Fantomas/fantomas.h"
+#endif
 
 using namespace std;
 
@@ -268,8 +271,8 @@ void init_at_iteration_() {
 void fcn3action_()
 {
   // lk22 create file to dump moments into
-  ofstream momentfile;
-  momentfile.open("output/moments.txt");
+  //ofstream momentfile;
+  //momentfile.open("output/moments.txt");
 
   // Minimizer action:
   if (XFITTER_PARS::gMinimizer != nullptr ) {
@@ -285,17 +288,17 @@ void fcn3action_()
     auto it = XFITTER_PARS::gParameters.find("Av");
     if (it != XFITTER_PARS::gParameters.end() ) {
       cout<<"  Av="<<*it->second<<endl;
-      momentfile << "Av="<<*it->second<<endl;;
+      //momentfile << "Av="<<*it->second<<endl;;
     }
     it = XFITTER_PARS::gParameters.find("As");
     if (it != XFITTER_PARS::gParameters.end() ) {
       cout<<"  As="<<*it->second<<endl;
-      momentfile << "As="<<*it->second<<endl;;
+      //momentfile << "As="<<*it->second<<endl;;
     }
     it = XFITTER_PARS::gParameters.find("Ag");
     if (it != XFITTER_PARS::gParameters.end() ) {
       cout<<"  Ag="<<*it->second<<endl;
-      momentfile << "Ag="<<*it->second<<endl;;
+      //momentfile << "Ag="<<*it->second<<endl;;
     }
     }
     {
@@ -303,22 +306,29 @@ void fcn3action_()
     if (it != XFITTER_PARS::gParameterisations.end() ) {
       cout<<" <v>="<<it->second->moment(-1)<<endl;
       cout<<"<xv>="<<it->second->moment(0)<<endl;
-      momentfile << "<v>="<<it->second->moment(-1)<<endl;;
-      momentfile << "<xv>="<<it->second->moment(0)<<endl;;
+      //momentfile << "<v>="<<it->second->moment(-1)<<endl;;
+      //momentfile << "<xv>="<<it->second->moment(0)<<endl;;
     }
     it = XFITTER_PARS::gParameterisations.find("S");
     if (it != XFITTER_PARS::gParameterisations.end() ) {
       cout<<"<xS>="<<it->second->moment(0)<<endl;
-      momentfile << "<xS>="<<it->second->moment(0)<<endl;;
+      //momentfile << "<xS>="<<it->second->moment(0)<<endl;;
     }
     it = XFITTER_PARS::gParameterisations.find("g");
     if (it != XFITTER_PARS::gParameterisations.end() ) {
       cout<<"<xg>="<<it->second->moment(0)<<endl;
-      momentfile << "<xg>="<<it->second->moment(0)<<endl;;
+      //momentfile << "<xg>="<<it->second->moment(0)<<endl;;
     }
     }
   }
-  momentfile.close();
+  //momentfile.close();
+
+  //lk22 moved Fantomas output card functions from fcn.f to here
+  /*#ifdef XFITTER
+  writefantosteer();
+  writefantoc();
+  #endif
+  */
 }
 
 void error_band_action_(const int& i) {

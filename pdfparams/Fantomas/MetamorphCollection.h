@@ -16,12 +16,12 @@
 #include "isNumber.h"
 
 // lk22 changed maxSc from 2 to 3 to include normalization constant added to Carrier(x) in metamorph.h
-const int maxSc = 3;	           // number of Sc variables for each flavor
-//const int maxpars = 100;           // length of minuit pars list
-const int maxMet = 10;	           // maximum number of flavors allowed by xFitter
+const int maxSc = 3;	               // number of Sc variables for each flavor
+//const int maxpars = 100;             // length of minuit pars list
+const int maxMet = 10;	               // maximum number of flavors allowed by xFitter
 const int maxctrlpts = 8;              // maximum number of control points for a given flavor
 const int maxScm = maxSc + maxctrlpts; // maximum allowed values in array Scm
-//bool xFitterCollectionSet = false; // flag to determine if the Metamorph map has been created
+//bool xFitterCollectionSet = false;   // flag to determine if the Metamorph map has been created
 
 class MetamorphCollection
 // class object which contains functions are used to create, update,
@@ -33,7 +33,7 @@ class MetamorphCollection
 // values can be called for by particle ID.
 {
 private:
-  std::vector <metamorph> MetaVector;   // Vector containing all metamorph objects for each flavor specified
+  std::vector <metamorph> MetaVector;    // Vector containing all metamorph objects for each flavor specified
   std::map <int, metamorph*> MetaRoster; // MetaRoster maps the flavor ID with the corresponding metamorph PDF
   std::map <int, int> iMetRoster;	 // Map of iMet to flavor ID to be used when updating parameters for given flavor
 
@@ -72,6 +72,7 @@ private:
   std::string parsheader1;	 // header for first list of parameters in fantomas card
   std::string parsheader2;	 // header for second list of parameters in fantomas card
 
+  bool xFitterflag[maxMet] = {false}; // array of flags. false = metamorph not called by xFitter. true = called by xFitter
 public:
   MetamorphCollection()
   {   
@@ -223,10 +224,11 @@ public:
       metatmp.SetBoundary(MappingMode[iMet], fmmetatmp, fpmetatmp);
       metatmp.UpdateModulator();
 
+      //lk23 Change Scmtmp to be for general case of f(x)=f_car(x)*F(f_mod(x))
       for (int i = 0; i < k; i++)
       {
 	double xtmp = Xstmp[i];
-	Scmtmp[iMet][i+maxSc] = metatmp.Modulator(xtmp); // sets each Sm parameter to Pi for all control points
+	Scmtmp[iMet][i+maxSc] = metatmp.Modulator(xtmp)-1; // sets each Sm parameter to Pi for all control points
       }
     } // if (newcheck != std::string::npos)
 
@@ -245,7 +247,7 @@ public:
         
     MetaVector.emplace_back(Nm[iMet], (Xs[iMet]), (Scm[iMet]+maxSc), (Scm[iMet]), xPower[iMet]);
     MetaVector[iMet].SetBoundary(MappingMode[iMet], (fm[iMet]), (fp[iMet]));
-    MetaVector[paraiMet].UpdateModulator();
+    // MetaVector[paraiMet].UpdateModulator();
     MetaRoster.insert( std::pair<int, metamorph*>(iflavor[iMet], &(MetaVector[iMet])) );
 
     Xsvec.clear();
@@ -318,7 +320,7 @@ public:
 	  if (streamtmp.eof())
 	  {
 	    fp0[iMet][k] = INFINITY;
-	    fm0[iMet][k] = 0;
+	    fm0[iMet][k] = -1;
 	  }
 	  else if (!streamtmp.eof())
 	    streamtmp >> fp0[iMet][k] >> fm0[iMet][k];
@@ -379,15 +381,22 @@ public:
     
     paraiMet = iMetRoster[ifl];
 
-    Scm[paraiMet][0] = pars[0];
-    for (int i = 1; i < maxSc; i++)
-      Scm[paraiMet][i] = Scmtmp[paraiMet][i] + pars[i];
-    for (int i = 0; i < Nm[paraiMet]+1; i++)
-      Scm[paraiMet][i+maxSc] = Scmtmp[paraiMet][i+maxSc] + pars[i+maxSc];
+      Scm[paraiMet][0] = pars[0];
+      for (int i = 1; i < maxSc; i++)
+	Scm[paraiMet][i] = Scmtmp[paraiMet][i] + pars[i];
+      for (int i = 0; i < Nm[paraiMet]+1; i++)
+	Scm[paraiMet][i+maxSc] = Scmtmp[paraiMet][i+maxSc] + pars[i+maxSc];
 
     //Scm[paraiMet][0] = -1+exp(Scmtmp[paraiMet][0] + pars[0]);
+    if(Nm[paraiMet] == 0)
+    {
+    }
+    if(Nm[paraiMet] != 0)
+    {
+      MetaVector[paraiMet].UpdateModulator();
+    }
 
-    MetaVector[paraiMet].UpdateModulator();
+    xFitterflag[paraiMet] = true;
 
   } // Metamorph::UpdateParameters
   
@@ -437,6 +446,47 @@ public:
     return momenttmp;
   } // MetamorphCollection::MellinMoment
 
+  //lk23 Added in function to return condition number of a specific metamorph flavor.
+  double ConditionNumber(int ifl)
+  {
+    double condnumtmp = MetaRoster[ifl]->GetConditionNum();
+    return condnumtmp;
+  }
+
+  double fantomasconstrchi2()
+  // calculate the extra chi2 penalty induced by the constraint of 0<Ci~1.
+  // routine will check if metamorph object has been called to be updated
+  // by xFitter. If false, it will skip and go onto the next metamorph.
+  // If true, then it will proceed with the calculation and add to final value.
+  {
+    double fantochi2 = 0;
+    int Nmtmp;
+    double Ci;
+    int ifltmp;
+
+    for (int i = 0; i < iMet; i++)
+    {
+      if (xFitterflag[i] == false)
+      {
+      }
+      if (xFitterflag[i] == true)
+      {
+	Nmtmp = Nm[i];
+	ifltmp = iflavor[i];
+	for (int j = 0; j < Nmtmp+1; j++)
+	{
+	  Ci = MetaRoster[ifltmp]->Cs(j);
+	  fantochi2 += abs(log(abs(Ci)));
+	}
+	double w = 0.01;
+	fantochi2 *= (w/(Nmtmp+1))*fantochi2;
+      }
+    }// for (int i = 0; i < iMet; i++)
+    
+    return fantochi2;
+    
+  }// fantomasconstrchi2()
+
   void WriteCard()
   // Create an output card for Fantomas using the updated parameters of Sc and Sm.
   {
@@ -451,7 +501,7 @@ public:
       // output fantomas parameters into out card and loop over each input flavor
       {
 	fantosteerout << flvheader[i] << std::endl;
-	fantosteerout << parsheader1 << std::endl;
+ 	fantosteerout << parsheader1 << std::endl;
 	fantosteerout << iflavor[i] << "\t" << Nm[i] << "\t" << MappingMode[i] \
 		      << "\t" << xPower[i] << "\t";
 	for (int j = 1; j < maxSc; j++)            // loop that writes out all Sc parameter values
@@ -464,19 +514,19 @@ public:
 	  fantosteerout << Xs0[i][j];
 
 	  if (Scm0[i][j+maxSc] == calcflag)
-	    fantosteerout << "\t" << MetaRoster[iflavor[i]]->Modulator(Xs0[i][j]);
+	    fantosteerout << "\t" << (MetaRoster[iflavor[i]]->Modulator(Xs0[i][j]))-1;
 	  else if (Scm0[i][j+maxSc] == fixflag)
 	    fantosteerout << "\t" << fixflag;
 	  else
 	    fantosteerout << "\t" << Scm[i][j+maxSc];
 
-	  if (fp[i][j] == INFINITY && fm[i][j] == 0 || fp[i][j] == 0 && fm[i][j] == 0)
-	    fantosteerout << "\t" << "\t";
+	  if (fp[i][j] == INFINITY && fm[i][j] == -1 || fp[i][j] == 0 && fm[i][j] == 0)
+	    fantosteerout << "\t" << "\t" << std::endl;
 	  else if (fp[i][j] != INFINITY)
-	    fantosteerout << "\t" << fp[i][j] << "\t" << fm[i][j];
+	    fantosteerout << "\t" << fp[i][j] << "\t" << fm[i][j] << std::endl;
 	  
 	  // lk22 added f() column after changing Sm to be Pi
-	  fantosteerout << "\t" << MetaRoster[iflavor[i]]->f(Xs0[i][j]) << std::endl;
+	  // fantosteerout << "\t" << MetaRoster[iflavor[i]]->f(Xs0[i][j]) << std::endl;
 	} // for (int j = 0; j < iPts[i]; j++)
       } // for (int i = 0; i < iMet; i++)
     } // if (fantosteerout.is_open())
@@ -493,6 +543,74 @@ public:
 
   } // Writecard()
 
+  void WriteC()
+  {
+    std::ofstream fantoCout;
+    //lk22 added new C output card normalized to <xf>
+    //std::ofstream fantonewCout;
+
+    fantoCout.open ("output/fantomas_functional_parameters.txt", std::ofstream::out);
+
+    if (fantoCout.is_open())
+    {
+      fantoCout << "# Output file containing the functional from each flavor \n" << std::endl;
+      fantoCout << "# xf(x) = <xf>*x^Sc1*(1-x)^Sc2*(1+fbezier(x)) \n" << std::endl;
+      for (int i = 0; i < iMet; i++)
+      // output fantomas C coefficients into out card and loop over each input flavor
+      {
+	if (xFitterflag[i] == false)
+	{
+	}
+	if (xFitterflag[i] == true)
+	{
+	  fantoCout << flvheader[i] << std::endl;
+	  fantoCout << "<xf> = " << MellinMoment(iflavor[i],0) << std::endl;
+	  for (int j = 1; j < maxSc; j++)            // loop that writes out all Sc parameter values
+	    fantoCout << "Scm[" << j << "] = " << Scm[i][j] << std::endl;
+	  fantoCout << std::endl;
+	  for (int j = 0; j < Nm[i]+1; j++)
+	  {
+	    fantoCout << "C[" << j << "] = " << MetaRoster[iflavor[i]]->Cs(j) << "\n";
+	  }//for (int j = 0; j < Nm[i]+1; j++) ->
+	}//if (xFitterflag[i] == true) ->
+      }//for (int i = 0; i < iMet; i++) ->
+    }//if (fantoCout.is_open()) ->
+
+    if (!fantoCout.is_open())
+    {
+      	std::cout << "Unable to open functional parameter file" << std::endl;
+	exit(3); // exit program if fantomas bezier coefficients cannot be created
+    }
+    fantoCout.close();
+
+    /*fantonewCout.open ("output/fantomas_modified_bezier_coefficients.txt", std::ofstream::out);
+
+    if (fantonewCout.is_open())
+    {
+      fantonewCout << "# Output file containing the modified C coefficients from each flavor \n" << std::endl;
+      double normtmp;		// overal normalization constant of metamorph
+      double xf;		// momentum fraction of metamorph 
+      double norm;		// coefficient to force normalization of metamorph to be <xf>
+      for (int i = 0; i < iMet; i++)
+      // output fantomas C coefficients into out card and loop over each input flavor
+      {
+	fantonewCout << flvheader[i] << std::endl;
+	normtmp = Scm[i][0];
+	xf = MellinMoment(iflavor[i],0); // 1st Mellin moment due to xf(x) being parameterized
+	norm = normtmp/xf;
+	for (int j = 0; j < Nm[i]+1; j++)
+	{
+	  fantonewCout << "C[" << j << "] = " << norm*MetaRoster[iflavor[i]]->Cs(j) << "\n";
+	}
+      }
+    } 
+    if (!fantonewCout.is_open())
+    {
+      	std::cout << "Unable to open modified Bezier coefficient file" << std::endl;
+	exit(3); // exit program if fantomas bezier coefficients cannot be created
+    }
+    */
+  } // WriteC()
   ~MetamorphCollection()
   {
     std::map<int,metamorph*>::iterator it;

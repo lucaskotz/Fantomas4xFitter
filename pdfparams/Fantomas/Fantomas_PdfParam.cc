@@ -23,6 +23,7 @@ void Fantomas_PdfParam::atStart(){
   using namespace std;
   BasePdfParam::atStart();
   const size_t n=getNPar();
+  int ifl = int (*pars[n-1]);
   if(n<3){
     cerr<<"[ERROR] Too few parameters given to parameterisation \""<<_name<<"\", expected at least 3, got "<<n<<endl;
     hf_errlog(18120700,"F: Wrong number of parameters for a parameterisation, see stderr");
@@ -30,18 +31,21 @@ void Fantomas_PdfParam::atStart(){
   if (xFitterCollectionSet == false)
   {  
     readfantosteer();
+    //lk23 added in function to print out condition number.
     xFitterCollectionSet = true;
   }
   if (xFitterCollectionSet == true)
   {
   }
   atIteration();
+  fantoConditionNum(ifl);
   xFitterModulatorSet = true;
 }
   
 // Update Fantomas parameters each time minuit varies them
 void Fantomas_PdfParam::atIteration(){
-  updateParameters();
+  const size_t n=getNPar();
+    updateParameters();
 }
 
 void Fantomas_PdfParam::updateParameters(){

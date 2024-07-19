@@ -1,0 +1,90 @@
+#
+# Helper script to install yaml for C and C++. 
+# Copies and installs files from the web-sources into $dir/yaml-c and 
+# $dir/yaml-cpp directories. Generates setup_yaml.sh file
+#
+
+dir=deps-yaml
+
+# Package versions:
+yamlver=0.2.5
+#yamlppver=yaml-cpp-0.7.0
+yamlppver=0.8.0
+
+#Check for dummies
+if [[ $0 == bash || $0 = csh ]]
+then
+    echo "Please don't source me, I am an executable!"
+    echo "Give me attributes with:"
+    echo "chmod +x install-yaml"
+    echo "and run me with:"
+    echo "./install-yaml"
+    return 2
+fi
+
+
+
+
+CURRENTDIR=`pwd`
+
+echo "Get yaml++"
+mkdir -p $dir
+cd $dir
+
+wget https://github.com/jbeder/yaml-cpp/archive/refs/tags/${yamlppver}.tar.gz > $CURRENTDIR/install_yam.log  2>&1
+tar xfz ${yamlppver}.tar.gz
+cd yaml-cpp-${yamlppver}
+mkdir build
+cd build
+cmake3='cmake3'
+if [ -x "command -v cmake3" ]; then
+  cmake3='cmake'
+fi
+$cmake3  -DBUILD_SHARED_LIBS=ON  -DCMAKE_INSTALL_PREFIX=$CURRENTDIR/$dir/yaml-cpp .. >> $CURRENTDIR/install_yam.log 2>&1 
+make -j 12 install >> $CURRENTDIR/install_yam.log 2>&1 
+
+if [[ $? != 0 ]]
+then
+  echo "Error, check install_yam.log for details"
+  exit
+fi
+
+
+cd  $CURRENTDIR/$dir
+
+echo "Get yaml"
+wget http://pyyaml.org/download/libyaml/yaml-${yamlver}.tar.gz >> $CURRENTDIR/install_yam.log  2>&1
+tar xfz yaml-${yamlver}.tar.gz >> $CURRENTDIR/install_yam.log  2>&1
+cd yaml-${yamlver}  >> $CURRENTDIR/install_yam.log 
+./configure --prefix=$CURRENTDIR/$dir/yaml >> $CURRENTDIR/install_yam.log
+make >> $CURRENTDIR/install_yam.log 2>&1
+make install >> $CURRENTDIR/install_yam.log 2>&1
+
+if [[ $? != 0 ]]
+then
+  echo "Error, check install_yam.log for details"
+  exit
+fi
+
+
+cd $CURRENTDIR
+
+if [[ $yamlppver == yaml-cpp-0.7.0 ]]; then
+  libspp=`pkg-config --libs $dir/yaml-cpp/share/pkgconfig/yaml-cpp.pc`
+  incspp=`pkg-config --cflags $dir/yaml-cpp/share/pkgconfig/yaml-cpp.pc`
+elif [[ $yamlppver == 0.8.0 ]]; then
+  libspp=`pkg-config --libs $dir/yaml-cpp/lib64/pkgconfig/yaml-cpp.pc`
+  incspp=`pkg-config --cflags $dir/yaml-cpp/lib64/pkgconfig/yaml-cpp.pc`
+fi
+
+echo "Make setup_yaml.sh file"
+echo "export CURRENTDIR=`pwd`" > setup_yaml.sh
+echo export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:\$CURRENTDIR/$dir/yaml/lib/:\$CURRENTDIR/$dir/yaml-cpp/lib64:\$CURRENTDIR/$dir/yaml-cpp/lib >> setup_yaml.sh
+echo export CFLAGS=\"\$CFLAGS -I\$CURRENTDIR/$dir/yaml/include\" >> setup_yaml.sh
+echo export CPPFLAGS=\"\$CPPGLAGS -I\$CURRENTDIR/$dir/yaml/include $incspp\" >> setup_yaml.sh
+echo export CXXFLAGS=\"\$CXXFLAGS -I\$CURRENTDIR/$dir/yaml/include $incspp\" >> setup_yaml.sh
+echo export LDFLAGS=\"\$LDFLAGS -L\$CURRENTDIR/$dir/yaml/lib $libspp\" >> setup_yaml.sh
+echo export yaml_cpp_DIR=$CURRENTDIR/$dir/yaml-cpp >> setup_yaml.sh
+echo export yaml_DIR=$CURRENTDIR/$dir/yaml >> setup_yaml.sh
+
+chmod +x setup_yaml.sh

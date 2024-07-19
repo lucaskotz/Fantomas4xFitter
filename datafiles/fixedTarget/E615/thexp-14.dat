@@ -1,0 +1,39 @@
+!Automatically generated
+&Data
+  Name='E615-14'
+  IndexDataset=2024
+  Reaction='PionOnTungsten'
+
+  TheoryType='expression'
+  TermName  ='A1'
+  TermType  ='reaction'
+  TermSource='APPLgrid'
+  TermInfo  ='GridName=datafiles/fixedTarget/E615/grid_mumu-14.root:evolution1=negative_pion:evolution2=tungsten_target'
+  TheorExpr ='A1*4.347826086956518e-05'
+
+  NDATA     =12
+  NColumn   =6
+  ColumnType='Flag',2*'Bin','Sigma','Error','Error'
+  ColumnName='binFlag','xf_low','xf_high','sigma','uncor','Luminosity_E615:M'
+  Percent   =False,True
+&End
+&PlotDesc
+   PlotN = 1
+   PlotDefColumn ='xf_low'
+   PlotDefValue  =-1.,1
+   PlotVarColumn ='xf_high'
+   PlotOptions(1)='Experiment:E615 #sqrt{#tau}#in(0.507:0.53)@XTitle: x_{F} @YTitle:#frac{d#sigma}{dx_{F}d#sqrt{#tau}}'
+&End 
+*flag	xf_low	xf_high	sigma	error luminosity-error(multiplicative, in %)
+ 0	-0.2	-0.1	-1.0	-1.0	 0
+ 0	-0.1	 0.0	-1.0	-1.0	 0
+ 1	 0.0	 0.1	 0.0308	 0.02	 15.037593984962406
+ 1	 0.1	 0.2	 0.0697	 0.0261	 15.037593984962406
+ 1	 0.2	 0.3	 0.0271	 0.0122	 15.037593984962406
+ 1	 0.3	 0.4	 0.0218	 0.0097	 15.037593984962406
+ 1	 0.4	 0.5	 0.0208	 0.0088	 15.037593984962406
+ 1	 0.5	 0.6	 0.0099	 0.0054	 15.037593984962406
+ 1	 0.6	 0.7	 0.009	 0.0061	 15.037593984962406
+ 0	 0.7	 0.8	-1.0	-1.0	 0
+ 0	 0.8	 0.9	-1.0	-1.0	 0
+ 0	 0.9	 1.0	-1.0	-1.0	 0

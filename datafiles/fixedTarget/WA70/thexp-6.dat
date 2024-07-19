@@ -1,0 +1,36 @@
+*!Automatically generated
+&Data
+  Name='WA70-6'
+  IndexDataset=2106
+  Reaction='pi- + p+>ga X'
+
+  TheoryType='expression'
+  TermName  ='A1'
+  TermType  ='reaction'
+  TermSource='APPLgrid'
+  TermInfo  ='GridName=datafiles/fixedTarget/WA70/grid-WA70-6.root:evolution1=negative_pion:evolution2=proton'
+  TheorExpr ='A1'
+
+  NDATA     =8
+  NColumn   =8
+  ColumnType='Flag',2*'Bin','Dummy','Sigma','Error','Error','Error'
+  !Normalization used to be multiplicative ':M', but I changed it to 32% additive ':A:T' for missing fragmentation contribution
+  ColumnName='binFlag','xf_low','xf_high','xf','sigma','stat','uncor','WA70_Norm:A:T'
+  Percent   =False,False,True
+&End
+&PlotDesc
+   PlotN = 1
+   PlotDefColumn ='xf_low'
+   PlotDefValue  =-1.,1
+   PlotVarColumn ='xf'
+   PlotOptions(1)='Experiment:WA70 P_{T}#in (6.0,7.0) @XTitle: x_{F} @YTitle:E#frac{d^{3}#sigma}{d^{3}p}'
+&End 
+*flag	xf_low	xf_high	xf	sigma	stat	syst	normalization
+1	-0.25	-0.15	-0.2	1.19	0.3	0.208	32
+1	-0.15	-0.05	-0.1	1.35	0.32	0.247	32
+1	-0.05	0.05	0.0	1.51	0.35	0.254	32
+1	0.05	0.15	0.1	1.77	0.39	0.312	32
+1	0.15	0.25	0.2	1.63	0.39	0.294	32
+1	0.25	0.35	0.3	1.09	0.35	0.354	32
+1	0.35	0.45	0.4	0.25	0.2	0.25	32
+1	0.45	0.55	0.5	0.29	0.23	0.259	32

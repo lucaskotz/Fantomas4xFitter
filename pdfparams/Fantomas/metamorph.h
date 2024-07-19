@@ -15,10 +15,10 @@
 #define METAMORPH_H
 
 #include <iostream>
-#include<cmath>
-#include<math.h>
-#include<fstream>
-#include<omp.h>
+#include <cmath>
+#include <math.h>
+#include <fstream>
+#include <omp.h>
 #include <cstddef>
 #include "cl2DArray.h"
 #include "LUPinverse.h"
@@ -104,13 +104,13 @@ public:
         ftmp=sf;
         break;
       case 1: //bounded linear scaling
-        ftmp = (fp+fm)/2.0 + (fp-fm)*sf/2.0;
+	ftmp = (fp+fm)/2.0 + (fp-fm)*sf/2.0;
         break;
       case 2: //bounded softsign scaling
         // Given a variable s in the interval (-infinity, +infinity), returns
         // a value in the interval f1m <= f <= fp. Softsign is approximately
         // linear in the interval -1 < s < 1 and is equal to (fp+fm)/2 for s=0.
-        ftmp = (fp+fm)/2.0 + (fp-fm)*sf/(1.0+fabs(sf))/2.0;
+	ftmp = (fp+fm)/2.0 + (fp-fm)*sf/(1.0+fabs(sf))/2.0;
         break;
       default:
         std::cout << "STOP in ControlPoint: mapping mode "<<MappingMode<<" is not implemented" <<std::endl;
@@ -124,10 +124,13 @@ public:
     {
       ftmp = sf;
     }
-    else if (ftmp < fm ||  ftmp > fp)
+    if (ftmp < fm ||  ftmp > fp)
       {
-        std::cout << std::endl << "The returned function is out of bounds  in ControlPoint::f" << std::endl;
-        std::cout << "The functions and the bounds are "<< fm <<" < " << ftmp << " < " << fp << std::endl; 
+	if (ftmp != -9999)
+	{
+	  std::cout << std::endl << "The returned function is out of bounds  in ControlPoint::f" << std::endl;
+	  std::cout << "The functions and the bounds are "<< fm <<" < " << ftmp << " < " << fp << std::endl; 
+	}
       }
 
     return ftmp;
@@ -192,11 +195,19 @@ public:
       for (int i = 0; i < Nm+1; i++)
 	if (Smin[i] == -9999)
 	  //lk22 Changed Sm from metamorph value to Modulator value
-	  Smin[i] = 1;
+	  Smin[i] = 0;
 
-      double XsPow[Nm+1];   
+      //lk23 changed Xs[i] to use xstretch from Pavel
+      double xstrmin = 1e-3; double xstrmax=0.85;
+      double XsPow[Nm+1];
+      double innerPower = 1.0 / 6.0;
       for (int i = 0; i < Nm+1; i++)
-	XsPow[i] = pow(Xs[i], xPower);
+      {
+	double base = 1.0 / (1.0 / (pow(Xs[i], 6.0) + pow(xstrmin, 6.0)) + (1.0 - pow(xstrmax, 6.0)) / pow(xstrmax, 6.0));
+	double intermediateResult = pow(base, innerPower);
+	double finalResult = pow(intermediateResult, xPower);
+	XsPow[i] = finalResult;
+      }
     
       for (int icp = 0; icp < Nm+1; icp++)
 	//lk22 Changed Sm from metamorph value to Modulator value
@@ -264,18 +275,12 @@ public:
 	// since Sm will default back to -9999 when function is called for in each iteration in xFitter
 	//lk22 Changed Sm from metamorph value to Modulator value
 	if (CP[ix].f() == -9999)
-	  modtmp[ix] = 1;
+	  modtmp[ix] = 0;
 	else
 	  modtmp[ix] = CP[ix].f();
 	P[ix]=modtmp[ix];
       }
   
-    for (int i = 0; i <= Nm; i++)
-      for (int j = 0; j <= Nm; j++)
-        {
-	  //std::cout << "InvT(" << i << ", " << j << ") = " << (*InvT)(i,j) << std::endl;
-          //std::cout << "InvM(" << i << ", " << j << ") = " << (*InvM)(i,j) << std::endl;
-        }
     for (int i = 0; i < Nm+1; i++)
       for (int j = 0; j < Nm+1; j++)
 	{
@@ -307,9 +312,22 @@ public:
   double Modulator(double x)
     // Return the value of the Modulator function for the momentum fraction x
   {
-    double mod = 0.0;
-    for (int im = 0; im < Nm+1; im++)
-      mod += C[im]*bic(Nm,im)*pow(pow(x,xPower),im)*pow(1-pow(x,xPower),Nm-im);
+    // lk22 changed modulator function from B_(n,l)(x) to 1+B_(n,l)(x) with B=0 for Nm=0 
+    double mod = 1.0;
+    //lk23 implemented xstretching into modulator function.
+    double xstrmin = 1e-3; double xstrmax=0.85;
+    double base = 1.0 / (1.0 / (pow(x, 6.0) + pow(xstrmin, 6.0)) + (1.0 - pow(xstrmax, 6.0)) / pow(xstrmax, 6.0));
+    double innerPower = 1.0 / 6.0;
+    double intermediatexstretch = pow(base, innerPower);
+    double finalxstretch = pow(intermediatexstretch, xPower);
+    if (Nm != 0)
+    {
+      for (int im = 0; im < Nm+1; im++)
+	mod += C[im]*bic(Nm,im)*pow(finalxstretch,im)*pow(1-finalxstretch,Nm-im);
+    }
+    if (Nm == 0)
+    {
+    }
     return mod;
   }//double Modulator->
       
@@ -324,7 +342,13 @@ public:
 	exit(3);
       }
     */
-    ftmp= (*Carrier)(x,pSc)*Modulator(x);
+    double fp = 100;
+    double fm = 0;
+    double smod = Modulator(x);
+    double modtmp = smod;
+    //double modtmp = (fp+fm)/2.0 + (fp-fm)*smod/(1.0+fabs(smod))/2.0;
+    //double modtmp = exp(smod);
+    ftmp= (*Carrier)(x,pSc)*modtmp;
     return ftmp;
   }//f->
 
@@ -440,6 +464,37 @@ public:
     
     return sum;
   } // metamorph::GetMellinMoment
+
+  //lk23 Added in a function to return the condition number of matrix T.
+  double GetConditionNum()
+  // Returns the condition number of the matrix T and T^{-1} using the Frobenius-norm.
+  // Frobenius-norm, ||T||, is the square root of the sum of absolute squares of the elements.
+  // The condition number is calculated as ||T|| * ||T^{-1}||. 
+  {
+    double abst = 0;
+    double absInvt = 0;
+    double T2 = 0;
+    double InvT2 = 0;
+    double Tnorm = 0;
+    double InvTnorm = 0;
+    double CondNum = 0;
+    
+    for (int i = 0; i < Nm+1; i++)
+      for (int j = 0; j < Nm+1; j++)
+      {
+	abst = abs((*T)(i,j));
+	absInvt = abs((*InvT)(i,j));
+	T2 += pow(abst,2);
+	InvT2 += pow(absInvt,2);
+      }
+
+    Tnorm = sqrt(T2);
+    InvTnorm = sqrt(InvT2);
+
+    CondNum = Tnorm * InvTnorm;
+
+    return CondNum;
+  }
 
   // tbd void SetNormalization(double MellinMoment); 
   //Given a Mellin Moment of the metamorph, re-compute the normalization of the metamorph

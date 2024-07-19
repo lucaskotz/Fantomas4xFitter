@@ -19,6 +19,8 @@
 #include <cstring>
 #include "MetamorphCollection.h"
 #include "fantomas.h"
+//lk22
+#define XFITTER
 
 // Declaration of global variables inside fantomas.cc
 MetamorphCollection *metacol;   
@@ -45,6 +47,23 @@ void writefantosteer()
   if (xFitterFantomas == true)
     metacol->WriteCard();
 }
+
+extern "C" void writefantosteer_()
+{
+  writefantosteer();
+}//writefantosteer_ ->
+
+void writefantoc()
+//function that writes Bezier coefficients from the metamorph function.
+{
+  if (xFitterFantomas == true)
+    metacol->WriteC();
+}
+
+extern"C" void writefantoc_()
+{
+  writefantoc();
+}//writefantoC_ ->
 
 void updatefantopars(int &flavor, double *pars)
 // the array a[] will be passed from xFitter into the MetamorphCollection metacol->
@@ -73,3 +92,31 @@ double fantoMellinMoment(int &flavor, int &MellinPower, int npts)
   double momenttmp = metacol->MellinMoment(flavor,MellinPower,npts);
   return momenttmp;
 }
+
+//lk23 added function to print out condition number for given metamorph.
+void fantoConditionNum(int &flavor)
+{
+  double fantocondnum = metacol->ConditionNumber(flavor);
+  
+  std::cout << "\nCondition number for matrix T in metamorph for ifl= " << \
+    flavor << " is: " << fantocondnum << std::endl;
+
+  std::cout << "\nCaution: A higher condition number may result in a poor metamorph." << std::endl; 
+  std::cout << "Note: Condition number will increase with more control points added." << \
+    "\n      The condition number may be improved by selecting different control points." << std::endl;
+}
+
+//lk23 added function to get extra chi2 from condition of 0<Ci~1 where Ci is bezier coefficients.
+void getfantochi2(double& fantochi2)
+// to be called for in fcn.f when chi2out is calculated.
+// function will set argument to chi2 penalty from fantomas constrant
+// by calling function in MetamorphCollection.h
+{
+  if (xFitterFantomas == true)
+    fantochi2 = metacol->fantomasconstrchi2();  
+}//getfantochi2 ->
+
+extern "C" void getfantochi2_(double& fantochi2)
+{
+  getfantochi2(fantochi2);
+}//getfantochi2_ ->
