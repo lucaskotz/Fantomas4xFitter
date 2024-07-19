@@ -1,0 +1,284 @@
+  MINUIT RELEASE 96.03  INITIALIZED.   DIMENSIONS 200/ 50  EPSMAC=  0.89E-15
+
+ PARAMETER DEFINITIONS:
+    NO.   NAME         VALUE      STEP SIZE      LIMITS
+     1 'Ag        '    1.0000      constant
+     2 'As        '    6.0000      0.50000         no limits
+     3 'Av        '    1.0000      constant
+     4 'ZERO      '    0.0000      constant
+     5 'delBg     '    0.0000      constant
+     6 'delBs     '    0.0000      constant
+     7 'delBv     '    0.0000      0.30000E-01     no limits
+     8 'delCg     '    0.0000       1.0000         no limits
+     9 'delCs     '    0.0000       3.0000         no limits
+    10 'delCv     '    0.0000      0.40000E-01     no limits
+    11 'delDg     '    0.0000      constant
+    12 'delDs     '    0.0000      constant
+    13 'delDv     '    0.0000      constant
+    14 'gifl      '    0.0000      constant
+    15 'sifl      '    1.0000      constant
+    16 'vifl      '    2.0000      constant
+ **********
+ **    1 **MINIMIZE #UNCOMMENT 
+ **********
+
+ FIRST CALL TO USER FUNCTION AT NEW START POINT, WITH IFLAG=4.
+ START MIGRAD MINIMIZATION.  STRATEGY 1.  CONVERGENCE WHEN EDM .LT. 0.10E-03
+
+ FCN=   5073.499     FROM MIGRAD    STATUS=INITIATE      42 CALLS       43 TOTAL
+                     EDM= unknown      STRATEGY= 1      NO ERROR MATRIX       
+
+  EXT PARAMETER               CURRENT GUESS       STEP         FIRST   
+  NO.   NAME        VALUE          ERROR          SIZE      DERIVATIVE 
+   1    Ag          1.0000       constant   
+   2    As          6.0000       0.50000        0.0000        261.15    
+   3    Av          1.0000       constant   
+   4    ZERO        0.0000       constant   
+   5    delBg       0.0000       constant   
+   6    delBs       0.0000       constant   
+   7    delBv       0.0000       0.30000E-01    0.0000       -11632.    
+   8    delCg      -3.7325        1.0000       -3.7325       -415.60    
+   9    delCs       0.0000        3.0000        0.0000       -190.86    
+  10    delCv       0.0000       0.40000E-01    0.0000        5399.2    
+  11    delDg       0.0000       constant   
+  12    delDs       0.0000       constant   
+  13    delDv       0.0000       constant   
+  14    gifl        0.0000       constant   
+  15    sifl        1.0000       constant   
+  16    vifl        2.0000       constant   
+ MINUIT WARNING IN MIGRAD  
+ ============== Negative diagonal element  2 in Error Matrix
+ MINUIT WARNING IN MIGRAD  
+ ============== Negative diagonal element  3 in Error Matrix
+ MINUIT WARNING IN MIGRAD  
+ ============== Negative diagonal element  4 in Error Matrix
+ MINUIT WARNING IN MIGRAD  
+ ==============     0.10E+01 added to diagonal of error matrix
+ MIGRAD FAILS TO FIND IMPROVEMENT
+ MINUIT WARNING IN HESSE
+ ============== Second derivative enters zero, param    7
+ COVARIANCE MATRIX CALCULATED SUCCESSFULLY
+
+ FCN=   760.6183     FROM HESSE     STATUS=OK            37 CALLS      329 TOTAL
+                     EDM=  0.25E+10    STRATEGY= 1      ERROR MATRIX ACCURATE 
+
+  EXT PARAMETER                                   STEP         FIRST   
+  NO.   NAME        VALUE          ERROR          SIZE      DERIVATIVE 
+   1    Ag          1.0000       constant   
+   2    As          4.7181       0.16701       0.21238E-02   -1.1960    
+   3    Av          1.0000       constant   
+   4    ZERO        0.0000       constant   
+   5    delBg       0.0000       constant   
+   6    delBs       0.0000       constant   
+   7    delBv      -19.619       0.36598E-04    2.5879      -0.19321E+10
+   8    delCg       9.8497        3.8873       0.52136E-01  -0.55364    
+   9    delCs      -7.1067       0.11504E-01   0.14732E-03   -31.543    
+  10    delCv      -2.5133       0.68111E-03    48.162      -0.10382E+09
+  11    delDg       0.0000       constant   
+  12    delDs       0.0000       constant   
+  13    delDv       0.0000       constant   
+  14    gifl        0.0000       constant   
+  15    sifl        1.0000       constant   
+  16    vifl        2.0000       constant   
+ MINUIT WARNING IN MIGRAD  
+ ============== Negative diagonal element  2 in Error Matrix
+ MINUIT WARNING IN MIGRAD  
+ ============== Negative diagonal element  4 in Error Matrix
+ MINUIT WARNING IN MIGRAD  
+ ==============     0.10E+01 added to diagonal of error matrix
+ MIGRAD FAILS TO FIND IMPROVEMENT
+ MIGRAD TERMINATED WITHOUT CONVERGENCE.
+
+ FCN=   758.2849     FROM MIGRAD    STATUS=FAILED       407 CALLS      408 TOTAL
+                     EDM=  0.38E+08  STRATEGY=1  ERROR MATRIX UNCERTAINTY=100.0%
+
+  EXT PARAMETER                APPROXIMATE        STEP         FIRST   
+  NO.   NAME        VALUE          ERROR          SIZE      DERIVATIVE 
+   1    Ag          1.0000       constant   
+   2    As          4.7506        1.0089        0.0000      -0.31689E-01
+   3    Av          1.0000       constant   
+   4    ZERO        0.0000       constant   
+   5    delBg       0.0000       constant   
+   6    delBs       0.0000       constant   
+   7    delBv      -16.362        1.0001        0.0000      -0.19321E+09
+   8    delCg       29.996        9.5353       -0.0000      -0.45600E-02
+   9    delCs      -7.1052        1.0000        0.0000       -3.9749    
+  10    delCv       58.111        1.0001       -0.0000        0.0000    
+  11    delDg       0.0000       constant   
+  12    delDs       0.0000       constant   
+  13    delDv       0.0000       constant   
+  14    gifl        0.0000       constant   
+  15    sifl        1.0000       constant   
+  16    vifl        2.0000       constant   
+
+ EXTERNAL ERROR MATRIX.    NDIM=  50    NPAR=  5    ERR DEF=  1.00    
+  0.102E+01 0.331E-09 0.200E+01-0.147E-02 0.734E-08
+  0.331E-09 0.100E+01-0.711E-07 0.600E-10-0.282E-15
+  0.200E+01-0.711E-07 0.909E+02 0.356E+00-0.333E-06
+ -0.147E-02 0.600E-10 0.356E+00 0.100E+01 0.133E-08
+  0.734E-08-0.282E-15-0.333E-06 0.133E-08 0.100E+01
+ ERR MATRIX APPROXIMATE
+
+ PARAMETER  CORRELATION COEFFICIENTS
+       NO.  GLOBAL     2     7     8     9    10
+        2  0.20846  1.000 0.000 0.208-0.001 0.000
+        7  0.00000  0.000 1.000-0.000 0.000-0.000
+        8  0.21163  0.208-0.000 1.000 0.037-0.000
+        9  0.03848 -0.001 0.000 0.037 1.000 0.000
+       10  0.00000  0.000-0.000-0.000 0.000 1.000
+ ERR MATRIX APPROXIMATE
+ START SIMPLEX MINIMIZATION.    CONVERGENCE WHEN EDM .LT.  0.10E+00
+
+ FCN=   758.2849     FROM SIMPLEX   STATUS=UNCHANGED     15 CALLS      423 TOTAL
+                     EDM=  0.22E+03  STRATEGY=1  ERROR MATRIX UNCERTAINTY=100.0%
+
+  EXT PARAMETER                APPROXIMATE     INTERNAL      INTERNAL  
+  NO.   NAME        VALUE          ERROR       STEP SIZE       VALUE   
+   1    Ag          1.0000       constant   
+   2    As          4.7506        1.0089       0.16143        4.7506    
+   3    Av          1.0000       constant   
+   4    ZERO        0.0000       constant   
+   5    delBg       0.0000       constant   
+   6    delBs       0.0000       constant   
+   7    delBv      -16.362        1.0001       0.16002       -16.362    
+   8    delCg       29.996        9.5353        1.5256        29.996    
+   9    delCs      -7.1052        1.0000       0.16000       -7.1052    
+  10    delCv       58.111        1.0001       0.16002        58.111    
+  11    delDg       0.0000       constant   
+  12    delDs       0.0000       constant   
+  13    delDv       0.0000       constant   
+  14    gifl        0.0000       constant   
+  15    sifl        1.0000       constant   
+  16    vifl        2.0000       constant   
+ SIMPLEX MINIMIZATION HAS CONVERGED.
+
+ FCN=   758.2823     FROM SIMPLEX   STATUS=PROGRESS      49 CALLS      457 TOTAL
+                     EDM=  0.53E-01  STRATEGY=1  ERROR MATRIX UNCERTAINTY=100.0%
+
+  EXT PARAMETER                APPROXIMATE     INTERNAL      INTERNAL  
+  NO.   NAME        VALUE          ERROR       STEP SIZE       VALUE   
+   1    Ag          1.0000       constant   
+   2    As          4.7574        1.0089       0.34249E-01    4.7574    
+   3    Av          1.0000       constant   
+   4    ZERO        0.0000       constant   
+   5    delBg       0.0000       constant   
+   6    delBs       0.0000       constant   
+   7    delBv      -16.271        1.0001       0.14247       -16.271    
+   8    delCg       30.696        9.5353        1.0740        30.696    
+   9    delCs      -7.1049        1.0000       0.47673E-02   -7.1049    
+  10    delCv       58.116        1.0001       0.17584E-01    58.116    
+  11    delDg       0.0000       constant   
+  12    delDs       0.0000       constant   
+  13    delDv       0.0000       constant   
+  14    gifl        0.0000       constant   
+  15    sifl        1.0000       constant   
+  16    vifl        2.0000       constant   
+ START MIGRAD MINIMIZATION.  STRATEGY 1.  CONVERGENCE WHEN EDM .LT. 0.10E-03
+
+ FCN=   758.2823     FROM MIGRAD    STATUS=INITIATE      12 CALLS      469 TOTAL
+                     EDM=  0.21E+01  STRATEGY=1  ERROR MATRIX UNCERTAINTY=100.0%
+
+  EXT PARAMETER                APPROXIMATE        STEP         FIRST   
+  NO.   NAME        VALUE          ERROR          SIZE      DERIVATIVE 
+   1    Ag          1.0000       constant   
+   2    As          4.7574        1.0089       0.34249E-01   0.38765    
+   3    Av          1.0000       constant   
+   4    ZERO        0.0000       constant   
+   5    delBg       0.0000       constant   
+   6    delBs       0.0000       constant   
+   7    delBv      -16.271        1.0001       0.14247        0.0000    
+   8    delCg       30.696        9.5353        1.0740      -0.38646E-02
+   9    delCs      -7.1049        1.0000       0.47673E-02   -1.3611    
+  10    delCv       58.116        1.0001       0.17584E-01    0.0000    
+  11    delDg       0.0000       constant   
+  12    delDs       0.0000       constant   
+  13    delDv       0.0000       constant   
+  14    gifl        0.0000       constant   
+  15    sifl        1.0000       constant   
+  16    vifl        2.0000       constant   
+ MIGRAD FAILS TO FIND IMPROVEMENT
+ MINUIT WARNING IN HESSE
+ ============== Second derivative enters zero, param   10
+ COVARIANCE MATRIX CALCULATED SUCCESSFULLY
+
+ FCN=   758.2819     FROM HESSE     STATUS=OK            37 CALLS      547 TOTAL
+                     EDM=  0.25E+10    STRATEGY= 1      ERROR MATRIX ACCURATE 
+
+  EXT PARAMETER                                   STEP         FIRST   
+  NO.   NAME        VALUE          ERROR          SIZE      DERIVATIVE 
+   1    Ag          1.0000       constant   
+   2    As          4.7484       0.16853       0.21743E-02  -0.26547    
+   3    Av          1.0000       constant   
+   4    ZERO        0.0000       constant   
+   5    delBg       0.0000       constant   
+   6    delBs       0.0000       constant   
+   7    delBv      -16.271       0.36598E-03    25.879      -0.19321E+09
+   8    delCg       30.687        46.537       0.62614      -0.38518E-02
+   9    delCs      -7.1050       0.11514E-01   0.14800E-03  -0.73928E-01
+  10    delCv       58.116       0.11022E-01    779.38      -0.64154E+07
+  11    delDg       0.0000       constant   
+  12    delDs       0.0000       constant   
+  13    delDv       0.0000       constant   
+  14    gifl        0.0000       constant   
+  15    sifl        1.0000       constant   
+  16    vifl        2.0000       constant   
+ MINUIT WARNING IN MIGRAD  
+ ============== Negative diagonal element  2 in Error Matrix
+ MINUIT WARNING IN MIGRAD  
+ ==============     0.10E+01 added to diagonal of error matrix
+ MIGRAD FAILS TO FIND IMPROVEMENT
+ MIGRAD TERMINATED WITHOUT CONVERGENCE.
+
+ FCN=   758.2663     FROM MIGRAD    STATUS=FAILED       159 CALLS      616 TOTAL
+                     EDM=  0.94E+09  STRATEGY=1  ERROR MATRIX UNCERTAINTY=  8.6%
+
+  EXT PARAMETER                APPROXIMATE        STEP         FIRST   
+  NO.   NAME        VALUE          ERROR          SIZE      DERIVATIVE 
+   1    Ag          1.0000       constant   
+   2    As          4.7521        1.0137        0.0000      -0.45827E-02
+   3    Av          1.0000       constant   
+   4    ZERO        0.0000       constant   
+   5    delBg       0.0000       constant   
+   6    delBs       0.0000       constant   
+   7    delBv      -16.246        1.0000        0.0000      -0.19321E+09
+   8    delCg       43.303        79.901       -0.0000      -0.17208E-03
+   9    delCs      -7.1050        1.0001        0.0000      -0.34852    
+  10    delCv       58.877        1.0000        0.0000        0.0000    
+  11    delDg       0.0000       constant   
+  12    delDs       0.0000       constant   
+  13    delDv       0.0000       constant   
+  14    gifl        0.0000       constant   
+  15    sifl        1.0000       constant   
+  16    vifl        2.0000       constant   
+
+ EXTERNAL ERROR MATRIX.    NDIM=  50    NPAR=  5    ERR DEF=  1.00    
+  0.103E+01 0.272E-11 0.311E+00 0.465E-03-0.960E-09
+  0.272E-11 0.100E+01-0.745E-08 0.365E-12 0.248E-16
+  0.311E+00-0.745E-08 0.638E+04 0.364E-01 0.250E-06
+  0.465E-03 0.365E-12 0.364E-01 0.100E+01 0.795E-11
+ -0.960E-09 0.248E-16 0.250E-06 0.795E-11 0.100E+01
+ ERR MATRIX APPROXIMATE
+
+ PARAMETER  CORRELATION COEFFICIENTS
+       NO.  GLOBAL     2     7     8     9    10
+        2  0.00386  1.000 0.000 0.004 0.000-0.000
+        7  0.00000  0.000 1.000-0.000 0.000 0.000
+        8  0.00386  0.004-0.000 1.000 0.000 0.000
+        9  0.00064  0.000 0.000 0.000 1.000 0.000
+       10  0.00000 -0.000 0.000 0.000 0.000 1.000
+ ERR MATRIX APPROXIMATE
+ **********
+ **    2 **CALL FCN    3.000    
+ **********
+ **********
+ **    3 **#SCAN #UNCOMMENT TO 
+ **********
+           UNKNOWN COMMAND IGNORED:#SCAN #UNCOMMENT To 
+ **********
+ **    4 **#SCAN    5.000       40.00     -0.5000       1.500    
+ **********
+           UNKNOWN COMMAND IGNORED:#SCAN 
+ **********
+ **    5 **#SCAN    9.000       40.00      0.9000       1.000    
+ **********
+           UNKNOWN COMMAND IGNORED:#SCAN 
