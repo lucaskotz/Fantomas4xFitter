@@ -1,3 +1,0 @@
-terminate called after throwing an instance of 'YAML::ParserException'
-  what():  yaml-cpp: error at line 24, column 8: end of sequence flow not found
-/cm/local/apps/slurm/var/spool/job5225940/slurm_script: line 15: 2359338 Aborted                 (core dumped) nice ./xfitter
