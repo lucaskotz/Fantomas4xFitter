@@ -28,7 +28,6 @@ public:
   virtual void xfxQarray(double x, double Q, double *pdfs) override final;
   virtual double getAlphaS(double Q) override final;
   virtual std::vector<double> getXgrid() override final;
-  virtual std::vector<double> getQgrid() override final;
 private:
   /// Class to keep track of evolution types (QCD, QCD+QED)
   enum class evolType {
@@ -41,7 +40,5 @@ private:
   double _Qlast;
   /// Yaml parameters
   YAML::Node _yAPFEL;
-  /// Q grid boundaries:
-  double _Qmin, _Qmax;
 };
 } // namespace xfitter

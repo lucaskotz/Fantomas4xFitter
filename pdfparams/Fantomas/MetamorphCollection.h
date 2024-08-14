@@ -14,6 +14,9 @@
 #include "metamorph.h"
 #include "fantomas.h"
 #include "isNumber.h"
+#include <unistd.h> // For readlink()
+#include <limits.h>  // For PATH_MAX
+#include <ctime> // For time and localtime
 
 // lk22 changed maxSc from 2 to 3 to include normalization constant added to Carrier(x) in metamorph.h
 const int maxSc = 3;	               // number of Sc variables for each flavor
@@ -476,10 +479,10 @@ public:
 	for (int j = 0; j < Nmtmp+1; j++)
 	{
 	  Ci = MetaRoster[ifltmp]->Cs(j);
-	  fantochi2 += abs(log(abs(Ci)));
+	  fantochi2 += abs(log(1+abs(Ci)));
 	}
-	double w = 0.01;
-	fantochi2 *= (w/(Nmtmp+1))*fantochi2;
+	//double w = 0.01;
+	//fantochi2 *= (w/(Nmtmp+1))*fantochi2;
       }
     }// for (int i = 0; i < iMet; i++)
     
@@ -611,6 +614,62 @@ public:
     }
     */
   } // WriteC()
+
+  void Writechi2log(double chi2in)
+  {
+    const std::string logFilePath = "output/fantomas_chi2.log";
+    
+    // read the name of the symlink file. return "steering_fantomas.txt" if there is no symlink
+    const char* symlinkPath = "your_symlink_path_here";
+    char targetPath[PATH_MAX];
+    
+    ssize_t len = readlink(symlinkPath, targetPath, sizeof(targetPath) - 1);
+    
+    // Open the file to check if it exists
+    std::ifstream fileCheck(logFilePath.c_str());
+    bool fileExists = fileCheck.good();
+    fileCheck.close();
+
+    // Open the log file in append mode
+    std::ofstream logFile(logFilePath.c_str(), std::ios_base::app);
+    
+    // If the file doesn't exist, write the header
+    if (!fileExists)
+    {
+      // read the name of the symlink file. return "steering_fantomas.txt" if there is no symlink
+      const char* symlinkPath = "your_symlink_path_here";
+      char targetPath[PATH_MAX];
+    
+      ssize_t len = readlink(symlinkPath, targetPath, sizeof(targetPath) - 1);
+    
+      if (len != -1)
+      {
+        targetPath[len] = '\0';  // Null-terminate the string
+        logFile << "# " << targetPath << "\n";
+      }
+      else
+        logFile << "# steering_fantomas.txt\n";
+
+      // Write the value (with a timestamp)
+      // Get current time
+      std::time_t now = std::time(nullptr);
+      std::tm *localTime = std::localtime(&now);
+
+      // Format the time as YYYY-MM-DD HH:MM:SS
+      char timeBuffer[20];
+      std::strftime(timeBuffer, sizeof(timeBuffer), "%Y-%m-%d %H:%M:%S", localTime);
+
+      // Write the value with the formatted date and time
+      logFile << "# " << timeBuffer << "\n";
+      logFile << "# improved chi2 during fitting process\n";
+    }
+
+    logFile << chi2in << "\n";
+    
+    logFile.close();
+    
+  } // Writechi2log
+  
   ~MetamorphCollection()
   {
     std::map<int,metamorph*>::iterator it;

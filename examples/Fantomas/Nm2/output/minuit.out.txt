@@ -1,0 +1,81 @@
+  MINUIT RELEASE 96.03  INITIALIZED.   DIMENSIONS 200/ 50  EPSMAC=  0.89E-15
+
+ PARAMETER DEFINITIONS:
+    NO.   NAME         VALUE      STEP SIZE      LIMITS
+     1 'Ag        '    1.0000      constant
+     2 'As        '    7.7005      0.10000         no limits
+     3 'Av        '    1.0000      constant
+     4 'ZERO      '    0.0000      constant
+     5 'delBg     '    0.0000      0.10000         no limits
+     6 'delBs     '    0.0000      0.10000         no limits
+     7 'delBv     '    0.0000      0.10000         no limits
+     8 'delCg     '    0.0000      0.10000         no limits
+     9 'delCs     '    0.0000      0.10000         no limits
+    10 'delCv     '    0.0000      0.10000         no limits
+    11 'delDg     '    0.0000      0.10000         no limits
+    12 'delDs     '    0.0000      0.10000         no limits
+    13 'delDv     '    0.0000      0.10000         no limits
+    14 'delEg     '    0.0000      0.10000         no limits
+    15 'delEs     '    0.0000      0.10000         no limits
+    16 'delEv     '    0.0000      0.10000         no limits
+    17 'delFg     '    0.0000      constant
+    18 'delFs     '    0.0000      constant
+    19 'delFv     '    0.0000      constant
+    20 'gifl      '    0.0000      constant
+    21 'sifl      '    1.0000      constant
+    22 'vifl      '    2.0000      constant
+ **********
+ **    1 **MINIMIZE #UNCOMMENT 
+ **********
+
+ FIRST CALL TO USER FUNCTION AT NEW START POINT, WITH IFLAG=4.
+ START MIGRAD MINIMIZATION.  STRATEGY 1.  CONVERGENCE WHEN EDM .LT. 0.10E-03
+
+ FCN=   435.2024     FROM MIGRAD    STATUS=INITIATE      58 CALLS       59 TOTAL
+                     EDM= unknown      STRATEGY= 1      NO ERROR MATRIX       
+
+  EXT PARAMETER               CURRENT GUESS       STEP         FIRST   
+  NO.   NAME        VALUE          ERROR          SIZE      DERIVATIVE 
+   1    Ag          1.0000       constant   
+   2    As          7.7005       0.10000       0.10000      -0.23540    
+   3    Av          1.0000       constant   
+   4    ZERO        0.0000       constant   
+   5    delBg       0.0000       0.10000       0.10000       0.34736    
+   6    delBs       0.0000       0.10000       0.10000        1.6473    
+   7    delBv       0.0000       0.10000       0.10000       -7.6316    
+   8    delCg       0.0000       0.10000       0.10000      -0.45070    
+   9    delCs       0.0000       0.10000       0.10000       0.97688    
+  10    delCv       0.0000       0.10000       0.10000        1.6797    
+  11    delDg       0.0000       0.10000       0.10000      -0.30569E-01
+  12    delDs       0.0000       0.10000       0.10000        1.0863    
+  13    delDv       0.0000       0.10000       0.10000        7.4683    
+  14    delEg       0.0000       0.10000       0.10000       0.17950    
+  15    delEs       0.0000       0.10000       0.10000       -3.9112    
+  16    delEv       0.0000       0.10000       0.10000       -3.0389    
+  17    delFg       0.0000       constant   
+  18    delFs       0.0000       constant   
+  19    delFv       0.0000       constant   
+  20    gifl        0.0000       constant   
+  21    sifl        1.0000       constant   
+  22    vifl        2.0000       constant   
+ MINUIT WARNING IN MIGRAD  
+ ============== Negative diagonal element  1 in Error Matrix
+ MINUIT WARNING IN MIGRAD  
+ ============== Negative diagonal element  2 in Error Matrix
+ MINUIT WARNING IN MIGRAD  
+ ============== Negative diagonal element  3 in Error Matrix
+ MINUIT WARNING IN MIGRAD  
+ ============== Negative diagonal element  4 in Error Matrix
+ MINUIT WARNING IN MIGRAD  
+ ============== Negative diagonal element  5 in Error Matrix
+ MINUIT WARNING IN MIGRAD  
+ ============== Negative diagonal element  6 in Error Matrix
+ MINUIT WARNING IN MIGRAD  
+ ============== Negative diagonal element  7 in Error Matrix
+ MINUIT WARNING IN MIGRAD  
+ ============== Negative diagonal element  8 in Error Matrix
+ MINUIT WARNING IN MIGRAD  
+ ============== Negative diagonal element  9 in Error Matrix
+ MINUIT WARNING IN MIGRAD  
+ ============== Negative diagonal element 10 in Error Matrix
+ MINUIT WARNING IN MIGRAD  

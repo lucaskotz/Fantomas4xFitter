@@ -15,7 +15,14 @@
 #main library             goes to ./lib
 #dynamically loaded modules go to ./lib/xfitter
 
+#Specify the build type: Debug, Release, RelWithDebInfo and MinSizeRel
+#PN 22/08/08 -- Note: on percy, the Debug build does not include the debugging symbols 
+# into xfitter. To add them, do 'make.sh rec', edit build/CMakeCache.txt and
+#replace '-g' by '-Og -g -DNDEBUG' in the strings for compilers and EXE linkers for the
+# Debug build, then do 'make.sh install'. 
 CMAKE_FLAGS=$CMAKE_FLAGS" -DCMAKE_BUILD_TYPE=Debug"
+#CMAKE_FLAGS=$CMAKE_FLAGS" -DCMAKE_BUILD_TYPE=Debug"
+#CMAKE_FLAGS=$CMAKE_FLAGS" -DCMAKE_BUILD_TYPE=RelWithDebInfo"
 
 #Uncommect to disable some some of the optional packages
 #CMAKE_FLAGS=$CMAKE_FLAGS" -DCMAKE_DISABLE_FIND_PACKAGE_APFEL=TRUE"
@@ -55,12 +62,8 @@ elif [ "$cmd" == "reconfigure" ] || [ "$cmd" == "install" ] || [ "$cmd" == "run"
   if [ "$cmd" == "reconfigure" ] && [ -e CMakeCache.txt ];then
     rm CMakeCache.txt
   fi
-  cmake3='cmake3'
-  if ! command -v cmake3 >/dev/null 2>&1; then
-    cmake3='cmake'
-  fi
   if [ ! -f Makefile ] || [ ! -f CMakeCache.txt ];then
-    $cmake3 $CMAKE_FLAGS $SOURCE_DIR -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR || exit
+    cmake $CMAKE_FLAGS $SOURCE_DIR -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR || exit
   fi
   if [ "$cmd" == "reconfigure" ];then
     exit 0

@@ -120,3 +120,13 @@ extern "C" void getfantochi2_(double& fantochi2)
 {
   getfantochi2(fantochi2);
 }//getfantochi2_ ->
+
+void writechi2out(double& chi2in)
+{
+  metacol->Writechi2log(chi2in);
+}
+
+extern "C" void writechi2log_(double& chi2in)
+{
+  writechi2out(chi2in);
+}

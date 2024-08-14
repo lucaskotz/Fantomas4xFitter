@@ -1,0 +1,11 @@
+#ifndef FANTOMASPRINT_H
+#define FANTOMASPRINT_H
+
+extern double fantomuR;
+extern double fantomuF;
+
+inline void trackLowestValue(int *newValue, int &lowestValue){
+  if (*newValue < lowestValue) 
+    lowestValue = *newValue;
+}
+#endif

@@ -94,6 +94,7 @@ cpn22 If chi2 has improved, save the Fantomas steering card
         chimin = chi2out
         call writefantosteer()
         call writefantoc()
+        call writechi2log(chimin)
       endif
 #endif 
 
@@ -407,8 +408,8 @@ C However when/if LHAPDFErrors mode will be combined with minuit, this will need
 
 clk23 add chi2 penalty from fantomas conditions here
 #ifdef FANTOMAS
-c      call getfantochi2(fantochi)
-c      chi2out = chi2out + fantochi
+      call getfantochi2(fantochi)
+      chi2out = chi2out + fantochi
 #endif
 
 c If for any reason we got chi2==NaN, set it to +inf so that that

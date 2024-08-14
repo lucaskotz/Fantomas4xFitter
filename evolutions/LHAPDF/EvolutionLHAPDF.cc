@@ -27,8 +27,6 @@ namespace xfitter {
 /// Global initialization
   void EvolutionLHAPDF::atStart()
   {
-    LHAPDF::Info& cfg = LHAPDF::getConfig();
-    cfg.set_entry("Verbosity", 0);
     atConfigurationChange();
   };
 
@@ -122,15 +120,4 @@ namespace xfitter {
     return std::stoi(sVal);
   }
 
-  /// Get property
-  double EvolutionLHAPDF::getPropertyD(std::string const& propertyName) const {
-    std::string sVal = getPropertyS(propertyName);
-    return std::stod(sVal);
-  }
-  
-  /// Get property with default value
-  double EvolutionLHAPDF::getPropertyD(std::string const& propertyName, double defval) const {
-      double val = _pdf->info().get_entry_as<double>(propertyName, -1);
-      return val;
-  }
 }

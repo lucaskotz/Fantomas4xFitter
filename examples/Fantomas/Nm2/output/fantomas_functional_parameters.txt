@@ -1,0 +1,28 @@
+# Output file containing the functional from each flavor 
+
+# xf(x) = <xf>*x^Sc1*(1-x)^Sc2*(1+fbezier(x)) 
+
+# gluon -- metamorph 0
+<xf> = 0.0990272
+Scm[1] = -0.834097
+Scm[2] = -0.865027
+
+C[0] = 3.17972
+C[1] = 10.1008
+C[2] = -10.2315
+# sea  -- metamorph 1
+<xf> = 0.472716
+Scm[1] = 0.744259
+Scm[2] = 3.3076
+
+C[0] = 0.143548
+C[1] = -1.46155
+C[2] = 1.34627
+# valence  -- metamorph 2
+<xf> = 0.428257
+Scm[1] = 0.161373
+Scm[2] = 0.887011
+
+C[0] = -0.878821
+C[1] = -0.334765
+C[2] = 0.511023

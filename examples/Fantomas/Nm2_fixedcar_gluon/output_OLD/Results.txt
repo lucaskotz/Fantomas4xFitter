@@ -1,0 +1,63 @@
+After minimisation     448.79   402     1.116
+
+  Partial chi2s 
+Dataset    1      8.42( -0.25)     6  NA10-194-0                                      
+Dataset    2      6.42( -0.02)     6  NA10-194-1                                      
+Dataset    3      8.48( -0.00)     7  NA10-194-2                                      
+Dataset    4      5.50( +0.04)     7  NA10-194-3                                      
+Dataset    5      2.44( -0.05)     8  NA10-194-4                                      
+Dataset    6      5.90( -0.07)     8  NA10-194-5                                      
+Dataset    7     21.50( -0.53)     9  NA10-194-6                                      
+Dataset    8     42.37( -2.39)     8  NA10-194-7                                      
+Dataset    9     10.30( -1.10)     8  NA10-194-8                                      
+Dataset   10      4.50( -3.09)    10  WA70-0                                          
+Dataset   11      5.35( -5.01)    10  WA70-1                                          
+Dataset   12      4.04( -4.36)    10  WA70-2                                          
+Dataset   13      8.73( -4.10)    10  WA70-3                                          
+Dataset   14      9.36( -1.99)    10  WA70-4                                          
+Dataset   15      8.93( -4.74)    10  WA70-5                                          
+Dataset   16      3.13( -0.93)     8  WA70-6                                          
+Dataset   17      0.78( -2.11)     5  WA70plus-0                                      
+Dataset   18      4.83( -3.80)     5  WA70plus-1                                      
+Dataset   19      2.52( -3.43)     5  WA70plus-2                                      
+Dataset   20      5.38( -2.65)     5  WA70plus-3                                      
+Dataset   21      3.57( -4.06)     5  WA70plus-4                                      
+Dataset   22      2.83( -1.30)     3  WA70plus-5                                      
+Dataset   23      5.56( -2.77)     3  WA70plus-6                                      
+Dataset   24     12.55( -0.57)     4  NA10-286-0                                      
+Dataset   25      1.97( -0.53)     5  NA10-286-1                                      
+Dataset   26      3.96( -0.34)     5  NA10-286-2                                      
+Dataset   27      1.55( -0.47)     6  NA10-286-3                                      
+Dataset   28      4.76( -0.50)     7  NA10-286-4                                      
+Dataset   29     15.08( -0.54)     8  NA10-286-5                                      
+Dataset   30     10.15( -0.69)     8  NA10-286-6                                      
+Dataset   31      5.87( +0.33)     9  NA10-286-7                                      
+Dataset   32     20.38( +1.48)     8  NA10-286-8                                      
+Dataset   33     12.95( +1.16)     9  NA10-286-9                                      
+Dataset   34     13.55( +0.41)     4  NA10-286-10                                     
+Dataset   35     12.56( +0.54)     7  E615-0                                          
+Dataset   36     10.08( +1.65)    10  E615-1                                          
+Dataset   37     12.85( +2.33)    11  E615-2                                          
+Dataset   38     14.66( +1.65)    12  E615-3                                          
+Dataset   39      8.57( +1.93)    11  E615-4                                          
+Dataset   40      9.45( +1.53)    11  E615-5                                          
+Dataset   41     11.78( +0.96)    11  E615-6                                          
+Dataset   42     16.69( -0.55)    11  E615-7                                          
+Dataset   43     16.68( -0.63)    11  E615-8                                          
+Dataset   44     18.13( -1.76)    10  E615-9                                          
+Dataset   45     32.41( -2.38)     8  E615-13                                         
+Dataset   46     18.28( -2.97)     7  E615-14                                         
+Dataset   47      3.61( +0.29)     8  E615-15                                         
+Dataset   48      8.18( -1.84)     6  E615-16                                         
+Dataset   49     16.20( -5.79)     6  E615-17                                         
+Dataset   50      5.31( -1.18)    29  F2pi effective data                             
+
+ Correlated Chi2    4.9175560025616534     
+ Log penalty Chi2   -55.170318432788129     
+ Systematic shifts            4
+  
+                                Name          Shift   +/-    Error          Type
+    1  Norm_NA10-194                         -0.3300   +/-   0.0858        :N:M:D
+    2  WA70_Norm                             -1.3069   +/-   0.0651        :N:A:T
+    3  Norm_NA10-286                         -1.5659   +/-   0.1069        :N:M:D
+    4  Luminosity_E615                        0.8053   +/-   0.0627        :N:M:D

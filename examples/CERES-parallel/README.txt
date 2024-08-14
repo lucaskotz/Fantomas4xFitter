@@ -1,1 +1,0 @@
-Full CERES fit at NNLO with RTOPT QCDNUM

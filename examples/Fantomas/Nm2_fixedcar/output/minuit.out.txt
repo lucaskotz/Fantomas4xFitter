@@ -1,0 +1,179 @@
+  MINUIT RELEASE 96.03  INITIALIZED.   DIMENSIONS 200/ 50  EPSMAC=  0.89E-15
+
+ PARAMETER DEFINITIONS:
+    NO.   NAME         VALUE      STEP SIZE      LIMITS
+     1 'Ag        '    1.0000      constant
+     2 'As        '    9.7961      constant
+     3 'Av        '    1.0000      constant
+     4 'ZERO      '    0.0000      constant
+     5 'delBg     '    0.0000      constant
+     6 'delBs     '    0.0000      constant
+     7 'delBv     '    0.0000      constant
+     8 'delCg     '    0.0000      constant
+     9 'delCs     '    0.0000      constant
+    10 'delCv     '    0.0000      constant
+    11 'delDg     '    0.0000      constant
+    12 'delDs     '    0.0000      constant
+    13 'delDv     '    0.0000      constant
+    14 'delEg     '    0.0000      0.10000         no limits
+    15 'delEs     '    0.0000      0.10000         no limits
+    16 'delEv     '    0.0000      0.10000         no limits
+    17 'delFg     '    0.0000      0.10000         no limits
+    18 'delFs     '    0.0000      0.10000         no limits
+    19 'delFv     '    0.0000      0.10000         no limits
+    20 'gifl      '    0.0000      constant
+    21 'sifl      '    1.0000      constant
+    22 'vifl      '    2.0000      constant
+ **********
+ **    1 **MINIMIZE #UNCOMMENT 
+ **********
+
+ FIRST CALL TO USER FUNCTION AT NEW START POINT, WITH IFLAG=4.
+ START MIGRAD MINIMIZATION.  STRATEGY 1.  CONVERGENCE WHEN EDM .LT. 0.10E-03
+
+ FCN=   466.1237     FROM MIGRAD    STATUS=INITIATE      51 CALLS       52 TOTAL
+                     EDM= unknown      STRATEGY= 1      NO ERROR MATRIX       
+
+  EXT PARAMETER               CURRENT GUESS       STEP         FIRST   
+  NO.   NAME        VALUE          ERROR          SIZE      DERIVATIVE 
+   1    Ag          1.0000       constant   
+   2    As          9.7961       constant   
+   3    Av          1.0000       constant   
+   4    ZERO        0.0000       constant   
+   5    delBg       0.0000       constant   
+   6    delBs       0.0000       constant   
+   7    delBv       0.0000       constant   
+   8    delCg       0.0000       constant   
+   9    delCs       0.0000       constant   
+  10    delCv       0.0000       constant   
+  11    delDg       0.0000       constant   
+  12    delDs       0.0000       constant   
+  13    delDv       0.0000       constant   
+  14    delEg      -1.8977       0.10000       -1.8977        11.403    
+  15    delEs       0.0000       0.10000        0.0000        80.607    
+  16    delEv       0.0000       0.10000        0.0000        141.05    
+  17    delFg       0.0000       0.10000        0.0000      -0.79627E-03
+  18    delFs       0.0000       0.10000        0.0000       -3966.9    
+  19    delFv       0.0000       0.10000        0.0000       0.34748E-01
+  20    gifl        0.0000       constant   
+  21    sifl        1.0000       constant   
+  22    vifl        2.0000       constant   
+ MIGRAD FAILS TO FIND IMPROVEMENT
+ EIGENVALUES OF SECOND-DERIVATIVE MATRIX:
+        -0.6682E+03 -0.3796E+02  0.9910E+00  0.1009E+01  0.3997E+02  0.6702E+03
+ MINUIT WARNING IN HESSE   
+ ============== MATRIX FORCED POS-DEF BY ADDING   668.84     TO DIAGONAL.
+
+ FCN=   458.2305     FROM HESSE     STATUS=NOT POSDEF    44 CALLS      233 TOTAL
+                     EDM=  0.22E-06    STRATEGY= 1      ERR MATRIX NOT POS-DEF
+
+  EXT PARAMETER                APPROXIMATE        STEP         FIRST   
+  NO.   NAME        VALUE          ERROR          SIZE      DERIVATIVE 
+   1    Ag          1.0000       constant   
+   2    As          9.7961       constant   
+   3    Av          1.0000       constant   
+   4    ZERO        0.0000       constant   
+   5    delBg       0.0000       constant   
+   6    delBs       0.0000       constant   
+   7    delBv       0.0000       constant   
+   8    delCg       0.0000       constant   
+   9    delCs       0.0000       constant   
+  10    delCv       0.0000       constant   
+  11    delDg       0.0000       constant   
+  12    delDs       0.0000       constant   
+  13    delDv       0.0000       constant   
+  14    delEg      -1.9168       0.14104       0.17152E-02   0.66414E-02
+  15    delEs     -0.18332       0.11132E-03   0.48871E-04  -0.36818    
+  16    delEv      0.32127E-02   0.21361E-03   0.11286E-03  -0.18038    
+  17    delFg      0.74992E-14   0.10560E-13   0.10830E-11    0.0000    
+  18    delFs      0.22610E-15   0.20646E-15   0.10830E-11   -5159.5    
+  19    delFv     -0.73688E-14   0.15587E-15   0.10830E-11   -87.335    
+  20    gifl        0.0000       constant   
+  21    sifl        1.0000       constant   
+  22    vifl        2.0000       constant   
+
+ MIGRAD MINIMIZATION HAS CONVERGED.
+
+ MIGRAD WILL VERIFY CONVERGENCE AND ERROR MATRIX.
+ MINUIT WARNING IN HESSE
+ ============== Second derivative enters zero, param   17
+ MINUIT WARNING IN HESSE
+ ============== Second derivative enters zero, param   18
+ MINUIT WARNING IN HESSE
+ ============== Second derivative enters zero, param   19
+ EIGENVALUES OF SECOND-DERIVATIVE MATRIX:
+        -0.6681E+03 -0.3796E+02  0.9862E+00  0.1014E+01  0.3997E+02  0.6701E+03
+ MINUIT WARNING IN HESSE   
+ ============== MATRIX FORCED POS-DEF BY ADDING   668.81     TO DIAGONAL.
+
+ FCN=   458.2305     FROM MIGRAD    STATUS=CONVERGED    308 CALLS      309 TOTAL
+                     EDM=  0.54E-08    STRATEGY= 1      ERR MATRIX NOT POS-DEF
+
+  EXT PARAMETER                APPROXIMATE        STEP         FIRST   
+  NO.   NAME        VALUE          ERROR          SIZE      DERIVATIVE 
+   1    Ag          1.0000       constant   
+   2    As          9.7961       constant   
+   3    Av          1.0000       constant   
+   4    ZERO        0.0000       constant   
+   5    delBg       0.0000       constant   
+   6    delBs       0.0000       constant   
+   7    delBv       0.0000       constant   
+   8    delCg       0.0000       constant   
+   9    delCs       0.0000       constant   
+  10    delCv       0.0000       constant   
+  11    delDg       0.0000       constant   
+  12    delDs       0.0000       constant   
+  13    delDv       0.0000       constant   
+  14    delEg      -1.9169       0.14101       0.17143E-02   0.46299E-03
+  15    delEs     -0.18332       0.87668E-04   0.30148E-04  -0.23869    
+  16    delEv      0.32127E-02   0.41674E-03   0.45142E-04  -0.18612    
+  17    delFg      0.74937E-14   0.10565E-13   0.10830E-11   0.10497    
+  18    delFs      0.22598E-15   0.20645E-15   0.10830E-11   -3439.6    
+  19    delFv     -0.73687E-14   0.15587E-15   0.10830E-11   -154.51    
+  20    gifl        0.0000       constant   
+  21    sifl        1.0000       constant   
+  22    vifl        2.0000       constant   
+
+ EXTERNAL ERROR MATRIX.    NDIM=  50    NPAR=  6    ERR DEF=  1.00    
+  0.199E-01-0.689E-08-0.246E-06 0.132E-14 0.291E-16-0.437E-17
+ -0.689E-08 0.769E-08-0.697E-12-0.451E-21-0.101E-22 0.425E-23
+ -0.246E-06-0.697E-12 0.174E-06-0.158E-19-0.361E-21 0.522E-22
+  0.132E-14-0.451E-21-0.158E-19 0.112E-27 0.193E-29-0.334E-30
+  0.291E-16-0.101E-22-0.361E-21 0.193E-29 0.426E-31-0.639E-32
+ -0.437E-17 0.425E-23 0.522E-22-0.334E-30-0.639E-32 0.243E-31
+ ERR MATRIX NOT POS-DEF
+
+ PARAMETER  CORRELATION COEFFICIENTS
+       NO.  GLOBAL    14    15    16    17    18    19
+       14  0.99899  1.000-0.001-0.004 0.883 0.999-0.199
+       15  0.00059 -0.001 1.000-0.000-0.000-0.001 0.000
+       16  0.00420 -0.004-0.000 1.000-0.004-0.004 0.001
+       17  0.88449  0.883-0.000-0.004 1.000 0.884-0.203
+       18  0.99900  0.999-0.001-0.004 0.884 1.000-0.199
+       19  0.20686 -0.199 0.000 0.001-0.203-0.199 1.000
+ ERR MATRIX NOT POS-DEF
+ **********
+ **    2 **CALL FCN    3.000    
+ **********
+ **********
+ **    3 **#SCAN #UNCOMMENT TO 
+ **********
+           UNKNOWN COMMAND IGNORED:#SCAN #UNCOMMENT To 
+ **********
+ **    4 **#SCAN    4.000    
+ **********
+           UNKNOWN COMMAND IGNORED:#SCAN 
+ **********
+ **    5 **#SCAN    5.000    
+ **********
+           UNKNOWN COMMAND IGNORED:#SCAN 
+ **********
+ **    6 **#SCAN    6.000    
+ **********
+           UNKNOWN COMMAND IGNORED:#SCAN 
+ **********
+ **    7 **ITERATE    10.00    
+ **********
+ ITERATE BEGINNING:  requested iterations=   10
+ ITERATE STARTING POINT:  FCN=  458.230493     NFCN=   311 UP=AIMSAG= 1.00000    
+ End of iteration   0 FCN=  458.230492     NFCN=   535
