@@ -52,12 +52,12 @@ Dataset   48      8.19( -1.79)     6  E615-16
 Dataset   49     15.94( -5.74)     6  E615-17                                         
 Dataset   50      4.63( -0.21)    29  F2pi effective data                             
 
- Correlated Chi2    4.5652465469388339     
- Log penalty Chi2   -47.297731583438363     
+ Correlated Chi2    4.5653484467587040     
+ Log penalty Chi2   -47.298019033065231     
  Systematic shifts            4
   
                                 Name          Shift   +/-    Error          Type
-    1  Norm_NA10-194                         -0.3241   +/-   0.0858        :N:M:D
+    1  Norm_NA10-194                         -0.3242   +/-   0.0858        :N:M:D
     2  WA70_Norm                             -1.2000   +/-   0.0670        :N:A:T
     3  Norm_NA10-286                         -1.5232   +/-   0.1068        :N:M:D
     4  Luminosity_E615                        0.8367   +/-   0.0625        :N:M:D

@@ -38,9 +38,9 @@ Parameters:
   #Cg: [ 2.1447, 1]
   delBg: 0.
   delCg: 0.
-  delDg: [ 0., 0.1]
-  delEg: [ 0., 0.1]
-  delFg: [ 0., 0.1]
+  delDg: [ 0., 0.1, -0.7, 0.7]
+  delEg: [ 0., 0.1, -1.5, 1.5]
+  delFg: [ 0., 0.1, -5, 5]
   gifl:  0.
   sifl:  1.
   vifl:  2.

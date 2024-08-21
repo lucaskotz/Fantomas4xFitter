@@ -1,6 +1,6 @@
 Minimizer: MINUIT
 MINUIT:
-  #doErrors: Pumplin #uncomment to make error bands
+  doErrors: Pumplin #uncomment to make error bands
   Commands: |
     minimize #uncomment to run the fit
     call fcn 3
@@ -19,7 +19,7 @@ Parameters:
   delDv: [ 0., 0.1]
   delEv: [ 0., 0.1]
   delFv: 0.
-  As: [  7.7005, 0.1]
+  As: [  22.769, 0.1]
   #Bs: [ 0.27599, 0.1]
   #Cs: [ 6.6988, 3]
   delBs: [ 0., 0.1]
@@ -32,7 +32,7 @@ Parameters:
   #Cg: [ 2.1447, 1]
   delBg: [ 0., 0.1]
   delCg: [ 0., 0.1]
-  delDg: [ 0., 0.1]
+  delDg: 0.
   delEg: [ 0., 0.1]
   delFg: 0.
   gifl:  0.

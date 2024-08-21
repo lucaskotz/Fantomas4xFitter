@@ -21,7 +21,7 @@ Dataset   17      1.40( -1.64)     5  WA70plus-0
 Dataset   18      4.47( -3.23)     5  WA70plus-1                                      
 Dataset   19      2.38( -2.77)     5  WA70plus-2                                      
 Dataset   20      4.22( -1.88)     5  WA70plus-3                                      
-Dataset   21      1.39( -3.16)     5  WA70plus-4                                      
+Dataset   21      1.38( -3.16)     5  WA70plus-4                                      
 Dataset   22      2.19( -0.57)     3  WA70plus-5                                      
 Dataset   23      3.26( -1.94)     3  WA70plus-6                                      
 Dataset   24     10.07( -0.54)     4  NA10-286-0                                      
@@ -29,7 +29,7 @@ Dataset   25      2.65( -0.50)     5  NA10-286-1
 Dataset   26      3.77( -0.33)     5  NA10-286-2                                      
 Dataset   27      1.41( -0.48)     6  NA10-286-3                                      
 Dataset   28      4.43( -0.53)     7  NA10-286-4                                      
-Dataset   29     15.18( -0.57)     8  NA10-286-5                                      
+Dataset   29     15.18( -0.56)     8  NA10-286-5                                      
 Dataset   30     10.45( -0.69)     8  NA10-286-6                                      
 Dataset   31      5.80( +0.33)     9  NA10-286-7                                      
 Dataset   32     20.70( +1.50)     8  NA10-286-8                                      
@@ -52,12 +52,12 @@ Dataset   48      8.19( -1.80)     6  E615-16
 Dataset   49     15.94( -5.74)     6  E615-17                                         
 Dataset   50      4.63( -0.21)    29  F2pi effective data                             
 
- Correlated Chi2    4.5670862893093309     
- Log penalty Chi2   -47.312288379255357     
+ Correlated Chi2    4.5666458647510124     
+ Log penalty Chi2   -47.308767402387815     
  Systematic shifts            4
   
                                 Name          Shift   +/-    Error          Type
-    1  Norm_NA10-194                         -0.3246   +/-   0.0858        :N:M:D
+    1  Norm_NA10-194                         -0.3245   +/-   0.0858        :N:M:D
     2  WA70_Norm                             -1.2001   +/-   0.0670        :N:A:T
-    3  Norm_NA10-286                         -1.5237   +/-   0.1068        :N:M:D
-    4  Luminosity_E615                        0.8365   +/-   0.0625        :N:M:D
+    3  Norm_NA10-286                         -1.5236   +/-   0.1068        :N:M:D
+    4  Luminosity_E615                        0.8366   +/-   0.0625        :N:M:D

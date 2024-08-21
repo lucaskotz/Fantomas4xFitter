@@ -1,0 +1,45 @@
+\documentclass[14pt]{report}
+\usepackage{extsizes}
+\usepackage[paperwidth=21cm,paperheight=21cm,left=0.2cm,right=0.2cm,top=0.2cm,bottom=0.2cm]{geometry}
+\usepackage{pxfonts}
+\pagestyle{empty}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage[table]{xcolor}
+\definecolor{lightgray}{gray}{0.85}
+\usepackage{color}
+\begin{document}
+\begin{table}
+  \begin{center}
+  \rowcolors{2}{lightgray}{}
+  \resizebox*{\textwidth}{!}{
+    \begin{tabular}{lp{4.45cm}}
+      \toprule
+ Parameter   & Nm1 output  \\ 
+      \midrule
+  'Ag' & $\textcolor{blue}{ 1.0000 }$  \\ 
+  'As' & $4.7^{+1.2}_{-1.6}$  \\ 
+  'Av' & $\textcolor{blue}{ 1.0000 }$  \\ 
+  'delBg' & $-0.00^{+0.21}_{-0.19}$  \\ 
+  'delBs' & $0.00^{+0.11}_{-0.11}$  \\ 
+  'delBv' & $0.000^{+0.039}_{-0.046}$  \\ 
+  'delCg' & $-0.0^{+1.0}_{-1.4}$  \\ 
+  'delCs' & $0.00^{+0.96}_{-0.73}$  \\ 
+  'delCv' & $0.000^{+0.036}_{-0.032}$  \\ 
+  'delEg' & $-0.00^{+0.50}_{-0.58}$  \\ 
+  'delEs' & $0.00^{+0.42}_{-0.29}$  \\ 
+  'delEv' & $-0.0^{+1.1}_{-1.3}$  \\ 
+  'sifl' & $\textcolor{blue}{ 1.0000 }$  \\ 
+  'vifl' & $\textcolor{blue}{ 2.000 }$  \\ 
+      \midrule
+  \rowcolor{white}
+ Fit status   & converged  \\ 
+  \rowcolor{white}
+ Uncertainties   & iterate  \\ 
+      \bottomrule
+    \end{tabular}
+  }
+  \end{center}
+\end{table}
+
+\end{document}

@@ -2,22 +2,22 @@
 
 # gluon -- metamorph 0
 # ifl  Nm  MappingMode  xPower  Sc(0)  Sc(1)
-0	2	0	1	0.5696	70.1957	
-# Xs  Sm  fp  fm	 f()	 f()
-0.001	25.082		
-0.4	-71.9645		
+0	2	0	1	-0.412565	3.05167	
+# Xs  Sm  fp  fm	 f()
+0.001	FIX		
+0.4	-1.33195e-07		
 0.7	FIX		
 # sea  -- metamorph 1
 # ifl  Nm  MappingMode  xPower  Sc(0)  Sc(1)
-1	2	0	1	0.132611	3.6263	
-# Xs  Sm  fp  fm	 f()	 f()
-0.001	29.2673		
-0.4	41.6177		
+1	2	0	1	0.704974	6.67019	
+# Xs  Sm  fp  fm	 f()
+0.001	4.29544e-06		
+0.4	-1.29268e-06		
 0.7	FIX		
 # valence  -- metamorph 2
 # ifl  Nm  MappingMode  xPower  Sc(0)  Sc(1)
-2	2	0	1	0.288364	1.09471	
-# Xs  Sm  fp  fm	 f()	 f()
-0.001	-0.828193		
-0.4	-0.453659		
+2	2	0	1	0.245667	0.913254	
+# Xs  Sm  fp  fm	 f()
+0.001	-0.871071		
+0.4	-0.267062		
 0.7	FIX		
