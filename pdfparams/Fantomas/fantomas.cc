@@ -19,6 +19,9 @@
 #include <cstring>
 #include "MetamorphCollection.h"
 #include "fantomas.h"
+// lk24 added BasePdfParam.h to have access to pars when writecard is called
+#include "Fantomas_PdfParam.h"
+
 //lk22
 #define XFITTER
 
@@ -45,7 +48,10 @@ void writefantosteer()
 // parameters.
 {
   if (xFitterFantomas == true)
+  {
+    Fantomas_PdfParam::updateParameters();
     metacol->WriteCard();
+  }
 }
 
 extern "C" void writefantosteer_()
@@ -57,7 +63,10 @@ void writefantoc()
 //function that writes Bezier coefficients from the metamorph function.
 {
   if (xFitterFantomas == true)
+  {
+    Fantomas_PdfParam::updateParameters();
     metacol->WriteC();
+  }
 }
 
 extern"C" void writefantoc_()
@@ -65,14 +74,14 @@ extern"C" void writefantoc_()
   writefantoc();
 }//writefantoC_ ->
 
-void updatefantopars(int &flavor, double *pars)
+void updatefantopars(int &flavor, double *parsin)
 // the array a[] will be passed from xFitter into the MetamorphCollection metacol->
 // a[] will be the difference between the initial value and the new updated value
 // for all Sc and Sm parameters. The called function will update all metamorph
 // objects inside of metacol-> updatefantopars() will be called each time
 // xFitter updates the minuit input values inside of Fantomas_PdfParam::atStart()
 {
-  metacol->UpdateParameters(flavor,pars);
+  metacol->UpdateParameters(flavor,parsin);
 }
 
 double fantopara(int &flavor, double &x)

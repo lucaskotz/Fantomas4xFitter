@@ -17,6 +17,8 @@
 #include <unistd.h> // For readlink()
 #include <limits.h>  // For PATH_MAX
 #include <ctime> // For time and localtime
+// lk24 added pdf_xfxq_wrapper_
+#include "TermData.h"
 
 // lk22 changed maxSc from 2 to 3 to include normalization constant added to Carrier(x) in metamorph.h
 const int maxSc = 3;	               // number of Sc variables for each flavor
@@ -86,6 +88,10 @@ public:
     fmvec.reserve(maxScm);
   } // MetamorphCollection constructor
 
+  // lk24 added ReLU function to use in fantomas chi2 penalty
+  double ReLU(double x) {
+    return std::max(0.0, x);
+  }
 
   void PushMember()
   // MetamorpCollection::PushMember() is called inside the MetamorphCollection::ReadCard() function. 
@@ -368,6 +374,7 @@ public:
   // The initial value for each minuit parameter is set to 0 inside minuit.in.txt so that only the change is
   // added. metamorph::UpdateModulator() is called after the values are changed to recalculate the metamorph PDFs inside 
   // MetaVector, which will then update the elements in MetaRoster.
+  // lk24 updated UpdateParameters() to have Scm values point to &pars instead to update.
   {
     std::map<int,int>::iterator it;
     it = iMetRoster.find(ifl);	// iterator used to locate if there is an entry with iflavor = ifl
@@ -384,11 +391,12 @@ public:
     
     paraiMet = iMetRoster[ifl];
 
-      Scm[paraiMet][0] = pars[0];
-      for (int i = 1; i < maxSc; i++)
-	Scm[paraiMet][i] = Scmtmp[paraiMet][i] + pars[i];
-      for (int i = 0; i < Nm[paraiMet]+1; i++)
-	Scm[paraiMet][i+maxSc] = Scmtmp[paraiMet][i+maxSc] + pars[i+maxSc];
+    // lk24 added reference to &pars
+    Scm[paraiMet][0] = pars[0];
+    for (int i = 1; i < maxSc; i++)
+      Scm[paraiMet][i] = Scmtmp[paraiMet][i] + pars[i];
+    for (int i = 0; i < Nm[paraiMet]+1; i++)
+      Scm[paraiMet][i+maxSc] = Scmtmp[paraiMet][i+maxSc] + pars[i+maxSc];
 
     //Scm[paraiMet][0] = -1+exp(Scmtmp[paraiMet][0] + pars[0]);
     if(Nm[paraiMet] == 0)
@@ -478,13 +486,33 @@ public:
 	ifltmp = iflavor[i];
 	for (int j = 0; j < Nmtmp+1; j++)
 	{
-	  Ci = MetaRoster[ifltmp]->Cs(j);
-	  fantochi2 += abs(log(1+abs(Ci)));
+	  //fantochi2 += ReLU(abs(Ci)-10);
 	}
-	//double w = 0.01;
-	//fantochi2 *= (w/(Nmtmp+1))*fantochi2;
       }
     }// for (int i = 0; i < iMet; i++)
+
+    //double w = 0.01;
+    //fantochi2 *= (w/(Nmtmp+1))*fantochi2;
+    // lk24 added chi2 penalty when ubar>u and dbar>d around x=0.1 for low Q
+    double testpdfs[13];
+    double wtest = 0.5;
+    double wud = 5.;
+    double xtest = 0.1;
+    double Qtest = sqrt(1.9);
+    pdf_xfxq_wrapper_(xtest, Qtest, testpdfs);
+
+    //lk24 using lha ID notation, Iubar=5, Idbar=6, Id=8, Iu=9 (-1 since c++ starts at 0)
+    // chi2 panelties prefer u(x>0.1)>ubar(x>0.1) and dbar(x>0.1)>d(x>0.1)
+    double chiu = wud*ReLU(testpdfs[4]-testpdfs[8]);
+    fantochi2 += chiu;
+
+    double chid = wud*ReLU(testpdfs[7]-testpdfs[5]);
+    fantochi2 += chid;
+
+    double chiCg;
+    //lk24 Scm[0][2] is Cg for the SU3 pion decomposition. chi2 penalty prefers -10<Cg<10.
+    chiCg = wtest*ReLU(abs(Scm[0][2])-10);
+    fantochi2 += chiCg;
     
     return fantochi2;
     
@@ -507,9 +535,10 @@ public:
  	fantosteerout << parsheader1 << std::endl;
 	fantosteerout << iflavor[i] << "\t" << Nm[i] << "\t" << MappingMode[i] \
 		      << "\t" << xPower[i] << "\t";
-	for (int j = 1; j < maxSc; j++)            // loop that writes out all Sc parameter values
+	// lk24 changed output card to no longer have tab after last Scm value
+	for (int j = 1; j < maxSc-1; j++)            // loop that writes out all Sc parameter values
 	  fantosteerout << Scm[i][j] << "\t";
-	fantosteerout << std::endl;
+	fantosteerout << Scm[i][maxSc-1] << std::endl;
 	fantosteerout << parsheader2 << "\t f()" << std::endl; // header for metamorph parameters
 	for (int j = 0; j < iPts[i]; j++)          // loop that writes out all metamorph parameter values
 	{
@@ -524,7 +553,7 @@ public:
 	    fantosteerout << "\t" << Scm[i][j+maxSc];
 
 	  if (fp[i][j] == INFINITY && fm[i][j] == -1 || fp[i][j] == 0 && fm[i][j] == 0)
-	    fantosteerout << "\t" << "\t" << std::endl;
+	    fantosteerout << std::endl;
 	  else if (fp[i][j] != INFINITY)
 	    fantosteerout << "\t" << fp[i][j] << "\t" << fm[i][j] << std::endl;
 	  
@@ -557,7 +586,7 @@ public:
     if (fantoCout.is_open())
     {
       fantoCout << "# Output file containing the functional from each flavor \n" << std::endl;
-      fantoCout << "# xf(x) = <xf>*x^Sc1*(1-x)^Sc2*(1+fbezier(x)) \n" << std::endl;
+      fantoCout << "# xf(x) = Sc0*x^Sc1*(1-x)^Sc2*(1+fbezier(x)) \n" << std::endl;
       for (int i = 0; i < iMet; i++)
       // output fantomas C coefficients into out card and loop over each input flavor
       {
@@ -568,8 +597,8 @@ public:
 	{
 	  fantoCout << flvheader[i] << std::endl;
 	  fantoCout << "<xf> = " << MellinMoment(iflavor[i],0) << std::endl;
-	  for (int j = 1; j < maxSc; j++)            // loop that writes out all Sc parameter values
-	    fantoCout << "Scm[" << j << "] = " << Scm[i][j] << std::endl;
+	  for (int j = 0; j < maxSc; j++)            // loop that writes out all Sc parameter values
+	    fantoCout << "Sc[" << j << "] = " << Scm[i][j] << std::endl;
 	  fantoCout << std::endl;
 	  for (int j = 0; j < Nm[i]+1; j++)
 	  {

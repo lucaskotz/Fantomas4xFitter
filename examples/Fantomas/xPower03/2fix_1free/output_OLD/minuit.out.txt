@@ -1,0 +1,518 @@
+  MINUIT RELEASE 96.03  INITIALIZED.   DIMENSIONS 200/ 50  EPSMAC=  0.89E-15
+
+ PARAMETER DEFINITIONS:
+    NO.   NAME         VALUE      STEP SIZE      LIMITS
+     1 'Ag        '    1.0000      constant
+     2 'As        '    9.8200      0.50000         no limits
+     3 'Av        '    1.0000      constant
+     4 'ZERO      '    0.0000      constant
+     5 'delBg     '    0.0000      0.20000         no limits
+     6 'delBs     '    0.0000      0.30000         no limits
+     7 'delBv     '    0.0000      0.30000E-01     no limits
+     8 'delCg     '    0.0000       1.0000         no limits
+     9 'delCs     '    0.0000       3.0000         no limits
+    10 'delCv     '    0.0000      0.40000E-01     no limits
+    11 'delDg     '    0.0000      constant
+    12 'delDs     '    0.0000      constant
+    13 'delDv     '    0.0000      constant
+    14 'delEg     '    0.0000      0.10000         no limits
+    15 'delEs     '    0.0000      0.10000         no limits
+    16 'delEv     '    0.0000      0.10000         no limits
+    17 'delFg     '    0.0000      constant
+    18 'delFs     '    0.0000      constant
+    19 'delFv     '    0.0000      constant
+    20 'gifl      '    0.0000      constant
+    21 'sifl      '    1.0000      constant
+    22 'vifl      '    2.0000      constant
+ **********
+ **    1 **MINIMIZE #UNCOMMENT 
+ **********
+
+ FIRST CALL TO USER FUNCTION AT NEW START POINT, WITH IFLAG=4.
+ START MIGRAD MINIMIZATION.  STRATEGY 1.  CONVERGENCE WHEN EDM .LT. 0.10E-03
+
+ FCN=   451.4404     FROM MIGRAD    STATUS=INITIATE      36 CALLS       37 TOTAL
+                     EDM= unknown      STRATEGY= 1      NO ERROR MATRIX       
+
+  EXT PARAMETER               CURRENT GUESS       STEP         FIRST   
+  NO.   NAME        VALUE          ERROR          SIZE      DERIVATIVE 
+   1    Ag          1.0000       constant   
+   2    As          9.8200       0.50000       0.50000       0.14101    
+   3    Av          1.0000       constant   
+   4    ZERO        0.0000       constant   
+   5    delBg       0.0000       0.20000       0.20000       0.21237    
+   6    delBs       0.0000       0.30000       0.30000       -2.2062    
+   7    delBv       0.0000       0.30000E-01   0.30000E-01   -6.2413    
+   8    delCg       0.0000        1.0000        1.0000      -0.22103E-01
+   9    delCs       0.0000        3.0000        3.0000      -0.32598    
+  10    delCv       0.0000       0.40000E-01   0.40000E-01    4.3283    
+  11    delDg       0.0000       constant   
+  12    delDs       0.0000       constant   
+  13    delDv       0.0000       constant   
+  14    delEg       0.0000       0.10000       0.10000      -0.36729    
+  15    delEs       0.0000       0.10000       0.10000       0.29359    
+  16    delEv       0.0000       0.10000       0.10000       -16.400    
+  17    delFg       0.0000       constant   
+  18    delFs       0.0000       constant   
+  19    delFv       0.0000       constant   
+  20    gifl        0.0000       constant   
+  21    sifl        1.0000       constant   
+  22    vifl        2.0000       constant   
+
+ MIGRAD MINIMIZATION HAS CONVERGED.
+
+ FCN=   451.1774     FROM MIGRAD    STATUS=CONVERGED   1071 CALLS     1072 TOTAL
+                     EDM=  0.23E-05  STRATEGY=1  ERROR MATRIX UNCERTAINTY=  2.6%
+
+  EXT PARAMETER                                   STEP         FIRST   
+  NO.   NAME        VALUE          ERROR          SIZE      DERIVATIVE 
+   1    Ag          1.0000       constant   
+   2    As          12.941        10.596       0.18743E-02   0.13810E-02
+   3    Av          1.0000       constant   
+   4    ZERO        0.0000       constant   
+   5    delBg      0.15619E-02   0.18937      -0.58881E-04  -0.11427E-01
+   6    delBs      0.80785E-01   0.28932       0.52430E-04  -0.18364E-01
+   7    delBv     -0.15318E-01   0.38871E-01  -0.29026E-05  -0.10465    
+   8    delCg      0.12428        1.6089      -0.23713E-03   0.68291E-03
+   9    delCs      0.60765        1.7229       0.11254E-03  -0.52166E-02
+  10    delCv     -0.34759E-01   0.69598E-01  -0.18442E-04   0.82739E-01
+  11    delDg       0.0000       constant   
+  12    delDs       0.0000       constant   
+  13    delDv       0.0000       constant   
+  14    delEg      0.18632E-05   0.52774E-02  -0.14461E-04   0.82719E-03
+  15    delEs      0.75514E-05   0.51494E-02   0.79197E-05   0.33205E-01
+  16    delEv      0.40214E-01   0.74224E-01   0.19960E-04   0.38404E-01
+  17    delFg       0.0000       constant   
+  18    delFs       0.0000       constant   
+  19    delFv       0.0000       constant   
+  20    gifl        0.0000       constant   
+  21    sifl        1.0000       constant   
+  22    vifl        2.0000       constant   
+
+ EXTERNAL ERROR MATRIX.    NDIM=  50    NPAR= 10    ERR DEF=  1.00    
+  0.112E+03 0.576E+00 0.296E+01-0.132E+00 0.747E+01 0.174E+02-0.208E+00-0.382E-03 0.121E-02 0.311E+00
+  0.576E+00 0.359E-01 0.198E-01-0.118E-02 0.238E+00 0.901E-01 0.469E-03-0.454E-04-0.450E-04-0.651E-03
+  0.296E+01 0.198E-01 0.837E-01-0.341E-02 0.233E+00 0.435E+00-0.407E-02-0.110E-04 0.322E-04 0.604E-02
+ -0.132E+00-0.118E-02-0.341E-02 0.151E-02-0.364E-02-0.268E-01 0.226E-02-0.256E-05-0.579E-05-0.207E-02
+  0.747E+01 0.238E+00 0.233E+00-0.364E-02 0.259E+01 0.971E+00 0.224E-02-0.218E-03-0.161E-03 0.231E-02
+  0.174E+02 0.901E-01 0.435E+00-0.268E-01 0.971E+00 0.297E+01-0.360E-01-0.329E-03-0.125E-03 0.544E-01
+ -0.208E+00 0.469E-03-0.407E-02 0.226E-02 0.224E-02-0.360E-01 0.484E-02-0.198E-04-0.295E-04-0.486E-02
+ -0.382E-03-0.454E-04-0.110E-04-0.256E-05-0.218E-03-0.329E-03-0.198E-04 0.279E-04 0.109E-04 0.177E-04
+  0.121E-02-0.450E-04 0.322E-04-0.579E-05-0.161E-03-0.125E-03-0.295E-04 0.109E-04 0.265E-04 0.287E-04
+  0.311E+00-0.651E-03 0.604E-02-0.207E-02 0.231E-02 0.544E-01-0.486E-02 0.177E-04 0.287E-04 0.551E-02
+
+ PARAMETER  CORRELATION COEFFICIENTS
+       NO.  GLOBAL     2     5     6     7     8     9    10    14    15    16
+        2  0.99799  1.000 0.287 0.966-0.322 0.438 0.952-0.282-0.007 0.022 0.396
+        5  0.84290  0.287 1.000 0.362-0.161 0.782 0.276 0.036-0.045-0.046-0.046
+        6  0.99400  0.966 0.362 1.000-0.303 0.501 0.873-0.202-0.007 0.022 0.281
+        7  0.97019 -0.322-0.161-0.303 1.000-0.058-0.401 0.835-0.012-0.029-0.719
+        8  0.85373  0.438 0.782 0.501-0.058 1.000 0.350 0.020-0.026-0.019 0.019
+        9  0.99271  0.952 0.276 0.873-0.401 0.350 1.000-0.300-0.036-0.014 0.426
+       10  0.98820 -0.282 0.036-0.202 0.835 0.020-0.300 1.000-0.054-0.082-0.941
+       14  0.40986 -0.007-0.045-0.007-0.012-0.026-0.036-0.054 1.000 0.401 0.045
+       15  0.41758  0.022-0.046 0.022-0.029-0.019-0.014-0.082 0.401 1.000 0.075
+       16  0.97259  0.396-0.046 0.281-0.719 0.019 0.426-0.941 0.045 0.075 1.000
+ **********
+ **    2 **CALL FCN    3.000    
+ **********
+ **********
+ **    3 **#SCAN #UNCOMMENT TO 
+ **********
+           UNKNOWN COMMAND IGNORED:#SCAN #UNCOMMENT To 
+ **********
+ **    4 **#SCAN    4.000    
+ **********
+           UNKNOWN COMMAND IGNORED:#SCAN 
+ **********
+ **    5 **#SCAN    5.000    
+ **********
+           UNKNOWN COMMAND IGNORED:#SCAN 
+ **********
+ **    6 **#SCAN    6.000    
+ **********
+           UNKNOWN COMMAND IGNORED:#SCAN 
+ **********
+ **    7 **ITERATE    10.00    
+ **********
+ ITERATE BEGINNING:  requested iterations=   10
+ ITERATE STARTING POINT:  FCN=  451.177436     NFCN=  1074 UP=AIMSAG= 1.00000    
+ End of iteration   0 FCN=  451.177436     NFCN=  1318
+     diagonal elements of D^2F / Dy_i Dy_j:  0.19512E+01 to  0.20001E+01( iter=   1)
+ off-diagonal elements of D^2F / Dy_i Dy_j: -0.19160E+01 to  0.17322E+01( iter=   1)
+ eigenvalue range:  0.130365E-01 to   37678.7     (iter=   1)
+ End of iteration   1 FCN=  451.177436     NFCN=  1593
+     diagonal elements of D^2F / Dy_i Dy_j:  0.17613E+01 to  0.20072E+01( iter=   2)
+ off-diagonal elements of D^2F / Dy_i Dy_j: -0.33452E+00 to  0.28360E+00( iter=   2)
+ eigenvalue range:  0.107536     to   37761.6     (iter=   2)
+ End of iteration   2 FCN=  451.177436     NFCN=  1854
+     diagonal elements of D^2F / Dy_i Dy_j:  0.19843E+01 to  0.21934E+01( iter=   3)
+ off-diagonal elements of D^2F / Dy_i Dy_j: -0.34941E+00 to  0.14772E+00( iter=   3)
+ eigenvalue range:  0.119380     to   37761.7     (iter=   3)
+ End of iteration   3 FCN=  451.177436     NFCN=  2115
+     diagonal elements of D^2F / Dy_i Dy_j:  0.18989E+01 to  0.20053E+01( iter=   4)
+ off-diagonal elements of D^2F / Dy_i Dy_j: -0.12421E+00 to  0.31575E-01( iter=   4)
+ eigenvalue range:  0.112157     to   37761.8     (iter=   4)
+ End of iteration   4 FCN=  451.177436     NFCN=  2376
+     diagonal elements of D^2F / Dy_i Dy_j:  0.19918E+01 to  0.20718E+01( iter=   5)
+ off-diagonal elements of D^2F / Dy_i Dy_j: -0.83495E-01 to  0.15088E-01( iter=   5)
+ eigenvalue range:  0.116978     to   37761.7     (iter=   5)
+ End of iteration   5 FCN=  451.177436     NFCN=  2703
+     diagonal elements of D^2F / Dy_i Dy_j:  0.19490E+01 to  0.20655E+01( iter=   6)
+ off-diagonal elements of D^2F / Dy_i Dy_j: -0.42134E-01 to  0.10466E-01( iter=   6)
+ eigenvalue range:  0.116562     to   37761.7     (iter=   6)
+ End of iteration   6 FCN=  451.177436     NFCN=  3028
+     diagonal elements of D^2F / Dy_i Dy_j:  0.19479E+01 to  0.20641E+01( iter=   7)
+ off-diagonal elements of D^2F / Dy_i Dy_j: -0.27918E-01 to  0.66018E-02( iter=   7)
+ eigenvalue range:  0.116349     to   37761.7     (iter=   7)
+ End of iteration   7 FCN=  451.177436     NFCN=  3354
+     diagonal elements of D^2F / Dy_i Dy_j:  0.19450E+01 to  0.20630E+01( iter=   8)
+ off-diagonal elements of D^2F / Dy_i Dy_j: -0.17424E-01 to  0.42278E-02( iter=   8)
+ eigenvalue range:  0.116346     to   37761.7     (iter=   8)
+ End of iteration   8 FCN=  451.177436     NFCN=  3680
+     diagonal elements of D^2F / Dy_i Dy_j:  0.19446E+01 to  0.20633E+01( iter=   9)
+ off-diagonal elements of D^2F / Dy_i Dy_j: -0.11095E-01 to  0.27459E-02( iter=   9)
+ eigenvalue range:  0.116421     to   37761.7     (iter=   9)
+ End of iteration   9 FCN=  451.177436     NFCN=  4006
+     diagonal elements of D^2F / Dy_i Dy_j:  0.19443E+01 to  0.20646E+01( iter=  10)
+ off-diagonal elements of D^2F / Dy_i Dy_j: -0.72140E-02 to  0.18603E-02( iter=  10)
+ eigenvalue range:  0.116466     to   37761.7     (iter=  10)
+ End of iteration  10 FCN=  451.177436     NFCN=  4331
+ ITERATE finished:  FCN=  451.177436     NFCN=  4331
+ **********
+ **    8 **MYSTUFF    1000.    
+ **********
+ mystuff called with argument  1000
+ XRANGE: find allowed displacements according to Hessian, for DeltaChisq=1.0
+ XRANGE: Chisq =   451.177     NFCN=  4332
+
+ Par= 1 TruePar= 2 at  0.12941E+02 +/-  0.41497E+01 for DeltaChisq=1.0
+ Steps in +/- directions along  1 TruePar  2 give DeltaChisq = 0.83099    ,  1.2697     (expected about  1.0000    )
+
+     Displacements that give max increase in Par= 1 (TruePar= 2) for DeltaChisq=1.0
+        x( 1 (TruePar= 2)) =   4.14974    
+        x( 2 (TruePar= 5)) =  0.262880E-01
+        x( 3 (TruePar= 6)) =  0.111911    
+        x( 4 (TruePar= 7)) = -0.529569E-02
+        x( 5 (TruePar= 8)) =  0.231792    
+        x( 6 (TruePar= 9)) =  0.651035    
+        x( 7 (TruePar=10)) = -0.756186E-02
+        x( 8 (TruePar=14)) = -0.173950E-01
+        x( 9 (TruePar=15)) = -0.576393E-02
+        x(10 (TruePar=16)) =  0.109762E-01
+
+     Eigenvector components that give max increase in Par= 1 (TruePar= 2) for DeltaChisq=1.0
+        y( 1) = -0.115746E-04
+        y( 2) = -0.519473E-04
+        y( 3) = -0.418577E-03
+        y( 4) = -0.115497E-03
+        y( 5) = -0.559678E-04
+        y( 6) =  0.768790E-03
+        y( 7) =  0.416327E-03
+        y( 8) = -0.276016E-01
+        y( 9) = -0.146272E-01
+        y(10) =  0.999512    
+
+ Par= 2 TruePar= 5 at  0.15619E-02 +/-  0.18562E+00 for DeltaChisq=1.0
+ Steps in +/- directions along  2 TruePar  5 give DeltaChisq =  1.0052    ,  1.1514     (expected about  1.0000    )
+
+     Displacements that give max increase in Par= 2 (TruePar= 5) for DeltaChisq=1.0
+        x( 1 (TruePar= 2)) =  0.587689    
+        x( 2 (TruePar= 5)) =  0.185622    
+        x( 3 (TruePar= 6)) =  0.487771E-01
+        x( 4 (TruePar= 7)) = -0.354825E-02
+        x( 5 (TruePar= 8)) =   1.17050    
+        x( 6 (TruePar= 9)) =  0.173676E-01
+        x( 7 (TruePar=10)) =  0.415191E-02
+        x( 8 (TruePar=14)) = -0.584406E-01
+        x( 9 (TruePar=15)) =  0.350993E-02
+        x(10 (TruePar=16)) = -0.790080E-02
+
+     Eigenvector components that give max increase in Par= 2 (TruePar= 5) for DeltaChisq=1.0
+        y( 1) = -0.720683E-04
+        y( 2) =  0.577722E-03
+        y( 3) = -0.770767E-01
+        y( 4) = -0.151321    
+        y( 5) =  0.457863    
+        y( 6) = -0.230115    
+        y( 7) = -0.264674    
+        y( 8) =  0.839546E-01
+        y( 9) =  0.779252    
+        y(10) =  0.155675    
+
+ Par= 3 TruePar= 6 at  0.80785E-01 +/-  0.13477E+00 for DeltaChisq=1.0
+ Steps in +/- directions along  3 TruePar  6 give DeltaChisq = 0.91210    , 0.87223     (expected about  1.0000    )
+
+     Displacements that give max increase in Par= 3 (TruePar= 6) for DeltaChisq=1.0
+        x( 1 (TruePar= 2)) =   3.44598    
+        x( 2 (TruePar= 5)) =  0.671839E-01
+        x( 3 (TruePar= 6)) =  0.134766    
+        x( 4 (TruePar= 7)) = -0.568546E-02
+        x( 5 (TruePar= 8)) =  0.517584    
+        x( 6 (TruePar= 9)) =  0.452925    
+        x( 7 (TruePar=10)) =  0.258780E-03
+        x( 8 (TruePar=14)) = -0.217166E-01
+        x( 9 (TruePar=15)) =  0.178410E-01
+        x(10 (TruePar=16)) = -0.226017E-02
+
+     Eigenvector components that give max increase in Par= 3 (TruePar= 6) for DeltaChisq=1.0
+        y( 1) =  0.662049E-02
+        y( 2) =  0.377633E-01
+        y( 3) =  0.295811    
+        y( 4) =  0.140844E-01
+        y( 5) =  0.313090    
+        y( 6) =  0.256445    
+        y( 7) = -0.406136E-01
+        y( 8) = -0.809628E-01
+        y( 9) =  0.216975    
+        y(10) =  0.831719    
+
+ Par= 4 TruePar= 7 at -0.15318E-01 +/-  0.35464E-01 for DeltaChisq=1.0
+ Steps in +/- directions along  4 TruePar  7 give DeltaChisq =  1.0240    , 0.97728     (expected about  1.0000    )
+
+     Displacements that give max increase in Par= 4 (TruePar= 7) for DeltaChisq=1.0
+        x( 1 (TruePar= 2)) = -0.619667    
+        x( 2 (TruePar= 5)) = -0.185720E-01
+        x( 3 (TruePar= 6)) = -0.216054E-01
+        x( 4 (TruePar= 7)) =  0.354638E-01
+        x( 5 (TruePar= 8)) =  0.114609E-01
+        x( 6 (TruePar= 9)) = -0.249554    
+        x( 7 (TruePar=10)) =  0.523205E-01
+        x( 8 (TruePar=14)) = -0.106129E-01
+        x( 9 (TruePar=15)) = -0.121795E-01
+        x(10 (TruePar=16)) = -0.439473E-01
+
+     Eigenvector components that give max increase in Par= 4 (TruePar= 7) for DeltaChisq=1.0
+        y( 1) =  0.139948    
+        y( 2) =  0.295809    
+        y( 3) = -0.450101    
+        y( 4) =  0.773261    
+        y( 5) =  0.343773E-01
+        y( 6) =  0.157116    
+        y( 7) = -0.293400E-01
+        y( 8) = -0.199333    
+        y( 9) =  0.455943E-01
+        y(10) = -0.154426    
+
+ Par= 5 TruePar= 8 at  0.12428E+00 +/-  0.14752E+01 for DeltaChisq=1.0
+ Steps in +/- directions along  5 TruePar  8 give DeltaChisq = 0.62553    ,  1.4190     (expected about  1.0000    )
+
+     Displacements that give max increase in Par= 5 (TruePar= 8) for DeltaChisq=1.0
+        x( 1 (TruePar= 2)) =  0.652014    
+        x( 2 (TruePar= 5)) =  0.147279    
+        x( 3 (TruePar= 6)) =  0.472825E-01
+        x( 4 (TruePar= 7)) =  0.275514E-03
+        x( 5 (TruePar= 8)) =   1.47523    
+        x( 6 (TruePar= 9)) = -0.320271E-01
+        x( 7 (TruePar=10)) =  0.360127E-02
+        x( 8 (TruePar=14)) = -0.253145E-02
+        x( 9 (TruePar=15)) =  0.112952E-01
+        x(10 (TruePar=16)) = -0.527548E-02
+
+     Eigenvector components that give max increase in Par= 5 (TruePar= 8) for DeltaChisq=1.0
+        y( 1) =  0.267745E-05
+        y( 2) = -0.182229E-04
+        y( 3) =  0.768160E-03
+        y( 4) =  0.188491E-02
+        y( 5) = -0.687042E-02
+        y( 6) =  0.249069E-03
+        y( 7) =  0.333981E-02
+        y( 8) =  0.558814E-01
+        y( 9) =  0.983281    
+        y(10) =  0.173130    
+
+ Par= 6 TruePar= 9 at  0.60765E+00 +/-  0.97298E+00 for DeltaChisq=1.0
+ Steps in +/- directions along  6 TruePar  9 give DeltaChisq = 0.90211    , 0.98404     (expected about  1.0000    )
+
+     Displacements that give max increase in Par= 6 (TruePar= 9) for DeltaChisq=1.0
+        x( 1 (TruePar= 2)) =   2.77666    
+        x( 2 (TruePar= 5)) =  0.331335E-02
+        x( 3 (TruePar= 6)) =  0.627343E-01
+        x( 4 (TruePar= 7)) = -0.909591E-02
+        x( 5 (TruePar= 8)) = -0.485598E-01
+        x( 6 (TruePar= 9)) =  0.972977    
+        x( 7 (TruePar=10)) = -0.112049E-01
+        x( 8 (TruePar=14)) =  0.775197E-04
+        x( 9 (TruePar=15)) =  0.103436    
+        x(10 (TruePar=16)) =  0.184112E-01
+
+     Eigenvector components that give max increase in Par= 6 (TruePar= 9) for DeltaChisq=1.0
+        y( 1) =  0.177075E-03
+        y( 2) =  0.451264E-03
+        y( 3) =  0.412942E-02
+        y( 4) =  0.462080E-02
+        y( 5) = -0.435796E-02
+        y( 6) = -0.244003E-01
+        y( 7) = -0.334463E-02
+        y( 8) =  0.700780    
+        y( 9) = -0.194111    
+        y(10) =  0.685977    
+
+ Par= 7 TruePar=10 at -0.34759E-01 +/-  0.63529E-01 for DeltaChisq=1.0
+ Steps in +/- directions along  7 TruePar 10 give DeltaChisq =  1.2320    , 0.90547     (expected about  1.0000    )
+
+     Displacements that give max increase in Par= 7 (TruePar=10) for DeltaChisq=1.0
+        x( 1 (TruePar= 2)) = -0.493945    
+        x( 2 (TruePar= 5)) =  0.121313E-01
+        x( 3 (TruePar= 6)) =  0.548960E-03
+        x( 4 (TruePar= 7)) =  0.292069E-01
+        x( 5 (TruePar= 8)) =  0.836270E-01
+        x( 6 (TruePar= 9)) = -0.171609    
+        x( 7 (TruePar=10)) =  0.635288E-01
+        x( 8 (TruePar=14)) = -0.619791E-02
+        x( 9 (TruePar=15)) = -0.220942E-01
+        x(10 (TruePar=16)) = -0.611727E-01
+
+     Eigenvector components that give max increase in Par= 7 (TruePar=10) for DeltaChisq=1.0
+        y( 1) = -0.735949E-01
+        y( 2) =  0.988429E-01
+        y( 3) = -0.966464E-01
+        y( 4) =  0.917817    
+        y( 5) =  0.309387    
+        y( 6) = -0.353583E-01
+        y( 7) = -0.314397E-01
+        y( 8) = -0.114526    
+        y( 9) =  0.860366E-01
+        y(10) = -0.120865    
+
+ Par= 8 TruePar=14 at  0.18632E-05 +/-  0.25327E+00 for DeltaChisq=1.0
+ Steps in +/- directions along  8 TruePar 14 give DeltaChisq = 0.87827    ,  1.0229     (expected about  1.0000    )
+
+     Displacements that give max increase in Par= 8 (TruePar=14) for DeltaChisq=1.0
+        x( 1 (TruePar= 2)) = -0.285007    
+        x( 2 (TruePar= 5)) = -0.428307E-01
+        x( 3 (TruePar= 6)) = -0.115554E-01
+        x( 4 (TruePar= 7)) = -0.148604E-02
+        x( 5 (TruePar= 8)) = -0.147449E-01
+        x( 6 (TruePar= 9)) =  0.297800E-03
+        x( 7 (TruePar=10)) = -0.155463E-02
+        x( 8 (TruePar=14)) =  0.253273    
+        x( 9 (TruePar=15)) = -0.639049E-05
+        x(10 (TruePar=16)) =  0.138178E-02
+
+     Eigenvector components that give max increase in Par= 8 (TruePar=14) for DeltaChisq=1.0
+        y( 1) = -0.100134E-04
+        y( 2) =  0.154023E-03
+        y( 3) = -0.107116E-01
+        y( 4) = -0.191143E-01
+        y( 5) =  0.748234E-01
+        y( 6) = -0.106577E-01
+        y( 7) =  0.992155    
+        y( 8) =  0.698902E-01
+        y( 9) = -0.509244E-02
+        y(10) = -0.672663E-01
+
+ Par= 9 TruePar=15 at  0.75514E-05 +/-  0.19413E+00 for DeltaChisq=1.0
+ Steps in +/- directions along  9 TruePar 15 give DeltaChisq = 0.59221    ,  1.0462     (expected about  1.0000    )
+
+     Displacements that give max increase in Par= 9 (TruePar=15) for DeltaChisq=1.0
+        x( 1 (TruePar= 2)) = -0.123213    
+        x( 2 (TruePar= 5)) =  0.335618E-02
+        x( 3 (TruePar= 6)) =  0.123856E-01
+        x( 4 (TruePar= 7)) = -0.222501E-02
+        x( 5 (TruePar= 8)) =  0.858365E-01
+        x( 6 (TruePar= 9)) =  0.518429    
+        x( 7 (TruePar=10)) = -0.723045E-02
+        x( 8 (TruePar=14)) = -0.833759E-05
+        x( 9 (TruePar=15)) =  0.194126    
+        x(10 (TruePar=16)) =  0.116674E-01
+
+     Eigenvector components that give max increase in Par= 9 (TruePar=15) for DeltaChisq=1.0
+        y( 1) = -0.271908E-02
+        y( 2) = -0.104299E-01
+        y( 3) = -0.818933E-01
+        y( 4) = -0.483508E-01
+        y( 5) =  0.100211    
+        y( 6) =  0.588205    
+        y( 7) = -0.594982E-01
+        y( 8) =  0.794318    
+        y( 9) =  0.163493E-01
+        y(10) = -0.799433E-02
+
+ Par=10 TruePar=16 at  0.40214E-01 +/-  0.65633E-01 for DeltaChisq=1.0
+ Steps in +/- directions along 10 TruePar 16 give DeltaChisq = 0.85119    ,  1.3524     (expected about  1.0000    )
+
+     Displacements that give max increase in Par=10 (TruePar=16) for DeltaChisq=1.0
+        x( 1 (TruePar= 2)) =  0.693986    
+        x( 2 (TruePar= 5)) = -0.223450E-01
+        x( 3 (TruePar= 6)) = -0.464088E-02
+        x( 4 (TruePar= 7)) = -0.237463E-01
+        x( 5 (TruePar= 8)) = -0.118577    
+        x( 6 (TruePar= 9)) =  0.272938    
+        x( 7 (TruePar=10)) = -0.592115E-01
+        x( 8 (TruePar=14)) =  0.533220E-02
+        x( 9 (TruePar=15)) =  0.345092E-01
+        x(10 (TruePar=16)) =  0.656330E-01
+
+     Eigenvector components that give max increase in Par=10 (TruePar=16) for DeltaChisq=1.0
+        y( 1) = -0.352866E-01
+        y( 2) =  0.186841    
+        y( 3) = -0.366932E-01
+        y( 4) = -0.846467    
+        y( 5) = -0.397429    
+        y( 6) =  0.332586E-01
+        y( 7) =  0.314672E-01
+        y( 8) =  0.202976    
+        y( 9) = -0.124615    
+        y(10) =  0.170935    
+ **********
+ **    9 **MYSTUFF    2000.    
+ **********
+ mystuff called with argument  2000
+ EVPLOT: eigenvalues of the Hessian
+ par= 1 dist= 0.72775E-02 e.v.=2/dist**2= 0.37763E+05
+ par= 2 dist= 0.18169E-01 e.v.=2/dist**2= 0.60585E+04
+ par= 3 dist= 0.48711E-01 e.v.=2/dist**2= 0.84290E+03
+ par= 4 dist= 0.90391E-01 e.v.=2/dist**2= 0.24478E+03
+ par= 5 dist= 0.10455E+00 e.v.=2/dist**2= 0.18298E+03
+ par= 6 dist= 0.12915E+00 e.v.=2/dist**2= 0.11991E+03
+ par= 7 dist= 0.25645E+00 e.v.=2/dist**2= 0.30409E+02
+ par= 8 dist= 0.71383E+00 e.v.=2/dist**2= 0.39250E+01
+ par= 9 dist= 0.14715E+01 e.v.=2/dist**2= 0.92362E+00
+ par=10 dist= 0.42105E+01 e.v.=2/dist**2= 0.11282E+00
+
+ Eigenvectors normalized to unit length:
+
+ eigenvector  1
+  1:: -0.01 -0.00  0.12  0.68  0.00  0.02 -0.64 -0.00 -0.07 -0.32
+
+ eigenvector  2
+  2:: -0.01  0.01  0.28  0.58 -0.00  0.02  0.35  0.00 -0.11  0.67
+
+ eigenvector  3
+  3:: -0.04 -0.29  0.82 -0.33  0.02  0.08 -0.13 -0.06 -0.33 -0.05
+
+ eigenvector  4
+  4:: -0.01 -0.31  0.02  0.30  0.03  0.05  0.65 -0.05 -0.10 -0.61
+
+ eigenvector  5
+  5:: -0.00  0.81  0.40  0.01 -0.10 -0.04  0.19  0.18  0.19 -0.25
+
+ eigenvector  6
+  6::  0.02 -0.33  0.27  0.04  0.00 -0.18 -0.02 -0.02  0.88  0.02
+
+ eigenvector  7
+  7::  0.01 -0.19 -0.02 -0.00  0.02 -0.01 -0.01  0.98 -0.05  0.01
+
+ eigenvector  8
+  8:: -0.16  0.02 -0.02 -0.01  0.12  0.96 -0.01  0.02  0.22  0.02
+
+ eigenvector  9
+  9:: -0.04  0.10  0.02  0.00  0.99 -0.13  0.00 -0.00  0.00 -0.01
+
+ eigenvector 10
+ 10::  0.99  0.01  0.03 -0.00  0.06  0.16 -0.00 -0.00 -0.00  0.00
+
+ Error matrix multiplied by 2*UP =   2.00000    :
+
+ ERROR MATRIX FROM ITERATE
+  0.167E+02
+  0.105E+00 0.345E-01
+  0.450E+00 0.891E-02 0.178E-01
+ -0.212E-01-0.661E-03-0.740E-03 0.126E-02
+  0.928E+00 0.217E+00 0.688E-01 0.434E-03 0.217E+01
+  0.261E+01 0.294E-02 0.585E-01-0.887E-02-0.511E-01 0.946E+00
+ -0.304E-01 0.779E-03 0.609E-04 0.185E-02 0.536E-02-0.109E-01 0.403E-02
+ -0.700E-01-0.109E-01-0.288E-02-0.384E-03-0.355E-02 0.765E-03-0.402E-03 0.643E-01
+ -0.242E-01 0.596E-03 0.246E-02-0.446E-03 0.170E-01 0.104E+00-0.144E-02 0.574E-04 0.387E-01
+  0.440E-01-0.147E-02-0.345E-03-0.156E-02-0.784E-02 0.179E-01-0.388E-02 0.364E-03 0.233E-02 0.430E-02
