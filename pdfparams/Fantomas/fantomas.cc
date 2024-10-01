@@ -39,36 +39,27 @@ void readfantosteer()
   xFitterFantomas = true;
 }
 
-void writefantosteer()
+void writefantoout(double& chi2in)
 // function that writes fantomas output steering card.
 // writefantosteer_() will be called by xFitter in maind.f
 // after PDFs are calculated to return updated fantomas
 // parameters.
+// lk24 reduced write functions to one function to write all cards at once when chi2 improves in xFitter
 {
   if (xFitterFantomas == true)
   {
     metacol->WriteCard();
+    metacol->WriteC();
+    metacol->Writechi2log(chi2in);
+    metacol->Writeerrlog();
   }
 }
 
-extern "C" void writefantosteer_()
+extern "C" void writefantoout_(double& chi2in)
 {
-  writefantosteer();
+  writefantoout(chi2in);
 }//writefantosteer_ ->
 
-void writefantoc()
-//function that writes Bezier coefficients from the metamorph function.
-{
-  if (xFitterFantomas == true)
-  {
-    metacol->WriteC();
-  }
-}
-
-extern"C" void writefantoc_()
-{
-  writefantoc();
-}//writefantoC_ ->
 
 void updatefantopars(int &flavor, double *parsin)
 // the array a[] will be passed from xFitter into the MetamorphCollection metacol->
@@ -98,19 +89,6 @@ double fantoMellinMoment(int &flavor, int &MellinPower, int npts)
   return momenttmp;
 }
 
-//lk23 added function to print out condition number for given metamorph.
-void fantoConditionNum(int &flavor)
-{
-  double fantocondnum = metacol->ConditionNumber(flavor);
-  
-  std::cout << "\nCondition number for matrix T in metamorph for ifl= " << \
-    flavor << " is: " << fantocondnum << std::endl;
-
-  std::cout << "\nCaution: A higher condition number may result in a poor metamorph." << std::endl; 
-  std::cout << "Note: Condition number will increase with more control points added." << \
-    "\n      The condition number may be improved by selecting different control points." << std::endl;
-}
-
 //lk23 added function to get extra chi2 from condition of 0<Ci~1 where Ci is bezier coefficients.
 void getfantochi2(double& fantochi2)
 // to be called for in fcn.f when chi2out is calculated.
@@ -125,13 +103,3 @@ extern "C" void getfantochi2_(double& fantochi2)
 {
   getfantochi2(fantochi2);
 }//getfantochi2_ ->
-
-void writechi2out(double& chi2in)
-{
-  metacol->Writechi2log(chi2in);
-}
-
-extern "C" void writechi2log_(double& chi2in)
-{
-  writechi2out(chi2in);
-}

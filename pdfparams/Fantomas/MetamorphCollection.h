@@ -24,6 +24,9 @@
 #include "xfitter_cpp_base.h"
 #include "BasePdfParam.h"
 
+//lk24 added version number
+double vernum = 0.1;
+
 // lk22 changed maxSc from 2 to 3 to include normalization constant added to Carrier(x) in metamorph.h
 const int maxSc = 3;	               // number of Sc variables for each flavor
 //const int maxpars = 100;             // length of minuit pars list
@@ -31,6 +34,23 @@ const int maxMet = 10;	               // maximum number of flavors allowed by xF
 const int maxctrlpts = 8;              // maximum number of control points for a given flavor
 const int maxScm = maxSc + maxctrlpts; // maximum allowed values in array Scm
 //bool xFitterCollectionSet = false;   // flag to determine if the Metamorph map has been created
+// lk24 added getTime function to update current time when called for and created timeBuffer as a global variable
+char timeBuffer[20];
+
+void getTime()
+{
+  // Set all elements to '\0'
+  std::memset(timeBuffer, '\0', sizeof(timeBuffer));
+    
+  // Write the value (with a timestamp)
+  // Get current time
+  std::time_t now = std::time(0);
+  std::tm* localTime = std::localtime(&now);
+  
+  // Format the time as YYYY-MM-DD HH:MM:SS
+  std::strftime(timeBuffer, sizeof(timeBuffer), "%Y-%m-%d %H:%M:%S", localTime);
+
+}
 
 class MetamorphCollection
 // class object which contains functions are used to create, update,
@@ -80,7 +100,9 @@ private:
   std::string flvheader[maxMet]; // array to store unique headers for each flavor in fantomas card
   std::string parsheader1;	 // header for first list of parameters in fantomas card
   std::string parsheader2;	 // header for second list of parameters in fantomas card
-
+  // lk24 added array to count the number of times the calculated Mellin Moments does not result in integrable PDFs
+  int iMellinerr[maxMet][maxScm-1] = {{0}}; // exclude normalization 
+  
   bool xFitterflag[maxMet] = {false}; // array of flags. false = metamorph not called by xFitter. true = called by xFitter
 public:
   MetamorphCollection()
@@ -402,6 +424,7 @@ public:
     for (int i = 0; i < Nm[paraiMet]+1; i++)
       Scm[paraiMet][i+maxSc] = Scmtmp[paraiMet][i+maxSc] + pars[i+maxSc];
 
+    
     //Scm[paraiMet][0] = -1+exp(Scmtmp[paraiMet][0] + pars[0]);
     if(Nm[paraiMet] == 0)
     {
@@ -449,7 +472,22 @@ public:
 
   double MellinMoment(int ifl, int MellinPower, int npts=10000)
   {
+    // lk24 added routine to check that the N-th Mellin moment is integrable
+    // xf(x) is parameterize, thus there is a +1 missing from the xPows
+    int iflpos = iMetRoster[ifl];
+    double epsilon = 0.05;
+    
+    double xPow1 = Scm[iflpos][1]+MellinPower-epsilon;
+    double xPow2 = Scm[iflpos][2]+MellinPower-epsilon;
+
+    if(xPow1 <= 0)
+      iMellinerr[iflpos][0] += 1;
+    if(xPow1 <= 0)
+      iMellinerr[iflpos][1] +=1;
+
     double momenttmp = MetaRoster[ifl]->GetMellinMoment(MellinPower,npts);
+
+
     // lk22 added norm to test sea fantomas parameterization error mismatch
     /*
     paraiMet = iMetRoster[ifl];
@@ -525,13 +563,16 @@ public:
   void WriteCard()
   // Create an output card for Fantomas using the updated parameters of Sc and Sm.
   {
+    getTime();
+    
     std::ofstream fantosteerout;
     fantosteerout.open ("output/steering_fantomas_out.txt", std::ofstream::out);
     // fantosteerout.open ("../steering_fantomas_out.txt", std::ofstream::out); // used for standalone
 
     if (fantosteerout.is_open())
     {
-      fantosteerout << "# Output card file of Fantomas steering card \n" << std::endl;
+      fantosteerout << "# Fantomas steering card v. " << vernum << std::endl;
+      fantosteerout << "# " << timeBuffer << std::endl;
       for (int i = 0; i < iMet; i++)
       // output fantomas parameters into out card and loop over each input flavor
       {
@@ -581,6 +622,8 @@ public:
 
   void WriteC()
   {
+    getTime();
+    
     std::ofstream fantoCout;
     //lk22 added new C output card normalized to <xf>
     //std::ofstream fantonewCout;
@@ -589,7 +632,8 @@ public:
 
     if (fantoCout.is_open())
     {
-      fantoCout << "# Output file containing the functional from each flavor \n" << std::endl;
+      fantoCout << "# Output file containing the functional from each flavor" << std::endl;
+      fantoCout << "# " << timeBuffer << std::endl;
       fantoCout << "# xf(x) = Sc0*x^Sc1*(1-x)^Sc2*(1+fbezier(x)) \n" << std::endl;
       for (int i = 0; i < iMet; i++)
       // output fantomas C coefficients into out card and loop over each input flavor
@@ -657,6 +701,8 @@ public:
     char targetPath[PATH_MAX];
     
     ssize_t len = readlink(symlinkPath, targetPath, sizeof(targetPath) - 1);
+
+    getTime();
     
     // Open the file to check if it exists
     std::ifstream fileCheck(logFilePath.c_str());
@@ -683,15 +729,6 @@ public:
       else
         logFile << "# steering_fantomas.txt\n";
 
-      // Write the value (with a timestamp)
-      // Get current time
-      std::time_t now = std::time(nullptr);
-      std::tm *localTime = std::localtime(&now);
-
-      // Format the time as YYYY-MM-DD HH:MM:SS
-      char timeBuffer[20];
-      std::strftime(timeBuffer, sizeof(timeBuffer), "%Y-%m-%d %H:%M:%S", localTime);
-
       // Write the value with the formatted date and time
       logFile << "# " << timeBuffer << "\n";
       logFile << "# improved chi2 during fitting process\n";
@@ -702,6 +739,42 @@ public:
     logFile.close();
     
   } // Writechi2log
+
+  // lk24 added function to print out error card
+  void Writeerrlog()
+  {
+    getTime();
+    
+    std::ofstream fantoerrorLog("output/fantomas_error_log.txt", std::ios::app); // Open the log file in append mode
+    fantoerrorLog << timeBuffer << "\n" << std::endl;
+
+    //print out condition number for each metamorph
+    int iflavorsize = iMet;
+
+    for (int i = 0; i < iflavorsize; ++i)
+    {
+      int ifl = iflavor[i];
+      double fantocondnum = ConditionNumber(ifl);
+    
+      fantoerrorLog << "Condition number for matrix T in metamorph for ifl= " << ifl << " is: " << fantocondnum << std::endl;
+    }
+    
+    fantoerrorLog << "\nCaution: A higher condition number may result in a poor metamorph." << std::endl;
+    fantoerrorLog << "Note: Condition number will increase with more control points added." << "\n      The condition number may be improved by selecting different control points.\n" << std::endl;
+
+    //print out number of times Sc(1) and Sc(2) failed condition set in MellinMoment()
+    for (int i = 0; i < iflavorsize; ++i)
+    {
+      int ifl = iflavor[i];
+      double fantocondnum = ConditionNumber(ifl);
+
+      fantoerrorLog << iMellinerr[i][0] << " occurences of a non-integrable function used in xFitter for ifl = " << ifl << " due to Sc(1)" << std::endl;
+      fantoerrorLog << iMellinerr[i][1] << " occurences of a non-integrable function used in xFitter for ifl = " << ifl << " due to Sc(2)" << std::endl;
+    }
+
+    fantoerrorLog << "\nCheck best-fit Sc(1) and Sc(2) values in Fantomas output files to ensure xf(x) for all flavors is integrable.\n" << std::endl;
+    
+  } // Writeerrlog
   
   ~MetamorphCollection()
   {

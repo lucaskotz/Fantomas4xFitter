@@ -31,14 +31,12 @@ void Fantomas_PdfParam::atStart(){
   if (xFitterCollectionSet == false)
   {  
     readfantosteer();
-    //lk23 added in function to print out condition number.
     xFitterCollectionSet = true;
   }
   if (xFitterCollectionSet == true)
   {
   }
   atIteration();
-  fantoConditionNum(ifl);
   xFitterModulatorSet = true;
 }
   
