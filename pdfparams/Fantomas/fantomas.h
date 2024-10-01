@@ -3,7 +3,7 @@
 
 void readfantosteer();
 void writefantosteer();
-void updatefantopars(int &flavor,double *pars);
+void updatefantopars(int &flavor,double *parsin);
 double fantopara(int &flavor, double &x);
 double fantoMellinMoment(int &flavor, int &MellinPower, int npts=10000);
 void writefantoc();

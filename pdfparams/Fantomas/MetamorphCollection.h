@@ -19,6 +19,10 @@
 #include <ctime> // For time and localtime
 // lk24 added pdf_xfxq_wrapper_
 #include "TermData.h"
+// lk24 added PdfParam headers to create global pars array
+#include "Fantomas_PdfParam.h"
+#include "xfitter_cpp_base.h"
+#include "BasePdfParam.h"
 
 // lk22 changed maxSc from 2 to 3 to include normalization constant added to Carrier(x) in metamorph.h
 const int maxSc = 3;	               // number of Sc variables for each flavor

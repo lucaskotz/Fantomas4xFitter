@@ -19,8 +19,6 @@
 #include <cstring>
 #include "MetamorphCollection.h"
 #include "fantomas.h"
-// lk24 added BasePdfParam.h to have access to pars when writecard is called
-#include "Fantomas_PdfParam.h"
 
 //lk22
 #define XFITTER
@@ -49,7 +47,6 @@ void writefantosteer()
 {
   if (xFitterFantomas == true)
   {
-    Fantomas_PdfParam::updateParameters();
     metacol->WriteCard();
   }
 }
@@ -64,7 +61,6 @@ void writefantoc()
 {
   if (xFitterFantomas == true)
   {
-    Fantomas_PdfParam::updateParameters();
     metacol->WriteC();
   }
 }
