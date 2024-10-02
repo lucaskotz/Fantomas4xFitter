@@ -1,8 +1,8 @@
-# Install script for directory: /users/lkotz/mp4test/Fantomas4xFitter/reactions/PineAPPL
+# Install script for directory: /users/olness/git/fantomas/lucas/Fantomas4xFitter/reactions/PineAPPL
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/users/lkotz/mp4test/Fantomas4xFitter")
+  set(CMAKE_INSTALL_PREFIX "/users/olness/git/fantomas/lucas/Fantomas4xFitter")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -39,6 +39,6 @@ endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "/usr/bin/objdump")
+  set(CMAKE_OBJDUMP "/usr/bin/X11/objdump")
 endif()
 

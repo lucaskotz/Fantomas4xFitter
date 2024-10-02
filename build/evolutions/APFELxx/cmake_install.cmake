@@ -1,8 +1,8 @@
-# Install script for directory: /users/lkotz/mp4test/Fantomas4xFitter/evolutions/APFELxx
+# Install script for directory: /users/olness/git/fantomas/lucas/Fantomas4xFitter/evolutions/APFELxx
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/users/lkotz/mp4test/Fantomas4xFitter")
+  set(CMAKE_INSTALL_PREFIX "/users/olness/git/fantomas/lucas/Fantomas4xFitter")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -39,6 +39,20 @@ endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "/usr/bin/objdump")
+  set(CMAKE_OBJDUMP "/usr/bin/X11/objdump")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/xfitter" TYPE MODULE MESSAGE_NEVER FILES "/users/olness/git/fantomas/lucas/Fantomas4xFitter/build/evolutions/APFELxx/libevolutionAPFELxx.so")
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/xfitter/libevolutionAPFELxx.so" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/xfitter/libevolutionAPFELxx.so")
+    if(CMAKE_INSTALL_DO_STRIP)
+      execute_process(COMMAND "/usr/bin/X11/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/xfitter/libevolutionAPFELxx.so")
+    endif()
+  endif()
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/xfitter/evolutions" TYPE FILE MESSAGE_NEVER FILES "/users/olness/git/fantomas/lucas/Fantomas4xFitter/evolutions/APFELxx/APFELxx.yaml")
 endif()
 
