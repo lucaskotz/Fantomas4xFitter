@@ -1,6 +1,6 @@
 Minimizer: MINUIT
 MINUIT:
-  doErrors: Pumplin #uncomment to make error bands
+#  doErrors: Pumplin #uncomment to make error bands
   Commands: |
     minimize #uncomment to run the fit
     call fcn 3
