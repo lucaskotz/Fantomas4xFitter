@@ -39,12 +39,13 @@ void SU3_PositivePionPdfDecomposition::atStart(){
   par_S=getParam(this,node,"sea");
   par_g=getParam(this,node,"gluon");
 }
-void SU3_PositivePionPdfDecomposition::atIteration() {
+void SU3_PositivePionPdfDecomposition::atIteration() {  
   //Enforce sum rules
   //Valence sum
   par_v->setMoment(-1,2);
   //Momentum sum
   par_g->setMoment(0,1-par_S->moment(0)-par_v->moment(0));
+  std::cout <<  "sum= " << par_v->moment(0)+ par_g->moment(0)+ par_S->moment(0)<< " mom= " <<  par_v->moment(-1) <<  " v= "  <<  par_v->moment(0) <<  " g= " << par_g->moment(0)<<  " s= " <<par_S->moment(0) << std::endl;
 }
 map<int,double>SU3_PositivePionPdfDecomposition::xfxMap(const double x)const{
   const double v=(*par_v)(x);
