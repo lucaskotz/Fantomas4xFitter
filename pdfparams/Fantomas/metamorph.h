@@ -118,6 +118,10 @@ public:
         exit(2);
       }//switch MappingMode
 
+    // lk24 commented out the following. Originally used to warn users if control point value for a given
+    // metamorph is negative when using MappingMode = 0. Messages will most likely cause confusion
+    // with users as there is no need for users to be concerned if the metamorph is negative for a given CP.
+    
     // lk22 added display messages when using special value for control point
     //Check the boundaries and flagged values
     if ( sf == -9999)
