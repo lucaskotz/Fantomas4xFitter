@@ -25,7 +25,7 @@
 #include "BasePdfParam.h"
 
 //lk24 added version number
-double vernum = 0.1;
+double vernum = 0.2;
 
 // lk22 changed maxSc from 2 to 3 to include normalization constant added to Carrier(x) in metamorph.h
 const int maxSc = 3;	               // number of Sc variables for each flavor
@@ -101,7 +101,7 @@ private:
   std::string parsheader1;	 // header for first list of parameters in fantomas card
   std::string parsheader2;	 // header for second list of parameters in fantomas card
   // lk24 added array to count the number of times the calculated Mellin Moments does not result in integrable PDFs
-  int iMellinerr[maxMet][maxScm-1] = {{0}}; // exclude normalization 
+  int iMellinerr[maxScm-1] = {{0}}; // exclude normalization 
   
   bool xFitterflag[maxMet] = {false}; // array of flags. false = metamorph not called by xFitter. true = called by xFitter
 public:
@@ -133,8 +133,9 @@ public:
     std::string flagcheck;
 
     // lk22 Added normalization into carrier function
-    Scmtmp[iMet][0] = 1;	// Normalization in Carrier function defaults to 1 to build metamorph object
-    for (int isc = 1; isc < maxSc; isc++) // loop copies Sc parameters read from ReadCard() to Scmtmp[iMet] array
+    // lk24 commented out following line since Scm[0] is defined in steering card now.
+    //Scmtmp[iMet][0] = 1;	// Normalization in Carrier function defaults to 1 to build metamorph object
+    for (int isc = 0; isc < maxSc; isc++) // loop copies Sc parameters read from ReadCard() to Scmtmp[iMet] array
     {
       double Sctmp = std::stod(Scm0[iMet][isc]);
       Scmtmp[iMet][isc] = Sctmp;
@@ -305,6 +306,8 @@ public:
     std::string dummy;		// string to dump lines that won't be read
     std::stringstream stream(std::ios_base::app|std::ios_base::in|std::ios_base::out); // used to read blocks of params
 
+    std::string versionheader; //lk24 added string to read first line of card file containing version number
+    
     fantosteerin.open("steering_fantomas.txt", std::ifstream::in); // Open Fantomas steering card in xFitter
     // fantosteerin.open("../steering_fantomas.txt", std::ifstream::in); // Open Fantomas steering card in standalone
     if (!fantosteerin.is_open())
@@ -315,6 +318,43 @@ public:
 
     if (fantosteerin.is_open())
     {
+      // lk24 added Fantomas steering card version check
+      // read first line in file
+      getline(fantosteerin,versionheader);
+      // create stringstream iss with version header as context
+      std::istringstream iss(versionheader);
+      std::string word;
+      double vernum_in = 0.0;
+
+      // read each word in version header and only save numbers to vernum_in
+      while (iss >> word)
+      {
+	try
+	{
+	  // Try to convert the word to a number
+	  vernum_in = std::stod(word);
+	}
+	catch (const std::invalid_argument& e)
+	{
+	  // Skip words that cannot be converted to numbers
+	}
+      } // while (iss >> word)
+
+      // Check if the last number in version header matches vernum
+      if (vernum_in == vernum)
+      {
+	std::cout << "The Fantomas steering card version matches: " << vernum_in << std::endl;
+      }
+      else
+      {
+	std::cout << "Fantomas steering card version does not match. Expected " << vernum << ", but found " << vernum_in << "." <<  std::endl;
+	std::cout <<"Please check the format of the Fantomas steering card is formatted to match with the current version of MetamorphCollection.h" << std::endl;
+	exit(3);
+      }
+
+      // lk24 read time header and send to dummy
+      getline(fantosteerin,dummy);
+      
       while (!fantosteerin.eof())
       { 
 	getline(fantosteerin,flvheader[iMet]); // stores card header of each loop
@@ -322,7 +362,7 @@ public:
 	
 	fantosteerin >> iflavor[iMet] >> Nm[iMet] >> MappingMode[iMet] \
 		     >> xPower[iMet];
-	for (int i = 1; i < maxSc; i++) 
+	for (int i = 0; i < maxSc; i++) 
 	  fantosteerin >> Scm0[iMet][i]; // reads line containing minuit params
 
 	fantosteerin.ignore();
@@ -481,10 +521,29 @@ public:
     double xPow2 = Scm[iflpos][2]+MellinPower-epsilon;
 
     if(xPow1 <= 0)
-      iMellinerr[iflpos][0] += 1;
-    if(xPow1 <= 0)
-      iMellinerr[iflpos][1] +=1;
+    {
+      if (iMellinerr[0] <= 5)
+      {
+	std::cout << "WARNING: problem with calculating the Mellin moment at x->0" << std::endl;
+	std::cout << "ifl, MellinPower: " << ifl << ", " << MellinPower << std::endl;
+      }
+      if (iMellinerr[0] == 5)
+	std::cout << "Too many warnings; printing to std::cout is suppressed." << std::endl;
+      iMellinerr[0] += 1;
+    } // if(xPow1 <= 0)
 
+    if(xPow2 <= 0)
+    {
+      if (iMellinerr[1] <= 5)
+      {
+	std::cout << "WARNING: problem with calculating the Mellin moment at x->1" << std::endl;
+	std::cout << "ifl, MellinPower: " << ifl << ", " << MellinPower << std::endl;
+      }
+      if (iMellinerr[1] == 5)
+	std::cout << "Too many warnings; printing to std::cout is suppressed." << std::endl;
+      iMellinerr[1] += 1;
+    } // if(xPow2 <=0)
+    
     double momenttmp = MetaRoster[ifl]->GetMellinMoment(MellinPower,npts);
 
 
@@ -528,7 +587,9 @@ public:
 	ifltmp = iflavor[i];
 	for (int j = 0; j < Nmtmp+1; j++)
 	{
-	  //fantochi2 += ReLU(abs(Ci)-10);
+	  Ci = MetaRoster[ifltmp]->Cs(j);
+	  //fantochi2 += abs(log(abs(Ci)));
+	  fantochi2 += ReLU(abs(Ci)-10);
 	}
       }
     }// for (int i = 0; i < iMet; i++)
@@ -537,14 +598,14 @@ public:
     //fantochi2 *= (w/(Nmtmp+1))*fantochi2;
     // lk24 added chi2 penalty when ubar>u and dbar>d around x=0.1 for low Q
     double testpdfs[13];
-    double wtest = 0.5;
-    double wud = 5.;
+    double wtest = 5.;
+    double wud = 100.;
     double xtest = 0.1;
     double Qtest = sqrt(1.9);
     pdf_xfxq_wrapper_(xtest, Qtest, testpdfs);
 
     //lk24 using lha ID notation, Iubar=5, Idbar=6, Id=8, Iu=9 (-1 since c++ starts at 0)
-    // chi2 panelties prefer u(x>0.1)>ubar(x>0.1) and dbar(x>0.1)>d(x>0.1)
+    // chi2 panelties prefer u(x>0.1)>ubar(x>0.1) and dbar(x>0.1)>d(x>0.1) (pi^+)
     double chiu = wud*ReLU(testpdfs[4]-testpdfs[8]);
     fantochi2 += chiu;
 
@@ -581,7 +642,7 @@ public:
 	fantosteerout << iflavor[i] << "\t" << Nm[i] << "\t" << MappingMode[i] \
 		      << "\t" << xPower[i] << "\t";
 	// lk24 changed output card to no longer have tab after last Scm value
-	for (int j = 1; j < maxSc-1; j++)            // loop that writes out all Sc parameter values
+	for (int j = 0; j < maxSc-1; j++)            // loop that writes out all Sc parameter values
 	  fantosteerout << Scm[i][j] << "\t";
 	fantosteerout << Scm[i][maxSc-1] << std::endl;
 	fantosteerout << parsheader2 << "\t f()" << std::endl; // header for metamorph parameters
@@ -634,7 +695,7 @@ public:
     {
       fantoCout << "# Output file containing the functional from each flavor" << std::endl;
       fantoCout << "# " << timeBuffer << std::endl;
-      fantoCout << "# xf(x) = Sc0*x^Sc1*(1-x)^Sc2*(1+fbezier(x)) \n" << std::endl;
+      fantoCout << "# xf(x) = Sc0*x^Sc1*(1-x)^Sc2*(1+fbezier(x^xPower)) \n" << std::endl;
       for (int i = 0; i < iMet; i++)
       // output fantomas C coefficients into out card and loop over each input flavor
       {
@@ -645,6 +706,7 @@ public:
 	{
 	  fantoCout << flvheader[i] << std::endl;
 	  fantoCout << "<xf> = " << MellinMoment(iflavor[i],0) << std::endl;
+	  fantoCout << "xPower = " << xPower[i] << std::endl;
 	  for (int j = 0; j < maxSc; j++)            // loop that writes out all Sc parameter values
 	    fantoCout << "Sc[" << j << "] = " << Scm[i][j] << std::endl;
 	  fantoCout << std::endl;
@@ -763,15 +825,9 @@ public:
     fantoerrorLog << "Note: Condition number will increase with more control points added." << "\n      The condition number may be improved by selecting different control points.\n" << std::endl;
 
     //print out number of times Sc(1) and Sc(2) failed condition set in MellinMoment()
-    for (int i = 0; i < iflavorsize; ++i)
-    {
-      int ifl = iflavor[i];
-      double fantocondnum = ConditionNumber(ifl);
-
-      fantoerrorLog << iMellinerr[i][0] << " occurences of a non-integrable function used in xFitter for ifl = " << ifl << " due to Sc(1)" << std::endl;
-      fantoerrorLog << iMellinerr[i][1] << " occurences of a non-integrable function used in xFitter for ifl = " << ifl << " due to Sc(2)" << std::endl;
-    }
-
+    for (int i = 0; i < maxSc-1; ++i)
+      fantoerrorLog << iMellinerr[i] << " occurences of a non-integrable function used in xFitter due to Sc(" << i <<")" << std::endl;
+    
     fantoerrorLog << "\nCheck best-fit Sc(1) and Sc(2) values in Fantomas output files to ensure xf(x) for all flavors is integrable.\n" << std::endl;
     
   } // Writeerrlog
