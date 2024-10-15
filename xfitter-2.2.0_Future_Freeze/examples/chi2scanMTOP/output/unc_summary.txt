@@ -1,7 +1,0 @@
-Uncertainty decomposition
-Statistical	+1.21581	-1.24926
-Systematic	+0	-0
-PDFs		+0.802855	-0.807817
-QCD scales	+0.415629	-0.421029
-Total (decomposed)	+1.5151	-1.54612
-Total (from fit)	+1.50774	-1.55774
