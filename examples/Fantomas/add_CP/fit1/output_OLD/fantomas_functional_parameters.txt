@@ -1,0 +1,36 @@
+# Output file containing the functional from each flavor
+# 2024-11-08 14:59:50
+# Chi2 penalty contributions from pdfparams/Fantomas/fantomaschi2.h
+Chi_0: 0
+Chi_1: 0
+Chi_2: 0
+Chi_3: 0
+# xf(x) = Sc0*x^Sc1*(1-x)^Sc2*(1+fbezier(x^xPower)) 
+
+# gluon -- metamorph 0
+<xf> = 0.257776
+xPower = 1
+Sc[0] = 0.409312
+Sc[1] = -0.37
+Sc[2] = 2.83
+
+C[0] = 0
+C[1] = 0
+# sea  -- metamorph 1
+<xf> = 0.181338
+xPower = 1
+Sc[0] = 9.82521
+Sc[1] = 0.73
+Sc[2] = 8.19
+
+C[0] = 0
+C[1] = 0
+# valence  -- metamorph 2
+<xf> = 0.560886
+xPower = 1
+Sc[0] = 2.62147
+Sc[1] = 0.76
+Sc[2] = 0.95
+
+C[0] = 0
+C[1] = 0

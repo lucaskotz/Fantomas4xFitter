@@ -1,0 +1,107 @@
+#ifndef FANTOMASCHI2_H
+#define FANTOMASCHI2_H
+
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <stdio.h>
+#include <vector>
+#include <math.h>
+#include <map>
+#include <string>
+#include <cstring>
+#include <algorithm>
+
+using namespace std;
+
+double ReLU(double x);
+
+int lfantochi2 = 4; // number of chi2 penalties
+double fantochi2vec[lfantochi2]; // vector of chi2 penalties to be used in MetamorphCollection.h
+// initialize separate chi2 penalties used
+double fantochi2_1(vector<vector<double>> Cvectorin); // -10<Ci<10 chi2
+double fantochi2_2(double* xfxqpdfin);  // u>ubar chi2
+double fantochi2_3(double* xfxqpdfin);  // dbar>d chi2
+double fantochi2_4(vector<vector<double>> Scmin);              // -10<Cg<10 chi2
+
+// define weights used in the corresponding fantochi2_i function
+double w1 = 1.;
+double w234 = 5.;
+
+// x and Q values quark PDF values are calculated at
+double xpdf = 0.1;
+double qpdf = sqrt(1.9);
+
+double fantochi2(vector<vector<double>> Cvectorin, double* xfxqpdfin, vector<vector<double>> Scmin)
+// function called by MetamorphCollection::fantomasconstrchi2()
+// include all chi2 contributions into this function
+{
+  // push all chi2 penalties into vector fantochi2vec
+  fantochi2vec[0] = fantochi2_1(Cvectorin);
+  fantochi2vec[1] = fantochi2_2(xfxqpdfin);
+  fantochi2vec[2] = fantochi2_3(xfxqpdfin);
+  fantochi2vec[3] = fantochi2_4(Scmin);
+
+  // add up all contributions
+  double fantochi2temp = 0;
+  for (int i = 0; i < lfantochi2; i++)
+    fantochi2temp += fantochi2vec[i];
+  
+  return fantochi2temp;
+} // fantochi2
+
+double fantochi2_1(vector<vector <double>> CVectorin)
+// chi2 penalty to encourage -10<Ci<10
+{
+  double fantochi2_1tmp = 0;
+  int lCVector = CVectorin.size();
+  for (int i = 0; i < lCVector; i++)
+  {
+    int lmeta = CVectorin[i].size();
+    for (int j = 0; j < lmeta; j++)
+    {
+      double Citmp = CVectorin[i][j];
+      int Nmtmp = CVectorin[i].size();
+      fantochi2_1tmp += (w1/(Nmtmp+1))*ReLU(abs(Citmp)-10);
+    }
+  }
+  return fantochi2_1tmp;
+} // double fantochi2_1
+
+//lk24 using lha ID notation, Iubar=5, Idbar=6, Id=8, Iu=9 (-1 since c++ starts at 0)
+// chi2 panelties prefer u(x>0.1)>ubar(x>0.1) and dbar(x>0.1)>d(x>0.1) (pi^+)
+double fantochi2_2(double* xfxqpdfin)
+{
+  double u = xfxqpdfin[8];
+  double ubar = xfxqpdfin[4];
+  return w234*ReLU(ubar-u);
+} // fantochi2_2
+
+double fantochi2_3(double* xfxqpdfin)
+{
+  double dbar = xfxqpdfin[5];
+  double d = xfxqpdfin[7];
+  return w234*ReLU(d-dbar);
+} // fantochi2_3
+
+// Cg is the 1st metamorph listed [0] and the 3rd Scm value [2]
+double fantochi2_4(vector<vector<double>> Scmin)
+{
+  double Cg = Scmin[0][2];
+  return w234*ReLU(Cg-10);
+} // fantochi2_4
+
+vector<double> fantochi2_Getxqpdf()
+// Function called in MetamorphCollection::fantomasconstrchi2()
+// Passes x and q values defined here to calculate quark pdf array.
+{
+  vector<double> xqpdftmp = {xpdf, qpdf};
+  return xqpdftmp;
+} // fantochi2_xqpdf
+
+double ReLU(double x)
+{
+  return std::max(0.0, x);
+}
+
+#endif

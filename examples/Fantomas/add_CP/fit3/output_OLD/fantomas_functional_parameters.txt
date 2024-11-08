@@ -1,0 +1,43 @@
+# Output file containing the functional from each flavor
+# 2024-11-05 11:56:37
+# Fantomas chi2 penalties and weights
+fantochi2 = Sum[(w/Nm+1)*ReLU(abs(Ci)-10)] + wud*ReLU[ubar(x=0.1,Q0=sqrt(1.9))-u(x=0.1,Q0=sqrt(1.9))] + wud*ReLU[d(x=0.1,Q0=sqrt(1.9))-dbar(x=0.1,Q0=sqrt(1.9))] + w1*ReLU(abs(Cg-10)) = 0
+w = 0.010000
+w1 = 5.000000
+wud = 10.000000
+
+
+# xf(x) = Sc0*x^Sc1*(1-x)^Sc2*(1+fbezier(x^xPower)) 
+
+# gluon -- metamorph 0
+<xf> = 0.119589
+xPower = 1
+Sc[0] = 6.34441
+Sc[1] = 0.119039
+Sc[2] = 9.99988
+
+C[0] = 0.0110744
+C[1] = -4.92934
+C[2] = 3.2249
+# sea  -- metamorph 1
+<xf> = 0.458708
+xPower = 1
+Sc[0] = 150.807
+Sc[1] = 1.58478
+Sc[2] = 7.25437
+
+C[0] = 0.00570311
+C[1] = -1.69396
+C[2] = 1.98605
+C[3] = -1.40573
+# valence  -- metamorph 2
+<xf> = 0.421703
+xPower = 1
+Sc[0] = 1.10499
+Sc[1] = 0.375594
+Sc[2] = 0.507332
+
+C[0] = 0.00638761
+C[1] = -1.89791
+C[2] = 2.78652
+C[3] = -2.12606

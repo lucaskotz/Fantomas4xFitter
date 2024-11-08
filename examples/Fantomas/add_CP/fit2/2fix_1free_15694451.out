@@ -1,0 +1,11 @@
+The Fantomas steering card version matches: 0.2
+flagcheck = FIX
+
+Special value detected for control point x = 0.001
+Using metamorph::f(x) = Carrier(x) for control point.
+flagcheck = 0
+flagcheck = FIX
+
+Special value detected for control point x = 0.8
+Using metamorph::f(x) = Carrier(x) for control point.
+Error: The number of entries does not match with the specified Nm value for iflavor = 0 inside fantomas steering card
