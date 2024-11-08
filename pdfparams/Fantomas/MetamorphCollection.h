@@ -25,25 +25,11 @@
 #include "BasePdfParam.h"
 //lk24 setprecision()
 #include <iomanip>
-//lk24 included root headers to use ginterpreter
-#include "TROOT.h"
-#include "TApplication.h"
-#include "TFile.h"
-#include "TChain.h"
-#include "TString.h"
-#include "TH1F.h"
-#include "TLegend.h"
-#include "TPad.h"
-#include "TGraph.h"
-#include "TGaxis.h"
-#include "TLine.h"
-#include "TPaveText.h"
-#include "TF1.h"
-#include "TLatex.h"
-
+//lk24 put chi2 penalty functions into separate header for ease of access
+#include "fantomaschi2.h"
 
 //lk24 added version number
-double vernum = 0.3;
+double vernum = 0.2;
 
 // lk22 changed maxSc from 2 to 3 to include normalization constant added to Carrier(x) in metamorph.h
 const int maxSc = 3;	               // number of Sc variables for each flavor
@@ -124,15 +110,8 @@ private:
   std::string parsheader2;	 // header for second list of parameters in fantomas card
   // lk24 added array to count the number of times the calculated Mellin Moments does not result in integrable PDFs
   int iMellinerr[maxScm-1] = {{0}}; // exclude normalization 
-  
+
   bool xFitterflag[maxMet] = {false}; // array of flags. false = metamorph not called by xFitter. true = called by xFitter
-  bool gInterpreterSet = false;       // lk24 added flag to be true when gInterpreter is loaded for the first time.
-
-  //lk24 added string to contain chi2 penalties code
-  std::string chi2str;
-
-  // lk24 global variables used in fantomasconstrchi2
-  double fantochi2penalty_global = 0.;
   
 public:
   MetamorphCollection()
@@ -143,55 +122,6 @@ public:
     fpvec.reserve(maxScm);
     fmvec.reserve(maxScm);
   } // MetamorphCollection constructor
-
-  // lk24 added struct gFanto to pass values easily into gInterpreter
-  struct gFanto
-  {
-    const int lfl_xfxq = 13;
-    double pdfxfxqarray[lfl_xfxq] = {0}; // define array to store PDF values at x_xfxq and q_xfxq for all 13 flavors
-    std::map <int, std::vector<double>> CiRoster;
-    std::map <int, std::vector<double>> ScmRoster;
-
-    //Create map of vector of Ci values for each metamorph
-    for (int i = 0; i < iMet; i++)
-    {
-      std::vector<double> CiVec;
-      int ifltmp = iflavorin[i];
-      for (int j = 0; j < Nm[i]; j++)
-      {
-	double Citemp = MetaRosterin[ifltmp]->Cs(j);
-	CiVec.push_back(Citemp);
-      }
-      CiRoster.insert( std::pair<int, std::vector<double>>(ifltmp, CiVec) );
-    } // for (int i = 0; i < iMet; i++)
-    
-    // Create a map of Scm values for each metamorph
-    for (int i = 0; i < iMet; i++)
-    {
-      std::vector<double> ScmVectmp;
-      int ifltmp = iflavorin[i];
-      int iflpostmp = iMetRoster[ifltmp];
-      for (int j = 0; j < maxScm; j++)
-      {
-	double Scmtemp = Scmin[iflpostmp][j];
-	ScmVectmp.push_back(Scmtemp);
-      }
-      ScmRoster.insert( std::pair<int, std::vector<double>>(ifltmp, ScmVectmp) );
-    } // for (int i = 0; i < iMet; i++)
-  
-    // Create a map of Nm values for each metamorph
-    std::map <int, int> NmRoster;
-    for (int i = 0; i < iMet; i++)
-    {
-      int ifltmp = iflavorin[i];
-      int Nmtemp = Nmin[i];
-      NmRoster.insert( std::pair<int, int>(ifltmp, Nmtemp) );
-    } // for (int i = 0; i < iMet; i++)  
-    
-    // Create the constructor
-    gFanto(std::map <int, metamorph*>& MetaRosterin, double& Scmin, int Nmin, int iMetin, int iflavorin) : 
-    
-  } // struct gFanto
 
   void PushMember()
   // MetamorpCollection::PushMember() is called inside the MetamorphCollection::ReadCard() function. 
@@ -509,32 +439,6 @@ public:
 	++iMet;		// Adds to the count of Metamorph objects in card file
 
       } // while (!fantosteerin.eof())
-
-     
-      	// lk24 added routine to read chi2 penalties from v0.3 fantomas card
-      // Create output file stream
-      std::ofstream fantochi2file("fantomaschi2.C"); //Create fantomas chi2 C file
-
-      if (!fantochi2file)
-      {
-        std::cerr << "Error opening fantomas chi2 output file!" << std::endl;
-        return;
-      }
-
-      // Read the input block until the '%' delimiter
-      char chi2buffer[lstr];
-      fantosteerin.get(chi2buffer, lstr, '%');  // Read until the '%' delimiter
-      chi2str.assign(chi2buffer);  // Convert char array to string
-
-      // Remove the trailing empty line caused by the delimiter
-      if (!chi2str.empty() && chi2str.back() == '\n')
-        chi2str.pop_back();
-
-      // Write the content directly to the output file
-      fantochi2file << chi2str << std::endl;  // Write to file with a newline
-
-      // Close the output file
-      fantochi2file.close();      
       
     } //if (fantosteerin.is_open())
 
@@ -680,53 +584,43 @@ public:
   // by xFitter. If false, it will skip and go onto the next metamorph.
   // If true, then it will proceed with the calculation and add to final value.
   {
-    double fantochi2 = 0;
-    int Nmtmp;
-    double Ci;
-    int ifltmp;
+    double fantochi2_result = 0;
 
+    std::vector<std::vector<double>> Scmvec(maxMet, std::vector<double>(maxScm));
+    for (int i = 0; i < maxMet; i++)
+      for (int j = 0; j < maxScm; j++)
+	Scmvec[i][j] = Scm[i][j];
+    
+    std::vector<double> xq_pdf = fantochi2_Getxqpdf();
+    double x_pdf = xq_pdf[0];
+    double q_pdf = xq_pdf[1];
+    double xfxqarr[13];
+    pdf_xfxq_wrapper_(x_pdf, q_pdf, xfxqarr);
+    
+    std::vector<std::vector<double>> Civec;
     for (int i = 0; i < iMet; i++)
     {
+      std::vector<double> Civectmp;
       if (xFitterflag[i] == false)
       {
       }
       if (xFitterflag[i] == true)
       {
-        Nmtmp = Nm[i];
-        ifltmp = iflavor[i];
+        int Nmtmp = Nm[i];
+        int ifltmp = iflavor[i];
         for (int j = 0; j < Nmtmp+1; j++)
         {
-          Ci = MetaRoster[ifltmp]->Cs(j);
-          //fantochi2 += abs(log(abs(Ci)));
-          fantochi2 += ReLU(abs(Ci)-10);
-        }
+          double Ci = MetaRoster[ifltmp]->Cs(j);
+	  Civectmp.push_back(Ci);
+	}
+	Civec.push_back(Civectmp);
+	Civectmp.clear();
       }
-    }// for (int i = 0; i < iMet; i++)
+    } //for (int i = 0; i < iMet; i++)
 
-    //double w = 0.01;
-    //fantochi2 *= (w/(Nmtmp+1))*fantochi2;
-    // lk24 added chi2 penalty when ubar>u and dbar>d around x=0.1 for low Q
-    double testpdfs[13];
-    double wtest = 5.;
-    double wud = 100.;
-    double xtest = 0.1;
-    double Qtest = sqrt(1.9);
-    pdf_xfxq_wrapper_(xtest, Qtest, testpdfs);
-
-    //lk24 using lha ID notation, Iubar=5, Idbar=6, Id=8, Iu=9 (-1 since c++ starts at 0)
-    // chi2 panelties prefer u(x>0.1)>ubar(x>0.1) and dbar(x>0.1)>d(x>0.1) (pi^+)
-    double chiu = wud*ReLU(testpdfs[4]-testpdfs[8]);
-    fantochi2 += chiu;
-
-    double chid = wud*ReLU(testpdfs[7]-testpdfs[5]);
-    fantochi2 += chid;
-
-    double chiCg;
-    //lk24 Scm[0][2] is Cg for the SU3 pion decomposition. chi2 penalty prefers -10<Cg<10.
-    chiCg = wtest*ReLU(abs(Scm[0][2])-10);
-    fantochi2 += chiCg;
-
-    return fantochi2;
+    fantochi2_result = fantochi2(Civec,xfxqarr,Scmvec);
+    
+    return fantochi2_result;
 
   }// fantomasconstrchi2()
 
@@ -776,11 +670,6 @@ public:
 	  // fantosteerout << "\t" << MetaRoster[iflavor[i]]->f(Xs0[i][j]) << std::endl;
 	} // for (int j = 0; j < iPts[i]; j++)
       } // for (int i = 0; i < iMet; i++)
-
-      // lk24 added routine to include chi2 penalties into steering output card
-      fantosteerout << "#% End of metamorph cards" << std::endl;
-      fantosteerout << chi2str << std::endl;
-      fantosteerout << "% End of chi2 penalties" << std::endl;
       
       
     } // if (fantosteerout.is_open())
@@ -811,6 +700,9 @@ public:
     {
       fantoCout << "# Output file containing the functional from each flavor" << std::endl;
       fantoCout << "# " << timeBuffer << std::endl;
+      fantoCout << "# Chi2 penalty contributions from pdfparams/Fantomas/fantomaschi2.h" << std::endl;
+      for (int i = 0; i < lfantochi2; i++)
+	fantoCout << "Chi_" << i << ": " << fantochi2vec[i] << std::endl;
       fantoCout << "# xf(x) = Sc0*x^Sc1*(1-x)^Sc2*(1+fbezier(x^xPower)) \n" << std::endl;
       for (int i = 0; i < iMet; i++)
       // output fantomas C coefficients into out card and loop over each input flavor
