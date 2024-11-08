@@ -23,9 +23,27 @@
 #include "Fantomas_PdfParam.h"
 #include "xfitter_cpp_base.h"
 #include "BasePdfParam.h"
+//lk24 setprecision()
+#include <iomanip>
+//lk24 included root headers to use ginterpreter
+#include "TROOT.h"
+#include "TApplication.h"
+#include "TFile.h"
+#include "TChain.h"
+#include "TString.h"
+#include "TH1F.h"
+#include "TLegend.h"
+#include "TPad.h"
+#include "TGraph.h"
+#include "TGaxis.h"
+#include "TLine.h"
+#include "TPaveText.h"
+#include "TF1.h"
+#include "TLatex.h"
+
 
 //lk24 added version number
-double vernum = 0.2;
+double vernum = 0.3;
 
 // lk22 changed maxSc from 2 to 3 to include normalization constant added to Carrier(x) in metamorph.h
 const int maxSc = 3;	               // number of Sc variables for each flavor
@@ -36,6 +54,8 @@ const int maxScm = maxSc + maxctrlpts; // maximum allowed values in array Scm
 //bool xFitterCollectionSet = false;   // flag to determine if the Metamorph map has been created
 // lk24 added getTime function to update current time when called for and created timeBuffer as a global variable
 char timeBuffer[20];
+
+double epsilon = 0.07;
 
 void getTime()
 {
@@ -51,6 +71,8 @@ void getTime()
   std::strftime(timeBuffer, sizeof(timeBuffer), "%Y-%m-%d %H:%M:%S", localTime);
 
 }
+
+
 
 class MetamorphCollection
 // class object which contains functions are used to create, update,
@@ -104,6 +126,14 @@ private:
   int iMellinerr[maxScm-1] = {{0}}; // exclude normalization 
   
   bool xFitterflag[maxMet] = {false}; // array of flags. false = metamorph not called by xFitter. true = called by xFitter
+  bool gInterpreterSet = false;       // lk24 added flag to be true when gInterpreter is loaded for the first time.
+
+  //lk24 added string to contain chi2 penalties code
+  std::string chi2str;
+
+  // lk24 global variables used in fantomasconstrchi2
+  double fantochi2penalty_global = 0.;
+  
 public:
   MetamorphCollection()
   {   
@@ -114,10 +144,54 @@ public:
     fmvec.reserve(maxScm);
   } // MetamorphCollection constructor
 
-  // lk24 added ReLU function to use in fantomas chi2 penalty
-  double ReLU(double x) {
-    return std::max(0.0, x);
-  }
+  // lk24 added struct gFanto to pass values easily into gInterpreter
+  struct gFanto
+  {
+    const int lfl_xfxq = 13;
+    double pdfxfxqarray[lfl_xfxq] = {0}; // define array to store PDF values at x_xfxq and q_xfxq for all 13 flavors
+    std::map <int, std::vector<double>> CiRoster;
+    std::map <int, std::vector<double>> ScmRoster;
+
+    //Create map of vector of Ci values for each metamorph
+    for (int i = 0; i < iMet; i++)
+    {
+      std::vector<double> CiVec;
+      int ifltmp = iflavorin[i];
+      for (int j = 0; j < Nm[i]; j++)
+      {
+	double Citemp = MetaRosterin[ifltmp]->Cs(j);
+	CiVec.push_back(Citemp);
+      }
+      CiRoster.insert( std::pair<int, std::vector<double>>(ifltmp, CiVec) );
+    } // for (int i = 0; i < iMet; i++)
+    
+    // Create a map of Scm values for each metamorph
+    for (int i = 0; i < iMet; i++)
+    {
+      std::vector<double> ScmVectmp;
+      int ifltmp = iflavorin[i];
+      int iflpostmp = iMetRoster[ifltmp];
+      for (int j = 0; j < maxScm; j++)
+      {
+	double Scmtemp = Scmin[iflpostmp][j];
+	ScmVectmp.push_back(Scmtemp);
+      }
+      ScmRoster.insert( std::pair<int, std::vector<double>>(ifltmp, ScmVectmp) );
+    } // for (int i = 0; i < iMet; i++)
+  
+    // Create a map of Nm values for each metamorph
+    std::map <int, int> NmRoster;
+    for (int i = 0; i < iMet; i++)
+    {
+      int ifltmp = iflavorin[i];
+      int Nmtemp = Nmin[i];
+      NmRoster.insert( std::pair<int, int>(ifltmp, Nmtemp) );
+    } // for (int i = 0; i < iMet; i++)  
+    
+    // Create the constructor
+    gFanto(std::map <int, metamorph*>& MetaRosterin, double& Scmin, int Nmin, int iMetin, int iflavorin) : 
+    
+  } // struct gFanto
 
   void PushMember()
   // MetamorpCollection::PushMember() is called inside the MetamorphCollection::ReadCard() function. 
@@ -301,7 +375,7 @@ public:
   { 
     std::ifstream fantosteerin;
     
-    const int lstr = 1000;	// define memory allocation for str
+    const int lstr = 10000;	// define memory allocation for str
     char str[lstr];             // used to copy blocks of input params and be copied by stream
     std::string dummy;		// string to dump lines that won't be read
     std::stringstream stream(std::ios_base::app|std::ios_base::in|std::ios_base::out); // used to read blocks of params
@@ -354,10 +428,17 @@ public:
 
       // lk24 read time header and send to dummy
       getline(fantosteerin,dummy);
+
+      std::string lineparse;
       
-      while (!fantosteerin.eof())
-      { 
-	getline(fantosteerin,flvheader[iMet]); // stores card header of each loop
+      // lk24 changed !fantosteer.eof() to read if line contains %
+      while (getline(fantosteerin, lineparse))
+      {
+	// lk24 breaks if % delimiter is found
+	if (lineparse.find('%') != std::string::npos)
+	  break;
+
+	flvheader[iMet] = lineparse; // stores card header of each loop
 	getline(fantosteerin,parsheader1); // skips metamorph info header
 	
 	fantosteerin >> iflavor[iMet] >> Nm[iMet] >> MappingMode[iMet] \
@@ -388,6 +469,9 @@ public:
 	  std::string line;
 	  std::stringstream streamtmp;
 	  getline(stream, line); // reads next line in stream block.
+	  // lk24 added check if line is '%' introduced by v0.3
+	  if(line.compare(0, 1, "%") == 0)
+	    break;
 	  streamtmp.str(line);	 // copies string line to stringstream to copy values over to variables.
 
 	  // lk22 added if statements to assign default boundary conditions if no values are specified in input card.
@@ -424,14 +508,40 @@ public:
 
 	++iMet;		// Adds to the count of Metamorph objects in card file
 
-      } // while (fantosteerin.!eof())
-	
+      } // while (!fantosteerin.eof())
+
+     
+      	// lk24 added routine to read chi2 penalties from v0.3 fantomas card
+      // Create output file stream
+      std::ofstream fantochi2file("fantomaschi2.C"); //Create fantomas chi2 C file
+
+      if (!fantochi2file)
+      {
+        std::cerr << "Error opening fantomas chi2 output file!" << std::endl;
+        return;
+      }
+
+      // Read the input block until the '%' delimiter
+      char chi2buffer[lstr];
+      fantosteerin.get(chi2buffer, lstr, '%');  // Read until the '%' delimiter
+      chi2str.assign(chi2buffer);  // Convert char array to string
+
+      // Remove the trailing empty line caused by the delimiter
+      if (!chi2str.empty() && chi2str.back() == '\n')
+        chi2str.pop_back();
+
+      // Write the content directly to the output file
+      fantochi2file << chi2str << std::endl;  // Write to file with a newline
+
+      // Close the output file
+      fantochi2file.close();      
+      
     } //if (fantosteerin.is_open())
 
     fantosteerin.close();
 
     std::cout << "Fantomas intput card read successfully... \n" << std::endl;
-
+    
   } // MetamorphCollection::ReadCard()
 
   void UpdateParameters(const int ifl, double *pars)
@@ -515,7 +625,6 @@ public:
     // lk24 added routine to check that the N-th Mellin moment is integrable
     // xf(x) is parameterize, thus there is a +1 missing from the xPows
     int iflpos = iMetRoster[ifl];
-    double epsilon = 0.05;
     
     double xPow1 = Scm[iflpos][1]+MellinPower-epsilon;
     double xPow2 = Scm[iflpos][2]+MellinPower-epsilon;
@@ -583,14 +692,14 @@ public:
       }
       if (xFitterflag[i] == true)
       {
-	Nmtmp = Nm[i];
-	ifltmp = iflavor[i];
-	for (int j = 0; j < Nmtmp+1; j++)
-	{
-	  Ci = MetaRoster[ifltmp]->Cs(j);
-	  //fantochi2 += abs(log(abs(Ci)));
-	  fantochi2 += ReLU(abs(Ci)-10);
-	}
+        Nmtmp = Nm[i];
+        ifltmp = iflavor[i];
+        for (int j = 0; j < Nmtmp+1; j++)
+        {
+          Ci = MetaRoster[ifltmp]->Cs(j);
+          //fantochi2 += abs(log(abs(Ci)));
+          fantochi2 += ReLU(abs(Ci)-10);
+        }
       }
     }// for (int i = 0; i < iMet; i++)
 
@@ -616,9 +725,9 @@ public:
     //lk24 Scm[0][2] is Cg for the SU3 pion decomposition. chi2 penalty prefers -10<Cg<10.
     chiCg = wtest*ReLU(abs(Scm[0][2])-10);
     fantochi2 += chiCg;
-    
+
     return fantochi2;
-    
+
   }// fantomasconstrchi2()
 
   void WriteCard()
@@ -667,6 +776,13 @@ public:
 	  // fantosteerout << "\t" << MetaRoster[iflavor[i]]->f(Xs0[i][j]) << std::endl;
 	} // for (int j = 0; j < iPts[i]; j++)
       } // for (int i = 0; i < iMet; i++)
+
+      // lk24 added routine to include chi2 penalties into steering output card
+      fantosteerout << "#% End of metamorph cards" << std::endl;
+      fantosteerout << chi2str << std::endl;
+      fantosteerout << "% End of chi2 penalties" << std::endl;
+      
+      
     } // if (fantosteerout.is_open())
 
     if (!fantosteerout.is_open())
@@ -795,8 +911,8 @@ public:
       logFile << "# " << timeBuffer << "\n";
       logFile << "# improved chi2 during fitting process\n";
     }
-
-    logFile << chi2in << "\n";
+    
+    logFile << std::setprecision(10)  << chi2in << "\n";
     
     logFile.close();
     
@@ -829,6 +945,7 @@ public:
       fantoerrorLog << iMellinerr[i] << " occurences of a non-integrable function used in xFitter due to Sc(" << i <<")" << std::endl;
     
     fantoerrorLog << "\nCheck best-fit Sc(1) and Sc(2) values in Fantomas output files to ensure xf(x) for all flavors is integrable.\n" << std::endl;
+    fantoerrorLog << "Sc(1) and Sc(1) should be greater than " << epsilon << "\n" << std::endl;
     
   } // Writeerrlog
   
