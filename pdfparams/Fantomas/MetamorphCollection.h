@@ -702,7 +702,10 @@ public:
       fantoCout << "# " << timeBuffer << std::endl;
       fantoCout << "# Chi2 penalty contributions from pdfparams/Fantomas/fantomaschi2.h" << std::endl;
       for (int i = 0; i < lfantochi2; i++)
-	fantoCout << "Chi_" << i << ": " << fantochi2vec[i] << std::endl;
+	fantoCout << "Chi_" << i << ": " << fantochi2str[i] << " = " << fantochi2vec[i] << std::endl;
+      fantoCout << "# weights used in chi2 penalties" << std::endl;
+      for (int i = 0; i < lfantochi2; i++)
+	fantoCout << "w" << i << " = " << warr[i] << std::endl;
       fantoCout << "# xf(x) = Sc0*x^Sc1*(1-x)^Sc2*(1+fbezier(x^xPower)) \n" << std::endl;
       for (int i = 0; i < iMet; i++)
       // output fantomas C coefficients into out card and loop over each input flavor

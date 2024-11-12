@@ -18,6 +18,7 @@ double ReLU(double x);
 
 const int lfantochi2 = 4; // number of chi2 penalties
 double fantochi2vec[lfantochi2]; // vector of chi2 penalties to be used in MetamorphCollection.h
+string fantochi2str[lfantochi2]; // 
 // initialize separate chi2 penalties used
 double fantochi2_1(vector<vector<double>> Cvectorin); // -10<Ci<10 chi2
 double fantochi2_2(double* xfxqpdfin);  // u>ubar chi2
@@ -26,7 +27,8 @@ double fantochi2_4(vector<vector<double>> Scmin);              // -10<Cg<10 chi2
 
 // define weights used in the corresponding fantochi2_i function
 double w1 = 1.;
-double w234 = 5.;
+double w2 = 50., w3 = 50., w4 = 50.;
+double warr[lfantochi2] = {w1,w2,w3,w4};
 
 // x and Q values quark PDF values are calculated at
 double xpdf = 0.1;
@@ -65,6 +67,7 @@ double fantochi2_1(vector<vector <double>> CVectorin)
       fantochi2_1tmp += (w1/(Nmtmp+1))*ReLU(abs(Citmp)-10);
     }
   }
+  fantochi2str[0] = "Sum[w1/(Nm+1)*ReLU(|Ci|-10)]";
   return fantochi2_1tmp;
 } // double fantochi2_1
 
@@ -74,21 +77,24 @@ double fantochi2_2(double* xfxqpdfin)
 {
   double u = xfxqpdfin[8];
   double ubar = xfxqpdfin[4];
-  return w234*ReLU(ubar-u);
+  fantochi2str[1] = "w2*ReLU(ubar-u)";
+  return w2*ReLU(ubar-u);
 } // fantochi2_2
 
 double fantochi2_3(double* xfxqpdfin)
 {
   double dbar = xfxqpdfin[5];
   double d = xfxqpdfin[7];
-  return w234*ReLU(d-dbar);
+  fantochi2str[2] = "w3*ReLU(d-dbar)";
+  return w3*ReLU(d-dbar);
 } // fantochi2_3
 
 // Cg is the 1st metamorph listed [0] and the 3rd Scm value [2]
 double fantochi2_4(vector<vector<double>> Scmin)
 {
   double Cg = Scmin[0][2];
-  return w234*ReLU(Cg-10);
+  fantochi2str[3] = "w4*ReLU(Cg-10)";
+  return w4*ReLU(Cg-10);
 } // fantochi2_4
 
 vector<double> fantochi2_Getxqpdf()
