@@ -1,4 +1,4 @@
-2024-11-08 15:00:47
+2025-01-09 11:46:52
 
 Condition number for matrix T in metamorph for ifl= 0 is: 3.41188
 Condition number for matrix T in metamorph for ifl= 1 is: 3.41188
@@ -15,7 +15,7 @@ Check best-fit Sc(1) and Sc(2) values in Fantomas output files to ensure xf(x) f
 
 Sc(1) and Sc(1) should be greater than 0.07
 
-2024-11-08 15:00:48
+2025-01-09 11:46:53
 
 Condition number for matrix T in metamorph for ifl= 0 is: 3.41188
 Condition number for matrix T in metamorph for ifl= 1 is: 3.41188
@@ -32,7 +32,7 @@ Check best-fit Sc(1) and Sc(2) values in Fantomas output files to ensure xf(x) f
 
 Sc(1) and Sc(1) should be greater than 0.07
 
-2024-11-08 15:00:58
+2025-01-09 11:47:04
 
 Condition number for matrix T in metamorph for ifl= 0 is: 3.41188
 Condition number for matrix T in metamorph for ifl= 1 is: 3.41188
@@ -49,7 +49,7 @@ Check best-fit Sc(1) and Sc(2) values in Fantomas output files to ensure xf(x) f
 
 Sc(1) and Sc(1) should be greater than 0.07
 
-2024-11-08 15:01:13
+2025-01-09 11:47:19
 
 Condition number for matrix T in metamorph for ifl= 0 is: 3.41188
 Condition number for matrix T in metamorph for ifl= 1 is: 3.41188
@@ -66,7 +66,7 @@ Check best-fit Sc(1) and Sc(2) values in Fantomas output files to ensure xf(x) f
 
 Sc(1) and Sc(1) should be greater than 0.07
 
-2024-11-08 15:01:24
+2025-01-09 11:47:31
 
 Condition number for matrix T in metamorph for ifl= 0 is: 3.41188
 Condition number for matrix T in metamorph for ifl= 1 is: 3.41188
@@ -83,7 +83,7 @@ Check best-fit Sc(1) and Sc(2) values in Fantomas output files to ensure xf(x) f
 
 Sc(1) and Sc(1) should be greater than 0.07
 
-2024-11-08 15:01:27
+2025-01-09 11:47:33
 
 Condition number for matrix T in metamorph for ifl= 0 is: 3.41188
 Condition number for matrix T in metamorph for ifl= 1 is: 3.41188
@@ -100,7 +100,7 @@ Check best-fit Sc(1) and Sc(2) values in Fantomas output files to ensure xf(x) f
 
 Sc(1) and Sc(1) should be greater than 0.07
 
-2024-11-08 15:01:30
+2025-01-09 11:47:36
 
 Condition number for matrix T in metamorph for ifl= 0 is: 3.41188
 Condition number for matrix T in metamorph for ifl= 1 is: 3.41188
@@ -117,7 +117,7 @@ Check best-fit Sc(1) and Sc(2) values in Fantomas output files to ensure xf(x) f
 
 Sc(1) and Sc(1) should be greater than 0.07
 
-2024-11-08 15:01:36
+2025-01-09 11:47:42
 
 Condition number for matrix T in metamorph for ifl= 0 is: 3.41188
 Condition number for matrix T in metamorph for ifl= 1 is: 3.41188
@@ -134,7 +134,7 @@ Check best-fit Sc(1) and Sc(2) values in Fantomas output files to ensure xf(x) f
 
 Sc(1) and Sc(1) should be greater than 0.07
 
-2024-11-08 15:01:46
+2025-01-09 11:47:53
 
 Condition number for matrix T in metamorph for ifl= 0 is: 3.41188
 Condition number for matrix T in metamorph for ifl= 1 is: 3.41188
@@ -151,7 +151,7 @@ Check best-fit Sc(1) and Sc(2) values in Fantomas output files to ensure xf(x) f
 
 Sc(1) and Sc(1) should be greater than 0.07
 
-2024-11-08 15:01:48
+2025-01-09 11:47:54
 
 Condition number for matrix T in metamorph for ifl= 0 is: 3.41188
 Condition number for matrix T in metamorph for ifl= 1 is: 3.41188
@@ -168,7 +168,7 @@ Check best-fit Sc(1) and Sc(2) values in Fantomas output files to ensure xf(x) f
 
 Sc(1) and Sc(1) should be greater than 0.07
 
-2024-11-08 15:01:51
+2025-01-09 11:47:57
 
 Condition number for matrix T in metamorph for ifl= 0 is: 3.41188
 Condition number for matrix T in metamorph for ifl= 1 is: 3.41188
@@ -185,7 +185,7 @@ Check best-fit Sc(1) and Sc(2) values in Fantomas output files to ensure xf(x) f
 
 Sc(1) and Sc(1) should be greater than 0.07
 
-2024-11-08 15:01:52
+2025-01-09 11:47:59
 
 Condition number for matrix T in metamorph for ifl= 0 is: 3.41188
 Condition number for matrix T in metamorph for ifl= 1 is: 3.41188
@@ -202,7 +202,7 @@ Check best-fit Sc(1) and Sc(2) values in Fantomas output files to ensure xf(x) f
 
 Sc(1) and Sc(1) should be greater than 0.07
 
-2024-11-08 15:02:02
+2025-01-09 11:48:09
 
 Condition number for matrix T in metamorph for ifl= 0 is: 3.41188
 Condition number for matrix T in metamorph for ifl= 1 is: 3.41188
@@ -219,7 +219,7 @@ Check best-fit Sc(1) and Sc(2) values in Fantomas output files to ensure xf(x) f
 
 Sc(1) and Sc(1) should be greater than 0.07
 
-2024-11-08 15:02:10
+2025-01-09 11:48:17
 
 Condition number for matrix T in metamorph for ifl= 0 is: 3.41188
 Condition number for matrix T in metamorph for ifl= 1 is: 3.41188
@@ -236,7 +236,7 @@ Check best-fit Sc(1) and Sc(2) values in Fantomas output files to ensure xf(x) f
 
 Sc(1) and Sc(1) should be greater than 0.07
 
-2024-11-08 15:02:11
+2025-01-09 11:48:18
 
 Condition number for matrix T in metamorph for ifl= 0 is: 3.41188
 Condition number for matrix T in metamorph for ifl= 1 is: 3.41188
@@ -253,7 +253,7 @@ Check best-fit Sc(1) and Sc(2) values in Fantomas output files to ensure xf(x) f
 
 Sc(1) and Sc(1) should be greater than 0.07
 
-2024-11-08 15:02:14
+2025-01-09 11:48:21
 
 Condition number for matrix T in metamorph for ifl= 0 is: 3.41188
 Condition number for matrix T in metamorph for ifl= 1 is: 3.41188
@@ -270,7 +270,7 @@ Check best-fit Sc(1) and Sc(2) values in Fantomas output files to ensure xf(x) f
 
 Sc(1) and Sc(1) should be greater than 0.07
 
-2024-11-08 15:02:24
+2025-01-09 11:48:31
 
 Condition number for matrix T in metamorph for ifl= 0 is: 3.41188
 Condition number for matrix T in metamorph for ifl= 1 is: 3.41188
@@ -287,7 +287,7 @@ Check best-fit Sc(1) and Sc(2) values in Fantomas output files to ensure xf(x) f
 
 Sc(1) and Sc(1) should be greater than 0.07
 
-2024-11-08 15:02:27
+2025-01-09 11:48:34
 
 Condition number for matrix T in metamorph for ifl= 0 is: 3.41188
 Condition number for matrix T in metamorph for ifl= 1 is: 3.41188
@@ -304,7 +304,7 @@ Check best-fit Sc(1) and Sc(2) values in Fantomas output files to ensure xf(x) f
 
 Sc(1) and Sc(1) should be greater than 0.07
 
-2024-11-08 15:02:31
+2025-01-09 11:48:39
 
 Condition number for matrix T in metamorph for ifl= 0 is: 3.41188
 Condition number for matrix T in metamorph for ifl= 1 is: 3.41188
@@ -321,7 +321,7 @@ Check best-fit Sc(1) and Sc(2) values in Fantomas output files to ensure xf(x) f
 
 Sc(1) and Sc(1) should be greater than 0.07
 
-2024-11-08 15:02:33
+2025-01-09 11:48:40
 
 Condition number for matrix T in metamorph for ifl= 0 is: 3.41188
 Condition number for matrix T in metamorph for ifl= 1 is: 3.41188
@@ -338,7 +338,7 @@ Check best-fit Sc(1) and Sc(2) values in Fantomas output files to ensure xf(x) f
 
 Sc(1) and Sc(1) should be greater than 0.07
 
-2024-11-08 15:02:34
+2025-01-09 11:48:42
 
 Condition number for matrix T in metamorph for ifl= 0 is: 3.41188
 Condition number for matrix T in metamorph for ifl= 1 is: 3.41188
@@ -355,7 +355,7 @@ Check best-fit Sc(1) and Sc(2) values in Fantomas output files to ensure xf(x) f
 
 Sc(1) and Sc(1) should be greater than 0.07
 
-2024-11-08 15:02:36
+2025-01-09 11:48:43
 
 Condition number for matrix T in metamorph for ifl= 0 is: 3.41188
 Condition number for matrix T in metamorph for ifl= 1 is: 3.41188
@@ -372,7 +372,7 @@ Check best-fit Sc(1) and Sc(2) values in Fantomas output files to ensure xf(x) f
 
 Sc(1) and Sc(1) should be greater than 0.07
 
-2024-11-08 15:02:46
+2025-01-09 11:48:53
 
 Condition number for matrix T in metamorph for ifl= 0 is: 3.41188
 Condition number for matrix T in metamorph for ifl= 1 is: 3.41188
@@ -389,7 +389,7 @@ Check best-fit Sc(1) and Sc(2) values in Fantomas output files to ensure xf(x) f
 
 Sc(1) and Sc(1) should be greater than 0.07
 
-2024-11-08 15:02:56
+2025-01-09 11:49:04
 
 Condition number for matrix T in metamorph for ifl= 0 is: 3.41188
 Condition number for matrix T in metamorph for ifl= 1 is: 3.41188
@@ -406,7 +406,7 @@ Check best-fit Sc(1) and Sc(2) values in Fantomas output files to ensure xf(x) f
 
 Sc(1) and Sc(1) should be greater than 0.07
 
-2024-11-08 15:02:57
+2025-01-09 11:49:05
 
 Condition number for matrix T in metamorph for ifl= 0 is: 3.41188
 Condition number for matrix T in metamorph for ifl= 1 is: 3.41188
@@ -423,7 +423,7 @@ Check best-fit Sc(1) and Sc(2) values in Fantomas output files to ensure xf(x) f
 
 Sc(1) and Sc(1) should be greater than 0.07
 
-2024-11-08 15:03:05
+2025-01-09 11:49:13
 
 Condition number for matrix T in metamorph for ifl= 0 is: 3.41188
 Condition number for matrix T in metamorph for ifl= 1 is: 3.41188
@@ -440,7 +440,7 @@ Check best-fit Sc(1) and Sc(2) values in Fantomas output files to ensure xf(x) f
 
 Sc(1) and Sc(1) should be greater than 0.07
 
-2024-11-08 15:03:11
+2025-01-09 11:49:18
 
 Condition number for matrix T in metamorph for ifl= 0 is: 3.41188
 Condition number for matrix T in metamorph for ifl= 1 is: 3.41188
@@ -457,7 +457,7 @@ Check best-fit Sc(1) and Sc(2) values in Fantomas output files to ensure xf(x) f
 
 Sc(1) and Sc(1) should be greater than 0.07
 
-2024-11-08 15:03:15
+2025-01-09 11:49:23
 
 Condition number for matrix T in metamorph for ifl= 0 is: 3.41188
 Condition number for matrix T in metamorph for ifl= 1 is: 3.41188
@@ -474,7 +474,7 @@ Check best-fit Sc(1) and Sc(2) values in Fantomas output files to ensure xf(x) f
 
 Sc(1) and Sc(1) should be greater than 0.07
 
-2024-11-08 15:03:19
+2025-01-09 11:49:27
 
 Condition number for matrix T in metamorph for ifl= 0 is: 3.41188
 Condition number for matrix T in metamorph for ifl= 1 is: 3.41188
@@ -491,7 +491,7 @@ Check best-fit Sc(1) and Sc(2) values in Fantomas output files to ensure xf(x) f
 
 Sc(1) and Sc(1) should be greater than 0.07
 
-2024-11-08 15:03:21
+2025-01-09 11:49:29
 
 Condition number for matrix T in metamorph for ifl= 0 is: 3.41188
 Condition number for matrix T in metamorph for ifl= 1 is: 3.41188
@@ -508,7 +508,7 @@ Check best-fit Sc(1) and Sc(2) values in Fantomas output files to ensure xf(x) f
 
 Sc(1) and Sc(1) should be greater than 0.07
 
-2024-11-08 15:03:24
+2025-01-09 11:49:32
 
 Condition number for matrix T in metamorph for ifl= 0 is: 3.41188
 Condition number for matrix T in metamorph for ifl= 1 is: 3.41188
@@ -525,7 +525,7 @@ Check best-fit Sc(1) and Sc(2) values in Fantomas output files to ensure xf(x) f
 
 Sc(1) and Sc(1) should be greater than 0.07
 
-2024-11-08 15:03:25
+2025-01-09 11:49:33
 
 Condition number for matrix T in metamorph for ifl= 0 is: 3.41188
 Condition number for matrix T in metamorph for ifl= 1 is: 3.41188
@@ -542,7 +542,7 @@ Check best-fit Sc(1) and Sc(2) values in Fantomas output files to ensure xf(x) f
 
 Sc(1) and Sc(1) should be greater than 0.07
 
-2024-11-08 15:03:28
+2025-01-09 11:49:36
 
 Condition number for matrix T in metamorph for ifl= 0 is: 3.41188
 Condition number for matrix T in metamorph for ifl= 1 is: 3.41188
@@ -559,7 +559,7 @@ Check best-fit Sc(1) and Sc(2) values in Fantomas output files to ensure xf(x) f
 
 Sc(1) and Sc(1) should be greater than 0.07
 
-2024-11-08 15:03:43
+2025-01-09 11:49:51
 
 Condition number for matrix T in metamorph for ifl= 0 is: 3.41188
 Condition number for matrix T in metamorph for ifl= 1 is: 3.41188
@@ -576,7 +576,7 @@ Check best-fit Sc(1) and Sc(2) values in Fantomas output files to ensure xf(x) f
 
 Sc(1) and Sc(1) should be greater than 0.07
 
-2024-11-08 15:03:44
+2025-01-09 11:49:53
 
 Condition number for matrix T in metamorph for ifl= 0 is: 3.41188
 Condition number for matrix T in metamorph for ifl= 1 is: 3.41188
@@ -593,7 +593,7 @@ Check best-fit Sc(1) and Sc(2) values in Fantomas output files to ensure xf(x) f
 
 Sc(1) and Sc(1) should be greater than 0.07
 
-2024-11-08 15:04:06
+2025-01-09 11:50:15
 
 Condition number for matrix T in metamorph for ifl= 0 is: 3.41188
 Condition number for matrix T in metamorph for ifl= 1 is: 3.41188
@@ -610,7 +610,7 @@ Check best-fit Sc(1) and Sc(2) values in Fantomas output files to ensure xf(x) f
 
 Sc(1) and Sc(1) should be greater than 0.07
 
-2024-11-08 15:04:07
+2025-01-09 11:50:16
 
 Condition number for matrix T in metamorph for ifl= 0 is: 3.41188
 Condition number for matrix T in metamorph for ifl= 1 is: 3.41188
@@ -627,7 +627,7 @@ Check best-fit Sc(1) and Sc(2) values in Fantomas output files to ensure xf(x) f
 
 Sc(1) and Sc(1) should be greater than 0.07
 
-2024-11-08 15:04:29
+2025-01-09 11:50:38
 
 Condition number for matrix T in metamorph for ifl= 0 is: 3.41188
 Condition number for matrix T in metamorph for ifl= 1 is: 3.41188
@@ -644,7 +644,7 @@ Check best-fit Sc(1) and Sc(2) values in Fantomas output files to ensure xf(x) f
 
 Sc(1) and Sc(1) should be greater than 0.07
 
-2024-11-08 15:04:31
+2025-01-09 11:50:40
 
 Condition number for matrix T in metamorph for ifl= 0 is: 3.41188
 Condition number for matrix T in metamorph for ifl= 1 is: 3.41188

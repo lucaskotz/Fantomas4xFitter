@@ -1,5 +1,5 @@
 # Fantomas steering card v. 0.2
-# 2024-11-08 15:04:31
+# 2025-01-09 11:50:40
 # gluon -- metamorph 0
 # ifl	Nm	MappingMode	xPower	Sc(0)	Sc(1)	Sc(2)
 0	1	0	1	0.421261	-0.374257	2.82621

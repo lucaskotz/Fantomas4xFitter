@@ -1,10 +1,15 @@
 # Output file containing the functional from each flavor
-# 2024-11-08 15:04:31
+# 2025-01-09 11:50:40
 # Chi2 penalty contributions from pdfparams/Fantomas/fantomaschi2.h
-Chi_0: 0
-Chi_1: 0
-Chi_2: 0
-Chi_3: 0
+Chi_0: Sum[ w1/(Nm+1)*ReLU(|Ci|-10)) ] = 0
+Chi_1: w2*ReLU(ubar-u) = 0
+Chi_2: w3*ReLU(d-dbar) = 0
+Chi_3: w4*ReLU(Cg-10) = 0
+# weights used in chi2 penalties
+w0 = 0.1
+w1 = 50
+w2 = 50
+w3 = 50
 # xf(x) = Sc0*x^Sc1*(1-x)^Sc2*(1+fbezier(x^xPower)) 
 
 # gluon -- metamorph 0
