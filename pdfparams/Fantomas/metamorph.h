@@ -103,7 +103,8 @@ public:
       case 0: //no scaling
         ftmp=sf;
         break;
-      case 1: //bounded linear scaling
+      //lk25 MappingMode != 0 is currently not surrported
+      /*case 1: //bounded linear scaling
 	ftmp = (fp+fm)/2.0 + (fp-fm)*sf/2.0;
         break;
       case 2: //bounded softsign scaling
@@ -112,6 +113,7 @@ public:
         // linear in the interval -1 < s < 1 and is equal to (fp+fm)/2 for s=0.
 	ftmp = (fp+fm)/2.0 + (fp-fm)*sf/(1.0+fabs(sf))/2.0;
         break;
+      */
       default:
         std::cout << "STOP in ControlPoint: mapping mode "<<MappingMode<<" is not implemented" <<std::endl;
         std::cout << "x = "<<x<<", s = "<<sf<<std::endl;
