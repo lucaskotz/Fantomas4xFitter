@@ -1,12 +1,12 @@
 # Output file containing the functional from each flavor
-# 2025-01-09 11:50:40
+# 2025-01-09 16:04:59
 # Chi2 penalty contributions from pdfparams/Fantomas/fantomaschi2.h
 Chi_0: Sum[ w1/(Nm+1)*ReLU(|Ci|-10)) ] = 0
 Chi_1: w2*ReLU(ubar-u) = 0
 Chi_2: w3*ReLU(d-dbar) = 0
 Chi_3: w4*ReLU(Cg-10) = 0
 # weights used in chi2 penalties
-w0 = 0.1
+w0 = 1
 w1 = 50
 w2 = 50
 w3 = 50
