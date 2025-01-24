@@ -1,0 +1,149 @@
+The Fantomas steering card version matches: 0.2
+flagcheck = FIX
+
+Special value detected for control point x = 0.001
+Using metamorph::f(x) = Carrier(x) for control point.
+flagcheck = 1.73019
+flagcheck = FIX
+
+Special value detected for control point x = 0.8
+Using metamorph::f(x) = Carrier(x) for control point.
+flagcheck = FIX
+
+Special value detected for control point x = 0.001
+Using metamorph::f(x) = Carrier(x) for control point.
+flagcheck = 3.74567
+flagcheck = 2.52702
+flagcheck = FIX
+
+Special value detected for control point x = 0.8
+Using metamorph::f(x) = Carrier(x) for control point.
+flagcheck = FIX
+
+Special value detected for control point x = 0.001
+Using metamorph::f(x) = Carrier(x) for control point.
+flagcheck = 0.0554912
+flagcheck = 0.0374373
+flagcheck = FIX
+
+Special value detected for control point x = 0.8
+Using metamorph::f(x) = Carrier(x) for control point.
+Fantomas intput card read successfully... 
+
+Set evolution order 2
+xGrid[0]: 9.9e-07
+Requested (actual) number of x  grid points: 100(98)
+Requested (actual) number of Q2 grid points: 60(62)
+Variable Flavour Number Scheme set with nf=5
+LHAPDF 6.5.4 loading /users/lkotz/share/lhapdf/6.5.4_gcc11.2/share/LHAPDF/nCTEQ15FullNuc_1_1/nCTEQ15FullNuc_1_1_0000.dat
+nCTEQ15FullNuc_1_1 PDF set, member #0, version 1; LHAPDF ID = 102000
+LHAPDF 6.5.4 loading /users/lkotz/share/lhapdf/6.5.4_gcc11.2/share/LHAPDF/nCTEQ15FullNuc_184_74/nCTEQ15FullNuc_184_74_0000.dat
+nCTEQ15FullNuc_184_74 PDF set, member #0, version 1; LHAPDF ID = 102900
+appl::grid() version 1.6.9 compiled Jun 27 2023
+appl::grid() reading grid from file datafiles/fixedTarget/NA10/gridNA10_194-0.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.28204 MB	in 2312.8 ms	trim in 0.069 ms
+appl::grid() reading grid from file datafiles/fixedTarget/NA10/gridNA10_194-1.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.271591 MB	in 96.552 ms	trim in 0.065 ms
+appl::grid() reading grid from file datafiles/fixedTarget/NA10/gridNA10_194-2.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.310833 MB	in 113.972 ms	trim in 0.078 ms
+appl::grid() reading grid from file datafiles/fixedTarget/NA10/gridNA10_194-3.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.310089 MB	in 123.571 ms	trim in 0.078 ms
+appl::grid() reading grid from file datafiles/fixedTarget/NA10/gridNA10_194-4.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.339478 MB	in 128.46 ms	trim in 0.085 ms
+appl::grid() reading grid from file datafiles/fixedTarget/NA10/gridNA10_194-5.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.324944 MB	in 121.714 ms	trim in 0.087 ms
+appl::grid() reading grid from file datafiles/fixedTarget/NA10/gridNA10_194-6.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.340405 MB	in 105.908 ms	trim in 0.094 ms
+appl::grid() reading grid from file datafiles/fixedTarget/NA10/gridNA10_194-7.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.268078 MB	in 110.857 ms	trim in 0.082 ms
+  +---------------------------------------------------------------------+   
+  |                                                                     |   
+  |    If you use QCDNUM, please refer to:                              |   
+  |                                                                     |   
+  |    M. Botje, Comput. Phys. Commun. 182(2011)490, arXiV:1005.1481    |   
+  |                                                                     |   
+  +---------------------------------------------------------------------+   
+  
+  
+
+ READWT: open file unpolarised.wgt
+         read unpolarised weight tables
+
+
+Will read   50 data files
+Will read    0 correlation files
+Read    0 correlation files
+ RANLUX LUXURY LEVEL SET BY RLUXGO : 3     P= 223
+ RANLUX INITIALIZED BY RLUXGO FROM SEEDS      123456           0           0
+ initialize smearing with a seed isdrn =       123456
+ Reading data file datafiles/fixedTarget/NA10/thexp-0.dat
+ Dataset index set to =      2677071
+ First time in FailSelectionCuts. Read the cut definitions
+ Read   0 cut rules
+Read       6 data points for NA10-194-0                                                                      
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.1000E+00    0.0000E+00    0.3720E+01
+    0.0000E+00    0.1000E+00    0.4360E+01
+    0.1000E+00    0.2000E+00    0.4450E+01
+ Reading data file datafiles/fixedTarget/NA10/thexp-1.dat
+ Dataset index set to =      7291600
+Read       6 data points for NA10-194-1                                                                      
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.1000E+00    0.0000E+00    0.1860E+01
+    0.0000E+00    0.1000E+00    0.2330E+01
+    0.1000E+00    0.2000E+00    0.2330E+01
+ Reading data file datafiles/fixedTarget/NA10/thexp-2.dat
+ Dataset index set to =      1906129
+Read       7 data points for NA10-194-2                                                                      
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.1000E+00    0.0000E+00    0.1010E+01
+    0.0000E+00    0.1000E+00    0.1270E+01
+    0.1000E+00    0.2000E+00    0.1350E+01
+ Reading data file datafiles/fixedTarget/NA10/thexp-3.dat
+ Dataset index set to =      6520658
+Read       7 data points for NA10-194-3                                                                      
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.1000E+00    0.0000E+00    0.6010E+00
+    0.0000E+00    0.1000E+00    0.7460E+00
+    0.1000E+00    0.2000E+00    0.7950E+00
+ Reading data file datafiles/fixedTarget/NA10/thexp-4.dat
+ Dataset index set to =      1135187
+Read       8 data points for NA10-194-4                                                                      
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.1000E+00    0.0000E+00    0.3560E+00
+    0.0000E+00    0.1000E+00    0.4340E+00
+    0.1000E+00    0.2000E+00    0.4750E+00
+ Reading data file datafiles/fixedTarget/NA10/thexp-5.dat
+ Dataset index set to =      5749716
+Read       8 data points for NA10-194-5                                                                      
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.1000E+00    0.0000E+00    0.1940E+00
+    0.0000E+00    0.1000E+00    0.2550E+00
+    0.1000E+00    0.2000E+00    0.3000E+00
+ Reading data file datafiles/fixedTarget/NA10/thexp-6.dat
+ Dataset index set to =       364245
+Read       9 data points for NA10-194-6                                                                      
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.1000E+00    0.0000E+00    0.1180E+00
+    0.0000E+00    0.1000E+00    0.1500E+00
+    0.1000E+00    0.2000E+00    0.1940E+00
+ Reading data file datafiles/fixedTarget/NA10/thexp-7.dat
+ Dataset index set to =      4978774
+Read       8 data points for NA10-194-7                                                                      
+Printing first    3 data points
+xf_low        xf_high                sigma
+appl::grid() reading grid from file datafiles/fixedTarget/NA10/gridNA10_194-8.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.23925 MB	in 85.54 ms	trim in 0.082 ms
+appl::grid() reading grid from file datafiles/fixedTarget/WA70/grid-WA70-0.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 4.29711 MB	in 1367.07 ms	trim in 5.846 ms
+appl::grid() reading grid from file datafiles/fixedTarget/WA70/grid-WA70-1.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 4.20779 MB	in 2034.94 ms	trim in 4.25 ms
+appl::grid() reading grid from file datafiles/fixedTarget/WA70/grid-WA70-2.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+slurmstepd: error: *** JOB 15884180 ON c045 CANCELLED AT 2024-11-12T07:46:21 ***

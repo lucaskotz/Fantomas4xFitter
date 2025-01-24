@@ -23,10 +23,10 @@ C---------------------------------------------------------
 #include "fcn.inc"
 #include "endmini.inc"
 #include "for_debug.inc"
-cpn22 
+cpn22
 #ifdef FANTOMAS
 #include "fantomas.inc"
-#endif 
+#endif
       integer i
       double precision chi2data_theory !function
 
@@ -87,6 +87,7 @@ c will take them from
       endif
       call MntShowVValues(chi2out)
 #endif
+      call flush
 
 #ifdef FANTOMAS
 cpn22 If chi2 has improved, save the Fantomas steering card
@@ -94,8 +95,8 @@ cpn22 If chi2 has improved, save the Fantomas steering card
         chimin = chi2out
         call writefantoout(chimin)
       endif
-#endif 
-
+#endif
+      
       return
       end
 C------------------------------------------------------
@@ -212,9 +213,11 @@ c updf stuff
 
 C Penalty from MINUIT extra parameters constraints
       double precision extraparsconstrchi2
+clk24
 #ifdef FANTOMAS
       double precision fantochi
 #endif
+
 C---------------------------------------------------
 
       ! XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXxx to be removed
@@ -424,6 +427,7 @@ c Print time, number of calls, chi2
          write(6,'(A20,i6,F12.2,i6,F12.2)') '
      $        xfitter chi2out,ndf,chi2out/ndf ',ifcncount, chi2out,
      $        ndf, chi2out/ndf
+      call flush
 ! ----------------  RESULTS OUTPUT ---------------------------------
 ! Reopen "Results.txt" file if it is not open
 ! It does not get opened by this point when using CERES
@@ -433,6 +437,7 @@ c Print time, number of calls, chi2
       endif
       if (iflag.eq.1) then
          write(85,*) 'First iteration ',chi2out,ndf,chi2out/ndf
+         call flush
       endif
 
       if (iflag.eq.3) then
@@ -531,8 +536,7 @@ c     $           ,chi2_cont/NControlPoints
 
          base_pdfname = TRIM(OutDirName)//'/pdfs_q2val_'
          if (CorSysIndex.eq.0) then
-            open (76,file=TRIM(OutDirName)//'/lhapdf.block.txt',
-     >       status='unknown')
+            open (76,file=TRIM(OutDirName)//'/lhapdf.block.txt',status='unknown')
 
             call store_pdfs(base_pdfname)
             call print_lhapdf6
@@ -599,4 +603,13 @@ C this replaces old subroutine PDF_param_iteration
       do i=1,nExtraParam
         ExtraParamValue(i)=p(iExtraParamMinuit(GetParameterIndex(trim(ExtraParamNames(i)))))
       enddo
+      end
+
+C
+C Reset extra parameters
+C
+      subroutine reset_extra_parameters
+      implicit none
+#include "extrapars.inc"
+      nextraparam = 0
       end

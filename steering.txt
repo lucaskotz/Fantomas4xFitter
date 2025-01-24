@@ -2,59 +2,19 @@
 *
 
 &InFiles
-  !NInputFiles=2
-  InputFileNames =
-  'datafiles/fixedTarget/NA10/thexp-0.dat',
-  'datafiles/fixedTarget/NA10/thexp-1.dat',
-  'datafiles/fixedTarget/NA10/thexp-2.dat',
-  'datafiles/fixedTarget/NA10/thexp-3.dat',
-  'datafiles/fixedTarget/NA10/thexp-4.dat',
-  'datafiles/fixedTarget/NA10/thexp-5.dat',
-  'datafiles/fixedTarget/NA10/thexp-6.dat',
-  'datafiles/fixedTarget/NA10/thexp-7.dat',
-  'datafiles/fixedTarget/NA10/thexp-8.dat',
-  'datafiles/fixedTarget/WA70/thexp-0.dat',
-  'datafiles/fixedTarget/WA70/thexp-1.dat',
-  'datafiles/fixedTarget/WA70/thexp-2.dat',
-  'datafiles/fixedTarget/WA70/thexp-3.dat',
-  'datafiles/fixedTarget/WA70/thexp-4.dat',
-  'datafiles/fixedTarget/WA70/thexp-5.dat',
-  'datafiles/fixedTarget/WA70/thexp-6.dat',
-  'datafiles/fixedTarget/WA70positive/thexp-0.dat',
-  'datafiles/fixedTarget/WA70positive/thexp-1.dat',
-  'datafiles/fixedTarget/WA70positive/thexp-2.dat',
-  'datafiles/fixedTarget/WA70positive/thexp-3.dat',
-  'datafiles/fixedTarget/WA70positive/thexp-4.dat',
-  'datafiles/fixedTarget/WA70positive/thexp-5.dat',
-  'datafiles/fixedTarget/WA70positive/thexp-6.dat',
-  'datafiles/fixedTarget/NA10-286/thexp-0.dat',
-  'datafiles/fixedTarget/NA10-286/thexp-1.dat',
-  'datafiles/fixedTarget/NA10-286/thexp-2.dat',
-  'datafiles/fixedTarget/NA10-286/thexp-3.dat',
-  'datafiles/fixedTarget/NA10-286/thexp-4.dat',
-  'datafiles/fixedTarget/NA10-286/thexp-5.dat',
-  'datafiles/fixedTarget/NA10-286/thexp-6.dat',
-  'datafiles/fixedTarget/NA10-286/thexp-7.dat',
-  'datafiles/fixedTarget/NA10-286/thexp-8.dat',
-  'datafiles/fixedTarget/NA10-286/thexp-9.dat',
-  'datafiles/fixedTarget/NA10-286/thexp-10.dat',
-  'datafiles/fixedTarget/E615/thexp-0.dat',
-  'datafiles/fixedTarget/E615/thexp-1.dat',
-  'datafiles/fixedTarget/E615/thexp-2.dat',
-  'datafiles/fixedTarget/E615/thexp-3.dat',
-  'datafiles/fixedTarget/E615/thexp-4.dat',
-  'datafiles/fixedTarget/E615/thexp-5.dat',
-  'datafiles/fixedTarget/E615/thexp-6.dat',
-  'datafiles/fixedTarget/E615/thexp-7.dat',
-  'datafiles/fixedTarget/E615/thexp-8.dat',
-  'datafiles/fixedTarget/E615/thexp-9.dat',
-  'datafiles/fixedTarget/E615/thexp-13.dat',
-  'datafiles/fixedTarget/E615/thexp-14.dat',
-  'datafiles/fixedTarget/E615/thexp-15.dat',
-  'datafiles/fixedTarget/E615/thexp-16.dat',
-  'datafiles/fixedTarget/E615/thexp-17.dat',
-  'datafiles/hera/F2pionEff/h1LeadingNeutronPN221111.dat',
-  ! 'datafiles/hera/F2pionEff/h1LeadingNeutronLK221129.dat',
+  ! Number of intput files
+    NInputFiles = 7
+ 
+  ! Input files:
+
+     InputFileNames = 
+     'datafiles/hera/h1zeusCombined/inclusiveDis/1506.06042/HERA1+2_NCep_920-thexp.dat',
+     'datafiles/hera/h1zeusCombined/inclusiveDis/1506.06042/HERA1+2_NCep_820-thexp.dat',
+     'datafiles/hera/h1zeusCombined/inclusiveDis/1506.06042/HERA1+2_NCep_575-thexp.dat',
+     'datafiles/hera/h1zeusCombined/inclusiveDis/1506.06042/HERA1+2_NCep_460-thexp.dat',
+     'datafiles/hera/h1zeusCombined/inclusiveDis/1506.06042/HERA1+2_NCem-thexp.dat',
+     'datafiles/hera/h1zeusCombined/inclusiveDis/1506.06042/HERA1+2_CCep-thexp.dat',
+     'datafiles/hera/h1zeusCombined/inclusiveDis/1506.06042/HERA1+2_CCem-thexp.dat',
 &End
 
 &InCorr
@@ -126,25 +86,122 @@
  !  'FirstIterationRescale' : re-scale uncertainties at the first iteration only 
  !  'ExtraSystRescale'      : additional re-scaling of stat. uncertainty to account for syst. shifts.
 
+   CHI2SettingsName = 'StatScale', 'UncorSysScale', 'CorSysScale', 'UncorChi2Type', 'CorChi2Type'
+   Chi2Settings     = 'Poisson'  , 'Linear',        'Linear'     , 'Diagonal'     , 'Hessian'
+   Chi2ExtraParam = 'PoissonCorr'
 
-  CHI2SettingsName='StatScale','UncorSysScale','CorSysScale','UncorChi2Type','CorChi2Type'
-  Chi2Settings    ='Poisson'  ,'Poisson'      ,'Linear'     ,'Diagonal'     ,'Hessian'
-  Chi2ExtraParam  ='ExtraSystRescale'
-  LDEBUG=False
+ ! Debug flag
+  LDEBUG     = False
+
+
+ ! Quadratic approximation for asymmetric uncertainties
+ ! AsymErrorsIterations = 10
 &End
 
 
-&Output
+*
+* Output steering cards
+*
+&Output 
   ! -- Q2 values at which the pdfs & errors are done (up to 20)
-  Q2VAL=1.9, 36.
+  Q2VAL = 1.9, 3.0, 4.0, 5., 10., 100., 6464, 8317 
+!  Q2VAL = 1.9, 4., 10., 100., 6464, 8317 
+
   ! How many x points to write (standard = 101)
-  OUTNX=200
+  OUTNX = 101
+
   ! x-range of output (standard = 1E-4 1.0)
-  OUTXRANGE = 1E-3, 1.0
-  WriteLHAPDF5=false
+  OUTXRANGE = 1E-4, 0.9999
+  ! Write out LHAPDF5 output
+  ! WriteLHAPDF5 = true
 &End
 
+
+
+*
+* Process dependent cuts
+*
 &Cuts
+
+  !--------------------- NC ep  --------------------------
+
+  ! Rule #1: Q2 cuts
+   ProcessName(1)     = 'NC e+-p'
+   Variable(1)        = 'Q2'
+   CutValueMin(1)     = 3.5
+   CutValueMax(1)     = 1000000.0
+
+  ! Rule #2: x cuts
+   ProcessName(2)     = 'NC e+-p'
+   Variable(2)        = 'x'
+   CutValueMin(2)     = 0.000001 
+   CutValueMax(2)     = 1.0
+
+  !---------------------  CC ep  ------------------
+
+   ProcessName(3)     = 'CC e+-p'
+   Variable(3)        = 'Q2'
+   CutValueMin(3)     = 3.5
+   CutValueMax(3)     = 1000000.0
+
+   ProcessName(4)     = 'CC e+-p'
+   Variable(4)        = 'x'
+   CutValueMin(4)     = 0.000001 
+   CutValueMax(4)     = 1.0
+
+  !-------------------- DY pp  ----------------------
+
+   ProcessName(5)     = 'CC pp'
+   Variable(5)        = 'eta1'
+   CutValueMin(5)     = -1.
+   CutValueMax(5)     = 100.
+
+  !------------------- Jets ---------------------------
+   
+   ProcessName(6)     = 'pp jets APPLGRID'
+   Variable(6)        = 'pt1'
+   CutValueMin(6)     = 20.
+   CutValueMax(6)     = 1000000.
+
+  !--------------------- Fixed target --------------------------
+
+  ! Rule #7: Whad2 cut
+   ProcessName(7)     = 'muon p'
+   Variable(7)        = 'Whad2'
+   CutValueMin(7)     = 15.   
+
+  !--------------------- Fastnlo jets ----------------------
+
+   ProcessName(8)     = 'FastNLO ep jets'
+   Variable(8)        = 'kfac'
+   CutValueMin(8)     = 0.0
+   CutValueMax(8)     = 2.5
+
+  !--------------------- NC ep charm ----------------
+
+   ProcessName(9)     = 'NC e+-p charm'
+   Variable(9)        = 'Q2'
+   CutValueMin(9)     = 3.5 
+   CutValueMax(9)     = 10000.0
+
+   ProcessName(10)     = 'NC e+-p charm'
+   Variable(10)        = 'x'
+   CutValueMin(10)     = 0.000001 
+   CutValueMax(10)     = 1.0
+
+  !--------------------- by Dataset index ----------------
+
+   ! applied to any (including unspecified) reaction by Dataset indices
+   ! e.g. cut pTmax < 15.0 will be applied to datasets 996 and 996
+   ! ProcessName must be 'DUMMY'
+   !
+   !ProcessName(11)     = 'DUMMY'
+   !Dataset( 1,11)      = 995
+   !Dataset( 1,11)      = 996
+   !Variable(11)        = 'pTmax'
+   !CutValueMin(11)     = 0.0
+   !CutValueMax(11)     = 15.0
+   
 &End
 
 *

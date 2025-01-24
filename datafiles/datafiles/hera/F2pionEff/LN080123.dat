@@ -1,0 +1,63 @@
+* Our description of data, references, authors go here
+* F2 for e+ + pi- -> e+ X for leading neutron data
+* 2022-11-11: Pavel Nadolsky, based on Fred's F2pi effective data
+* Check that the reaction type is properly implemented
+&Data
+	 Name = 'F2pi effective data'
+	 IndexDataset = 1303733  
+	 Reaction = 'NC e+-pi-'
+
+   TermName = 'R'
+   TermSource = 'use:hf_scheme_DISNC'
+   TermInfo = 'type=sigred:echarge=-1:polarity=0'
+   TheorExpr = 'R'
+
+   NDATA = 29
+   NColumn = 5
+	 ColumnType = 3*'Bin','Sigma','Error'
+	 ColumnName = 'Q2','x','y','reduced x-section',
+                'stat'
+   Percent  = 1*true
+&End
+&PlotDesc
+   PlotN = 7
+   PlotDefColumn = 'Q2'
+   PlotVarColumn = 'x'
+   PlotDefValue = 7.3,11.,16.,24.,37.,55.,82.,
+   PlotOptions(1)  = 'Experiment:Leading Neutron  DIS@ExtraLabel:#mu beam energy E = 100 GeV @XTitle: x @YTitle: F_{2}(x, Q^{2})@Title:Q^{2} = 7.3  @Ymin:0.1@Ymax:1.@Xlog@Ylog'
+   PlotOptions(2)  = 'Experiment:Leading Neutron  DIS@ExtraLabel:#mu beam energy E = 100 GeV @XTitle: x @YTitle: F_{2}(x, Q^{2})@Title:Q^{2} = 11  @Ymin:0.1@Ymax:1.@Xlog@Ylog'
+   PlotOptions(3)  = 'Experiment:Leading Neutron  DIS@ExtraLabel:#mu beam energy E = 100 GeV @XTitle: x @YTitle: F_{2}(x, Q^{2})@Title:Q^{2} = 16  @Ymin:0.1@Ymax:1.@Xlog@Ylog'
+   PlotOptions(4)  = 'Experiment:Leading Neutron  DIS@ExtraLabel:#mu beam energy E = 100 GeV @XTitle: x @YTitle: F_{2}(x, Q^{2})@Title:Q^{2} = 24  @Ymin:0.1@Ymax:1.@Xlog@Ylog'
+   PlotOptions(5)  = 'Experiment:Leading Neutron  DIS@ExtraLabel:#mu beam energy E = 100 GeV @XTitle: x @YTitle: F_{2}(x, Q^{2})@Title:Q^{2} = 37  @Ymin:0.1@Ymax:1.@Xlog@Ylog'
+   PlotOptions(6)  = 'Experiment:Leading Neutron  DIS@ExtraLabel:#mu beam energy E = 100 GeV @XTitle: x @YTitle: F_{2}(x, Q^{2})@Title:Q^{2} = 55  @Ymin:0.1@Ymax:1.@Xlog@Ylog'
+   PlotOptions(7)  = 'Experiment:Leading Neutron  DIS@ExtraLabel:#mu beam energy E = 100 GeV @XTitle: x @YTitle: F_{2}(x, Q^{2})@Title:Q^{2} = 82  @Ymin:0.1@Ymax:1.@Xlog@Ylog'
+&End
+7.3    0.000816 0.0   0.419     15.4
+7.3     0.00174 0.0   0.378     15.45
+7.3     0.00371 0.0   0.310     15.45
+7.3     0.0079  0.0   0.260     15.55
+11     0.000816 0.0   0.528     15.55
+11      0.00174 0.0   0.428     15.4
+11      0.00371 0.0   0.370     15.5
+11      0.0079  0.0   0.315     15.45
+11      0.0168  0.0   0.230     15.5
+16      0.00174 0.0   0.532     15.55
+16      0.00371 0.0   0.427     15.55
+16      0.0079  0.0   0.364     15.55
+16      0.0168  0.0   0.283     15.5
+24      0.00174 0.0   0.589     15.8
+24      0.00371 0.0   0.464     15.65
+24      0.0079  0.0   0.354     15.65
+24      0.0168  0.0   0.316     15.7
+24      0.0359  0.0   0.256     16.0
+37      0.00371 0.0   0.467     15.7
+37      0.0079  0.0   0.410     15.85
+37      0.0168  0.0   0.344     15.75
+37      0.0359  0.0   0.252     15.8
+55      0.0079  0.0   0.406     16.05
+55      0.0168  0.0   0.374     16.05
+55      0.0359  0.0   0.254     16.15
+55      0.0765  0.0   0.227     16.45
+82      0.0168  0.0   0.361     16.45
+82      0.0359  0.0   0.271     16.6
+82      0.0765  0.0   0.333     16.6

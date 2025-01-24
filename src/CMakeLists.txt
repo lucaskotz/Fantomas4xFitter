@@ -61,8 +61,9 @@ set(xfitter_SOURCES
   FitPars_base.cc
   FTNFitPars.cc
   ../tools/draw/src/pdferrors.cc
-#lk22 added path to fantomas.cc for read and write functions
+  #lk22 added path to fantomas.cc for read and write functions
   ../pdfparams/Fantomas/fantomas.cc
+
 )
 #Conditionally compiled sources
 if(QCDNUM_FOUND)

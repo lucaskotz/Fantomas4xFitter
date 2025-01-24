@@ -1,0 +1,891 @@
+The Fantomas steering card version matches: 0.2
+flagcheck = FIX
+
+Special value detected for control point x = 0.001
+Using metamorph::f(x) = Carrier(x) for control point.
+flagcheck = -0.499001
+flagcheck = FIX
+
+Special value detected for control point x = 0.8
+Using metamorph::f(x) = Carrier(x) for control point.
+flagcheck = FIX
+
+Special value detected for control point x = 0.001
+Using metamorph::f(x) = Carrier(x) for control point.
+flagcheck = 3.8158
+flagcheck = 2.98857
+flagcheck = FIX
+
+Special value detected for control point x = 0.8
+Using metamorph::f(x) = Carrier(x) for control point.
+flagcheck = FIX
+
+Special value detected for control point x = 0.001
+Using metamorph::f(x) = Carrier(x) for control point.
+flagcheck = -0.145209
+flagcheck = 0.134676
+flagcheck = FIX
+
+Special value detected for control point x = 0.8
+Using metamorph::f(x) = Carrier(x) for control point.
+Fantomas intput card read successfully... 
+
+Set evolution order 2
+xGrid[0]: 9.9e-07
+Requested (actual) number of x  grid points: 100(98)
+Requested (actual) number of Q2 grid points: 60(62)
+Variable Flavour Number Scheme set with nf=5
+LHAPDF 6.5.4 loading /users/lkotz/share/lhapdf/6.5.4_gcc11.2/share/LHAPDF/nCTEQ15FullNuc_1_1/nCTEQ15FullNuc_1_1_0000.dat
+nCTEQ15FullNuc_1_1 PDF set, member #0, version 1; LHAPDF ID = 102000
+LHAPDF 6.5.4 loading /users/lkotz/share/lhapdf/6.5.4_gcc11.2/share/LHAPDF/nCTEQ15FullNuc_184_74/nCTEQ15FullNuc_184_74_0000.dat
+nCTEQ15FullNuc_184_74 PDF set, member #0, version 1; LHAPDF ID = 102900
+appl::grid() version 1.6.9 compiled Jun 27 2023
+appl::grid() reading grid from file datafiles/fixedTarget/NA10/gridNA10_194-0.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.28204 MB	in 328.122 ms	trim in 0.071 ms
+appl::grid() reading grid from file datafiles/fixedTarget/NA10/gridNA10_194-1.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.271591 MB	in 54.882 ms	trim in 0.069 ms
+appl::grid() reading grid from file datafiles/fixedTarget/NA10/gridNA10_194-2.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.310833 MB	in 63.935 ms	trim in 0.081 ms
+appl::grid() reading grid from file datafiles/fixedTarget/NA10/gridNA10_194-3.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.310089 MB	in 63.814 ms	trim in 0.105 ms
+appl::grid() reading grid from file datafiles/fixedTarget/NA10/gridNA10_194-4.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.339478 MB	in 73.02 ms	trim in 0.093 ms
+appl::grid() reading grid from file datafiles/fixedTarget/NA10/gridNA10_194-5.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.324944 MB	in 71.972 ms	trim in 0.088 ms
+appl::grid() reading grid from file datafiles/fixedTarget/NA10/gridNA10_194-6.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.340405 MB	in 79.937 ms	trim in 0.1 ms
+appl::grid() reading grid from file datafiles/fixedTarget/NA10/gridNA10_194-7.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.268078 MB	in 70.182 ms	trim in 0.083 ms
+  +---------------------------------------------------------------------+   
+  |                                                                     |   
+  |    If you use QCDNUM, please refer to:                              |   
+  |                                                                     |   
+  |    M. Botje, Comput. Phys. Commun. 182(2011)490, arXiV:1005.1481    |   
+  |                                                                     |   
+  +---------------------------------------------------------------------+   
+  
+  
+
+ READWT: open file unpolarised.wgt
+         read unpolarised weight tables
+
+
+Will read   50 data files
+Will read    0 correlation files
+Read    0 correlation files
+ RANLUX LUXURY LEVEL SET BY RLUXGO : 3     P= 223
+ RANLUX INITIALIZED BY RLUXGO FROM SEEDS      123456           0           0
+ initialize smearing with a seed isdrn =       123456
+ Reading data file datafiles/fixedTarget/NA10/thexp-0.dat
+ Dataset index set to =      2677071
+ First time in FailSelectionCuts. Read the cut definitions
+ Read   0 cut rules
+Read       6 data points for NA10-194-0                                                                      
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.1000E+00    0.0000E+00    0.3720E+01
+    0.0000E+00    0.1000E+00    0.4360E+01
+    0.1000E+00    0.2000E+00    0.4450E+01
+ Reading data file datafiles/fixedTarget/NA10/thexp-1.dat
+ Dataset index set to =      7291600
+Read       6 data points for NA10-194-1                                                                      
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.1000E+00    0.0000E+00    0.1860E+01
+    0.0000E+00    0.1000E+00    0.2330E+01
+    0.1000E+00    0.2000E+00    0.2330E+01
+ Reading data file datafiles/fixedTarget/NA10/thexp-2.dat
+ Dataset index set to =      1906129
+Read       7 data points for NA10-194-2                                                                      
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.1000E+00    0.0000E+00    0.1010E+01
+    0.0000E+00    0.1000E+00    0.1270E+01
+    0.1000E+00    0.2000E+00    0.1350E+01
+ Reading data file datafiles/fixedTarget/NA10/thexp-3.dat
+ Dataset index set to =      6520658
+Read       7 data points for NA10-194-3                                                                      
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.1000E+00    0.0000E+00    0.6010E+00
+    0.0000E+00    0.1000E+00    0.7460E+00
+    0.1000E+00    0.2000E+00    0.7950E+00
+ Reading data file datafiles/fixedTarget/NA10/thexp-4.dat
+ Dataset index set to =      1135187
+Read       8 data points for NA10-194-4                                                                      
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.1000E+00    0.0000E+00    0.3560E+00
+    0.0000E+00    0.1000E+00    0.4340E+00
+    0.1000E+00    0.2000E+00    0.4750E+00
+ Reading data file datafiles/fixedTarget/NA10/thexp-5.dat
+ Dataset index set to =      5749716
+Read       8 data points for NA10-194-5                                                                      
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.1000E+00    0.0000E+00    0.1940E+00
+    0.0000E+00    0.1000E+00    0.2550E+00
+    0.1000E+00    0.2000E+00    0.3000E+00
+ Reading data file datafiles/fixedTarget/NA10/thexp-6.dat
+ Dataset index set to =       364245
+Read       9 data points for NA10-194-6                                                                      
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.1000E+00    0.0000E+00    0.1180E+00
+    0.0000E+00    0.1000E+00    0.1500E+00
+    0.1000E+00    0.2000E+00    0.1940E+00
+ Reading data file datafiles/fixedTarget/NA10/thexp-7.dat
+ Dataset index set to =      4978774
+Read       8 data points for NA10-194-7                                                                      
+Printing first    3 data points
+xf_low        xf_high                sigma
+appl::grid() reading grid from file datafiles/fixedTarget/NA10/gridNA10_194-8.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.23925 MB	in 69.234 ms	trim in 0.085 ms
+appl::grid() reading grid from file datafiles/fixedTarget/WA70/grid-WA70-0.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 4.29711 MB	in 907.561 ms	trim in 3.711 ms
+appl::grid() reading grid from file datafiles/fixedTarget/WA70/grid-WA70-1.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 4.20779 MB	in 908.955 ms	trim in 4.065 ms
+appl::grid() reading grid from file datafiles/fixedTarget/WA70/grid-WA70-2.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 4.24684 MB	in 912.784 ms	trim in 4.266 ms
+appl::grid() reading grid from file datafiles/fixedTarget/WA70/grid-WA70-3.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 4.07009 MB	in 906.506 ms	trim in 4.348 ms
+appl::grid() reading grid from file datafiles/fixedTarget/WA70/grid-WA70-4.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 4.03455 MB	in 908.424 ms	trim in 4.288 ms
+appl::grid() reading grid from file datafiles/fixedTarget/WA70/grid-WA70-5.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 3.87847 MB	in 904.94 ms	trim in 4.305 ms
+appl::grid() reading grid from file datafiles/fixedTarget/WA70/grid-WA70-6.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 3.06103 MB	in 721.308 ms	trim in 3.041 ms
+appl::grid() reading grid from file datafiles/fixedTarget/WA70positive/grid-WA70plus-0.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 2.19099 MB	in 461.508 ms	trim in 1.641 ms
+appl::grid() reading grid from file datafiles/fixedTarget/WA70positive/grid-WA70plus-1.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 2.13609 MB	in 482.378 ms	trim in 1.616 ms
+   -0.1000E+00    0.0000E+00    0.5000E-02
+    0.0000E+00    0.1000E+00    0.7400E-02
+    0.1000E+00    0.2000E+00    0.1000E-01
+ Reading data file datafiles/fixedTarget/NA10/thexp-8.dat
+ Dataset index set to =      9593303
+Read       8 data points for NA10-194-8                                                                      
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.2000E+00   -0.1000E+00    0.5000E-03
+   -0.1000E+00    0.0000E+00    0.7000E-03
+    0.0000E+00    0.1000E+00    0.1300E-02
+ Reading data file datafiles/fixedTarget/WA70/thexp-0.dat
+ Dataset index set to =      1922014
+Read      10 data points for WA70-0                                                                          
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.4500E+00   -0.3500E+00    0.1070E+02
+   -0.3500E+00   -0.2500E+00    0.4710E+02
+   -0.2500E+00   -0.1500E+00    0.7570E+02
+ Reading data file datafiles/fixedTarget/WA70/thexp-1.dat
+ Dataset index set to =      6536543
+Read      10 data points for WA70-1                                                                          
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.4500E+00   -0.3500E+00    0.2790E+02
+   -0.3500E+00   -0.2500E+00    0.3500E+02
+   -0.2500E+00   -0.1500E+00    0.4530E+02
+ Reading data file datafiles/fixedTarget/WA70/thexp-2.dat
+ Dataset index set to =      1151072
+Read      10 data points for WA70-2                                                                          
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.4500E+00   -0.3500E+00    0.8000E+01
+   -0.3500E+00   -0.2500E+00    0.1990E+02
+   -0.2500E+00   -0.1500E+00    0.3390E+02
+ Reading data file datafiles/fixedTarget/WA70/thexp-3.dat
+ Dataset index set to =      5765601
+Read      10 data points for WA70-3                                                                          
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.4500E+00   -0.3500E+00    0.7700E+01
+   -0.3500E+00   -0.2500E+00    0.1670E+02
+   -0.2500E+00   -0.1500E+00    0.1980E+02
+ Reading data file datafiles/fixedTarget/WA70/thexp-4.dat
+ Dataset index set to =       380130
+Read      10 data points for WA70-4                                                                          
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.4500E+00   -0.3500E+00    0.1700E+01
+   -0.3500E+00   -0.2500E+00    0.4300E+01
+   -0.2500E+00   -0.1500E+00    0.9700E+01
+ Reading data file datafiles/fixedTarget/WA70/thexp-5.dat
+ Dataset index set to =      4994659
+Read      10 data points for WA70-5                                                                          
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.4500E+00   -0.3500E+00    0.2000E+01
+   -0.3500E+00   -0.2500E+00    0.2100E+01
+   -0.2500E+00   -0.1500E+00    0.6200E+01
+ Reading data file datafiles/fixedTarget/WA70/thexp-6.dat
+ Dataset index set to =      9609188
+Read       8 data points for WA70-6                                                                          
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.2500E+00   -0.1500E+00    0.1190E+01
+   -0.1500E+00   -0.5000E-01    0.1350E+01
+   -0.5000E-01    0.5000E-01    0.1510E+01
+ Reading data file datafiles/fixedTarget/WA70positive/thexp-0.dat
+ Dataset index set to =      2856401
+Read       5 data points for WA70plus-0                                                                      
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.4500E+00   -0.2500E+00    0.1930E+02
+   -0.2500E+00   -0.5000E-01    0.4730E+02
+   -0.5000E-01    0.1500E+00    0.4400E+02
+ Reading data file datafiles/fixedTarget/WA70positive/thexp-1.dat
+ Dataset index set to =      6946642
+Read       5 data points for WA70plus-1                                                                      
+Printing first    3 data points
+xf_low        xf_high                sigma
+appl::grid() reading grid from file datafiles/fixedTarget/WA70positive/grid-WA70plus-2.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 2.1689 MB	in 457.279 ms	trim in 1.633 ms
+appl::grid() reading grid from file datafiles/fixedTarget/WA70positive/grid-WA70plus-3.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 2.07666 MB	in 453.507 ms	trim in 1.692 ms
+appl::grid() reading grid from file datafiles/fixedTarget/WA70positive/grid-WA70plus-4.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 2.0679 MB	in 453.714 ms	trim in 1.707 ms
+appl::grid() reading grid from file datafiles/fixedTarget/WA70positive/grid-WA70plus-5.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 1.1996 MB	in 272.074 ms	trim in 0.853 ms
+appl::grid() reading grid from file datafiles/fixedTarget/WA70positive/grid-WA70plus-6.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 1.16052 MB	in 272.682 ms	trim in 0.75 ms
+appl::grid() reading grid from file datafiles/fixedTarget/NA10-286/gridNA10_286-0.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.189674 MB	in 38.192 ms	trim in 0.061 ms
+appl::grid() reading grid from file datafiles/fixedTarget/NA10-286/gridNA10_286-1.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.23687 MB	in 47.12 ms	trim in 0.076 ms
+appl::grid() reading grid from file datafiles/fixedTarget/NA10-286/gridNA10_286-2.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.228916 MB	in 48.315 ms	trim in 0.073 ms
+appl::grid() reading grid from file datafiles/fixedTarget/NA10-286/gridNA10_286-3.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.273388 MB	in 56.004 ms	trim in 0.088 ms
+appl::grid() reading grid from file datafiles/fixedTarget/NA10-286/gridNA10_286-4.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.317986 MB	in 65.513 ms	trim in 0.11 ms
+   -0.4500E+00   -0.2500E+00    0.1140E+02
+   -0.2500E+00   -0.5000E-01    0.4070E+02
+   -0.5000E-01    0.1500E+00    0.3570E+02
+ Reading data file datafiles/fixedTarget/WA70positive/thexp-2.dat
+ Dataset index set to =      1036883
+Read       5 data points for WA70plus-2                                                                      
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.4500E+00   -0.2500E+00    0.1100E+02
+   -0.2500E+00   -0.5000E-01    0.1880E+02
+   -0.5000E-01    0.1500E+00    0.1850E+02
+ Reading data file datafiles/fixedTarget/WA70positive/thexp-3.dat
+ Dataset index set to =      5127124
+Read       5 data points for WA70plus-3                                                                      
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.4500E+00   -0.2500E+00    0.6600E+01
+   -0.2500E+00   -0.5000E-01    0.9800E+01
+   -0.5000E-01    0.1500E+00    0.1780E+02
+ Reading data file datafiles/fixedTarget/WA70positive/thexp-4.dat
+ Dataset index set to =      9217365
+Read       5 data points for WA70plus-4                                                                      
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.4500E+00   -0.2500E+00    0.1800E+01
+   -0.2500E+00   -0.5000E-01    0.5500E+01
+   -0.5000E-01    0.1500E+00    0.8000E+01
+ Reading data file datafiles/fixedTarget/WA70positive/thexp-5.dat
+ Dataset index set to =      3307606
+Read       3 data points for WA70plus-5                                                                      
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.2500E+00   -0.5000E-01    0.2200E+01
+   -0.5000E-01    0.1500E+00    0.2300E+01
+    0.1500E+00    0.3500E+00    0.6000E+00
+ Reading data file datafiles/fixedTarget/WA70positive/thexp-6.dat
+ Dataset index set to =      7397847
+Read       3 data points for WA70plus-6                                                                      
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.2500E+00   -0.5000E-01    0.8000E+00
+   -0.5000E-01    0.1500E+00    0.4000E+00
+    0.1500E+00    0.3500E+00    0.5000E+00
+ Reading data file datafiles/fixedTarget/NA10-286/thexp-0.dat
+ Dataset index set to =      5410532
+Read       4 data points for NA10-286-0                                                                      
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.1000E+00    0.0000E+00    0.5650E+01
+    0.0000E+00    0.1000E+00    0.6210E+01
+    0.1000E+00    0.2000E+00    0.5850E+01
+ Reading data file datafiles/fixedTarget/NA10-286/thexp-1.dat
+ Dataset index set to =      1058147
+Read       5 data points for NA10-286-1                                                                      
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.1000E+00    0.0000E+00    0.2760E+01
+    0.0000E+00    0.1000E+00    0.3050E+01
+    0.1000E+00    0.2000E+00    0.2980E+01
+ Reading data file datafiles/fixedTarget/NA10-286/thexp-2.dat
+ Dataset index set to =      6705762
+Read       5 data points for NA10-286-2                                                                      
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.1000E+00    0.0000E+00    0.1350E+01
+    0.0000E+00    0.1000E+00    0.1530E+01
+    0.1000E+00    0.2000E+00    0.1600E+01
+ Reading data file datafiles/fixedTarget/NA10-286/thexp-3.dat
+ Dataset index set to =      2353377
+Read       6 data points for NA10-286-3                                                                      
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.2000E+00   -0.1000E+00    0.5370E+00
+   -0.1000E+00    0.0000E+00    0.7840E+00
+    0.0000E+00    0.1000E+00    0.8810E+00
+ Reading data file datafiles/fixedTarget/NA10-286/thexp-4.dat
+ Dataset index set to =      8000992
+Read       7 data points for NA10-286-4                                                                      
+Printing first    3 data points
+appl::grid() reading grid from file datafiles/fixedTarget/NA10-286/gridNA10_286-5.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.34964 MB	in 74.485 ms	trim in 0.129 ms
+appl::grid() reading grid from file datafiles/fixedTarget/NA10-286/gridNA10_286-6.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.314209 MB	in 73.161 ms	trim in 0.119 ms
+appl::grid() reading grid from file datafiles/fixedTarget/NA10-286/gridNA10_286-7.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.325207 MB	in 79.852 ms	trim in 0.128 ms
+appl::grid() reading grid from file datafiles/fixedTarget/NA10-286/gridNA10_286-8.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.288746 MB	in 71.147 ms	trim in 0.116 ms
+appl::grid() reading grid from file datafiles/fixedTarget/NA10-286/gridNA10_286-9.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.307011 MB	in 79.455 ms	trim in 0.133 ms
+appl::grid() reading grid from file datafiles/fixedTarget/NA10-286/gridNA10_286-10.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.130966 MB	in 35.314 ms	trim in 0.052 ms
+appl::grid() reading grid from file datafiles/fixedTarget/E615/grid_mumu-0.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.490482 MB	in 109.367 ms	trim in 0.184 ms
+appl::grid() reading grid from file datafiles/fixedTarget/E615/grid_mumu-1.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.493229 MB	in 109.892 ms	trim in 0.203 ms
+appl::grid() reading grid from file datafiles/fixedTarget/E615/grid_mumu-2.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.475491 MB	in 109.788 ms	trim in 0.2 ms
+appl::grid() reading grid from file datafiles/fixedTarget/E615/grid_mumu-3.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.464184 MB	in 109.353 ms	trim in 0.192 ms
+xf_low        xf_high                sigma
+   -0.2000E+00   -0.1000E+00    0.2780E+00
+   -0.1000E+00    0.0000E+00    0.4370E+00
+    0.0000E+00    0.1000E+00    0.5040E+00
+ Reading data file datafiles/fixedTarget/NA10-286/thexp-5.dat
+ Dataset index set to =      3648607
+Read       8 data points for NA10-286-5                                                                      
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.2000E+00   -0.1000E+00    0.1170E+00
+   -0.1000E+00    0.0000E+00    0.2600E+00
+    0.0000E+00    0.1000E+00    0.3240E+00
+ Reading data file datafiles/fixedTarget/NA10-286/thexp-6.dat
+ Dataset index set to =      9296222
+Read       8 data points for NA10-286-6                                                                      
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.2000E+00   -0.1000E+00    0.2800E-01
+   -0.1000E+00    0.0000E+00    0.3600E-01
+    0.0000E+00    0.1000E+00    0.4800E-01
+ Reading data file datafiles/fixedTarget/NA10-286/thexp-7.dat
+ Dataset index set to =      4943837
+Read       9 data points for NA10-286-7                                                                      
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.2000E+00   -0.1000E+00    0.1000E-01
+   -0.1000E+00    0.0000E+00    0.1800E-01
+    0.0000E+00    0.1000E+00    0.1800E-01
+ Reading data file datafiles/fixedTarget/NA10-286/thexp-8.dat
+ Dataset index set to =       591452
+Read       8 data points for NA10-286-8                                                                      
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.2000E+00   -0.1000E+00    0.7000E-02
+   -0.1000E+00    0.0000E+00    0.6000E-02
+    0.0000E+00    0.1000E+00    0.9000E-02
+ Reading data file datafiles/fixedTarget/NA10-286/thexp-9.dat
+ Dataset index set to =      6239067
+Read       9 data points for NA10-286-9                                                                      
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.2000E+00   -0.1000E+00    0.1900E-02
+   -0.1000E+00    0.0000E+00    0.2800E-02
+    0.0000E+00    0.1000E+00    0.3000E-02
+ Reading data file datafiles/fixedTarget/NA10-286/thexp-10.dat
+ Dataset index set to =      7607379
+Read       4 data points for NA10-286-10                                                                     
+Printing first    3 data points
+xf_low        xf_high                sigma
+    0.0000E+00    0.1000E+00    0.3000E-03
+    0.1000E+00    0.2000E+00    0.8000E-03
+    0.2000E+00    0.3000E+00    0.1000E-02
+ Reading data file datafiles/fixedTarget/E615/thexp-0.dat
+ Dataset index set to =      2383552
+Read      12 data points for E615-0                                                                          
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.2000E+00   -0.1000E+00   -0.1000E+01
+   -0.1000E+00    0.0000E+00   -0.1000E+01
+    0.0000E+00    0.1000E+00    0.4660E+01
+ Reading data file datafiles/fixedTarget/E615/thexp-1.dat
+ Dataset index set to =      6998081
+Read      12 data points for E615-1                                                                          
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.2000E+00   -0.1000E+00   -0.1000E+01
+   -0.1000E+00    0.0000E+00    0.2400E+01
+    0.0000E+00    0.1000E+00    0.2860E+01
+ Reading data file datafiles/fixedTarget/E615/thexp-2.dat
+ Dataset index set to =      1612610
+Read      12 data points for E615-2                                                                          
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.2000E+00   -0.1000E+00   -0.1000E+01
+   -0.1000E+00    0.0000E+00    0.1642E+01
+    0.0000E+00    0.1000E+00    0.1787E+01
+ Reading data file datafiles/fixedTarget/E615/thexp-3.dat
+ Dataset index set to =      6227139
+Read      12 data points for E615-3                                                                          
+Printing first    3 data points
+appl::grid() reading grid from file datafiles/fixedTarget/E615/grid_mumu-4.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.458508 MB	in 109.303 ms	trim in 0.197 ms
+appl::grid() reading grid from file datafiles/fixedTarget/E615/grid_mumu-5.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.457706 MB	in 109.23 ms	trim in 0.19 ms
+appl::grid() reading grid from file datafiles/fixedTarget/E615/grid_mumu-6.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.427334 MB	in 108.054 ms	trim in 0.177 ms
+appl::grid() reading grid from file datafiles/fixedTarget/E615/grid_mumu-7.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.41914 MB	in 108.334 ms	trim in 0.175 ms
+appl::grid() reading grid from file datafiles/fixedTarget/E615/grid_mumu-8.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.409859 MB	in 107.54 ms	trim in 0.168 ms
+appl::grid() reading grid from file datafiles/fixedTarget/E615/grid_mumu-9.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.388241 MB	in 107.148 ms	trim in 0.158 ms
+appl::grid() reading grid from file datafiles/fixedTarget/E615/grid_mumu-13.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.34156 MB	in 105.132 ms	trim in 0.139 ms
+appl::grid() reading grid from file datafiles/fixedTarget/E615/grid_mumu-14.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.320034 MB	in 107.538 ms	trim in 0.164 ms
+appl::grid() reading grid from file datafiles/fixedTarget/E615/grid_mumu-15.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.3162 MB	in 103.77 ms	trim in 0.134 ms
+appl::grid() reading grid from file datafiles/fixedTarget/E615/grid_mumu-16.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.282063 MB	in 101.882 ms	trim in 0.127 ms
+xf_low        xf_high                sigma
+   -0.2000E+00   -0.1000E+00    0.7630E+00
+   -0.1000E+00    0.0000E+00    0.1075E+01
+    0.0000E+00    0.1000E+00    0.1011E+01
+ Reading data file datafiles/fixedTarget/E615/thexp-4.dat
+ Dataset index set to =       841668
+Read      12 data points for E615-4                                                                          
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.2000E+00   -0.1000E+00   -0.1000E+01
+   -0.1000E+00    0.0000E+00    0.7220E+00
+    0.0000E+00    0.1000E+00    0.8630E+00
+ Reading data file datafiles/fixedTarget/E615/thexp-5.dat
+ Dataset index set to =      5456197
+Read      12 data points for E615-5                                                                          
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.2000E+00   -0.1000E+00    0.3100E+00
+   -0.1000E+00    0.0000E+00    0.4290E+00
+    0.0000E+00    0.1000E+00    0.6080E+00
+ Reading data file datafiles/fixedTarget/E615/thexp-6.dat
+ Dataset index set to =        70726
+Read      12 data points for E615-6                                                                          
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.2000E+00   -0.1000E+00    0.3880E+00
+   -0.1000E+00    0.0000E+00    0.2810E+00
+    0.0000E+00    0.1000E+00    0.3660E+00
+ Reading data file datafiles/fixedTarget/E615/thexp-7.dat
+ Dataset index set to =      4685255
+Read      12 data points for E615-7                                                                          
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.2000E+00   -0.1000E+00    0.1810E+00
+   -0.1000E+00    0.0000E+00    0.2000E+00
+    0.0000E+00    0.1000E+00    0.2120E+00
+ Reading data file datafiles/fixedTarget/E615/thexp-8.dat
+ Dataset index set to =      9299784
+Read      12 data points for E615-8                                                                          
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.2000E+00   -0.1000E+00    0.7300E-01
+   -0.1000E+00    0.0000E+00    0.1640E+00
+    0.0000E+00    0.1000E+00    0.1910E+00
+ Reading data file datafiles/fixedTarget/E615/thexp-9.dat
+ Dataset index set to =      3914313
+Read      12 data points for E615-9                                                                          
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.2000E+00   -0.1000E+00   -0.1000E+01
+   -0.1000E+00    0.0000E+00    0.6900E-01
+    0.0000E+00    0.1000E+00    0.1310E+00
+ Reading data file datafiles/fixedTarget/E615/thexp-13.dat
+ Dataset index set to =      8290132
+Read      12 data points for E615-13                                                                         
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.2000E+00   -0.1000E+00   -0.1000E+01
+   -0.1000E+00    0.0000E+00    0.1140E-01
+    0.0000E+00    0.1000E+00    0.2890E-01
+ Reading data file datafiles/fixedTarget/E615/thexp-14.dat
+ Dataset index set to =      2839125
+Read      12 data points for E615-14                                                                         
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.2000E+00   -0.1000E+00   -0.1000E+01
+   -0.1000E+00    0.0000E+00   -0.1000E+01
+    0.0000E+00    0.1000E+00    0.3080E-01
+ Reading data file datafiles/fixedTarget/E615/thexp-15.dat
+ Dataset index set to =      7388118
+Read      12 data points for E615-15                                                                         
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.2000E+00   -0.1000E+00   -0.1000E+01
+   -0.1000E+00    0.0000E+00    0.1420E-01
+    0.0000E+00    0.1000E+00    0.1090E-01
+ Reading data file datafiles/fixedTarget/E615/thexp-16.dat
+ Dataset index set to =      1937111
+Read      12 data points for E615-16                                                                         
+Printing first    3 data points
+xf_low        xf_high                sigma
+appl::grid() reading grid from file datafiles/fixedTarget/E615/grid_mumu-17.root	:  applgrid version 1.4.70 (transformed to 1.6.9)
+appl::grid() read grid, size 0.279327 MB	in 100.976 ms	trim in 0.125 ms
+   -0.2000E+00   -0.1000E+00   -0.1000E+01
+   -0.1000E+00    0.0000E+00   -0.1000E+01
+    0.0000E+00    0.1000E+00    0.3070E-01
+ Reading data file datafiles/fixedTarget/E615/thexp-17.dat
+ Dataset index set to =      6486104
+Read      12 data points for E615-17                                                                         
+Printing first    3 data points
+xf_low        xf_high                sigma
+   -0.2000E+00   -0.1000E+00   -0.1000E+01
+   -0.1000E+00    0.0000E+00   -0.1000E+01
+    0.0000E+00    0.1000E+00    0.1410E-01
+ Reading data file datafiles/hera/F2pionEff/h1LeadingNeutronPN221111.dat
+ Dataset index set to =      8884129
+
+ ZMFILLW: start weight calculations   4  38   0   0
+ ZMFILLW: calculations completed
+Read      29 data points for F2pi effective data                                                             
+Printing first    3 data points
+Q2            x             y                      sigma
+    0.7300E+01    0.8160E-03    0.0000E+00    0.4190E+00
+    0.7300E+01    0.1740E-02    0.0000E+00    0.3780E+00
+    0.7300E+01    0.3710E-02    0.0000E+00    0.3100E+00
+ number of points         408
+   NO                            NAME    VALUE     STEP    LIM L    LIM H    SHIFT   REDUCT
+    8                           delCg   0.0000   0.3000                                    
+WARNING: problem with calculating the Mellin moment at x->0
+ifl, MellinPower: 2, -1
+WARNING: problem with calculating the Mellin moment at x->1
+ifl, MellinPower: 2, -1
+WARNING: problem with calculating the Mellin moment at x->0
+ifl, MellinPower: 0, 0
+
+ Fantomas output card created successfully... 
+
+WARNING: problem with calculating the Mellin moment at x->0
+ifl, MellinPower: 0, 0
+   NO                            NAME    VALUE     STEP    LIM L    LIM H    SHIFT   REDUCT
+    8                           delCg   0.0031   0.3000                                    
+WARNING: problem with calculating the Mellin moment at x->0
+ifl, MellinPower: 2, -1
+WARNING: problem with calculating the Mellin moment at x->1
+ifl, MellinPower: 2, -1
+WARNING: problem with calculating the Mellin moment at x->0
+ifl, MellinPower: 0, 0
+
+ Fantomas output card created successfully... 
+
+WARNING: problem with calculating the Mellin moment at x->0
+ifl, MellinPower: 0, 0
+Too many warnings; printing to std::cout is suppressed.
+   NO                            NAME    VALUE     STEP    LIM L    LIM H    SHIFT   REDUCT
+    8                           delCg  -0.0031   0.3000                                    
+WARNING: problem with calculating the Mellin moment at x->1
+ifl, MellinPower: 2, -1
+   NO                            NAME    VALUE     STEP    LIM L    LIM H    SHIFT   REDUCT
+    8                           delCg   0.0134   0.3000                                    
+WARNING: problem with calculating the Mellin moment at x->1
+ifl, MellinPower: 2, -1
+
+ Fantomas output card created successfully... 
+
+   NO                            NAME    VALUE     STEP    LIM L    LIM H    SHIFT   REDUCT
+    8                           delCg  -0.0134   0.3000                                    
+WARNING: problem with calculating the Mellin moment at x->1
+ifl, MellinPower: 2, -1
+   NO                            NAME    VALUE     STEP    LIM L    LIM H    SHIFT   REDUCT
+    8                           delCg   0.5674   0.3000                                    
+WARNING: problem with calculating the Mellin moment at x->1
+ifl, MellinPower: 2, -1
+Too many warnings; printing to std::cout is suppressed.
+
+ Fantomas output card created successfully... 
+
+   NO                            NAME    VALUE     STEP    LIM L    LIM H    SHIFT   REDUCT
+    8                           delCg   0.7321   0.3000                                    
+
+ Fantomas output card created successfully... 
+
+   NO                            NAME    VALUE     STEP    LIM L    LIM H    SHIFT   REDUCT
+    8                           delCg   0.9124   0.3000                                    
+
+ Fantomas output card created successfully... 
+
+   NO                            NAME    VALUE     STEP    LIM L    LIM H    SHIFT   REDUCT
+    8                           delCg   1.0589   0.3000                                    
+
+ Fantomas output card created successfully... 
+
+   NO                            NAME    VALUE     STEP    LIM L    LIM H    SHIFT   REDUCT
+    8                           delCg   1.1186   0.3000                                    
+
+ Fantomas output card created successfully... 
+
+   NO                            NAME    VALUE     STEP    LIM L    LIM H    SHIFT   REDUCT
+    8                           delCg   1.1320   0.3000                                    
+
+ Fantomas output card created successfully... 
+
+   NO                            NAME    VALUE     STEP    LIM L    LIM H    SHIFT   REDUCT
+    8                           delCg   1.1051   0.3000                                    
+   NO                            NAME    VALUE     STEP    LIM L    LIM H    SHIFT   REDUCT
+    8                           delCg   1.1479   0.3000                                    
+
+ Fantomas output card created successfully... 
+
+   NO                            NAME    VALUE     STEP    LIM L    LIM H    SHIFT   REDUCT
+    8                           delCg   1.0892   0.3000                                    
+   NO                            NAME    VALUE     STEP    LIM L    LIM H    SHIFT   REDUCT
+    8                           delCg   1.1322   0.3000                                    
+   NO                            NAME    VALUE     STEP    LIM L    LIM H    SHIFT   REDUCT
+    8                           delCg   1.1504   0.3000                                    
+
+ Fantomas output card created successfully... 
+
+   NO                            NAME    VALUE     STEP    LIM L    LIM H    SHIFT   REDUCT
+    8                           delCg   1.1797   0.3000                                    
+   NO                            NAME    VALUE     STEP    LIM L    LIM H    SHIFT   REDUCT
+    8                           delCg   1.1211   0.3000                                    
+   NO                            NAME    VALUE     STEP    LIM L    LIM H    SHIFT   REDUCT
+    8                           delCg   1.1504   0.3000                                    
+   NO                            NAME    VALUE     STEP    LIM L    LIM H    SHIFT   REDUCT
+    8                           delCg   1.1797   0.3000                                    
+   NO                            NAME    VALUE     STEP    LIM L    LIM H    SHIFT   REDUCT
+    8                           delCg   1.1211   0.3000                                    
+   NO                            NAME    VALUE     STEP    LIM L    LIM H    SHIFT   REDUCT
+    8                           delCg   1.1563   0.3000                                    
+   NO                            NAME    VALUE     STEP    LIM L    LIM H    SHIFT   REDUCT
+    8                           delCg   1.1445   0.3000                                    
+   NO                            NAME    VALUE     STEP    LIM L    LIM H    SHIFT   REDUCT
+    8                           delCg   1.1516   0.3000                                    
+
+ Fantomas output card created successfully... 
+
+   NO                            NAME    VALUE     STEP    LIM L    LIM H    SHIFT   REDUCT
+    8                           delCg   1.1492   0.3000                                    
+   NO                            NAME    VALUE     STEP    LIM L    LIM H    SHIFT   REDUCT
+    8                           delCg   1.1621   2.9463                                    
+   NO                            NAME    VALUE     STEP    LIM L    LIM H    SHIFT   REDUCT
+    8                           delCg   1.1387   2.9463                                    
+   NO                            NAME    VALUE     STEP    LIM L    LIM H    SHIFT   REDUCT
+    8                           delCg   1.1517   2.9463                                    
+
+ Fantomas output card created successfully... 
+
+   NO                            NAME    VALUE     STEP    LIM L    LIM H    SHIFT   REDUCT
+    8                           delCg   1.1817   2.9463                                    
+   NO                            NAME    VALUE     STEP    LIM L    LIM H    SHIFT   REDUCT
+    8                           delCg   1.1217   2.9463                                    
+   NO                            NAME    VALUE     STEP    LIM L    LIM H    SHIFT   REDUCT
+    8                           delCg   1.1517   3.1681                                    
+----- Parameters in YAML format (can copy-paste into parameters.yaml):
+  Ag : [ 1.00000000, 0.00000000 ]
+  As : [ 0.89168600, 0.00000000 ]
+  Av : [ 1.00000000, 0.00000000 ]
+  ZERO : [ 0.00000000, 0.00000000 ]
+  delBg : [ 0.00000000, 0.00000000 ]
+  delBs : [ 0.00000000, 0.00000000 ]
+  delBv : [ 0.00000000, 0.00000000 ]
+  delCg : [ 1.15169152, 3.16808460 ]
+  delCs : [ 0.00000000, 0.00000000 ]
+  delCv : [ 0.00000000, 0.00000000 ]
+  delDg : [ 0.00000000, 0.00000000 ]
+  delDs : [ 0.00000000, 0.00000000 ]
+  delDv : [ 0.00000000, 0.00000000 ]
+  delEg : [ 0.00000000, 0.00000000 ]
+  delEs : [ 0.00000000, 0.00000000 ]
+  delEv : [ 0.00000000, 0.00000000 ]
+  delFg : [ 0.00000000, 0.00000000 ]
+  delFs : [ 0.00000000, 0.00000000 ]
+  delFv : [ 0.00000000, 0.00000000 ]
+  delGs : [ 0.00000000, 0.00000000 ]
+  delGv : [ 0.00000000, 0.00000000 ]
+  gifl : [ 0.00000000, 0.00000000 ]
+  sifl : [ 1.00000000, 0.00000000 ]
+  vifl : [ 2.00000000, 0.00000000 ]
+----- End of parameters in YAML format
+  
+ NDiag=         408 NCovar=           0
+cpu_time     13.98     13.99      0.01
+                         1      433.44   407        1.06
+cpu_time     15.49     15.49      0.00
+                         2      433.44   407        1.06
+cpu_time     16.98     16.98      0.00
+                         3      433.44   407        1.06
+cpu_time     18.45     18.45      0.00
+                         4      433.43   407        1.06
+cpu_time     19.95     19.95      0.00
+                         5      433.45   407        1.06
+cpu_time     21.40     21.40      0.00
+                         6      433.22   407        1.06
+cpu_time     22.87     22.87      0.00
+                         7      433.19   407        1.06
+cpu_time     24.35     24.35      0.00
+                         8      433.17   407        1.06
+cpu_time     25.83     25.83      0.00
+                         9      433.17   407        1.06
+cpu_time     27.31     27.31      0.00
+                        10      433.16   407        1.06
+cpu_time     28.80     28.80      0.00
+                        11      433.16   407        1.06
+cpu_time     30.30     30.30      0.00
+                        12      433.17   407        1.06
+cpu_time     31.78     31.78      0.00
+                        13      433.16   407        1.06
+cpu_time     33.29     33.29      0.00
+                        14      433.17   407        1.06
+cpu_time     34.76     34.76      0.00
+                        15      433.16   407        1.06
+cpu_time     36.22     36.22      0.00
+                        16      433.16   407        1.06
+cpu_time     37.71     37.71      0.00
+                        17      433.16   407        1.06
+cpu_time     39.19     39.19      0.00
+                        18      433.16   407        1.06
+cpu_time     40.65     40.65      0.00
+                        19      433.16   407        1.06
+cpu_time     42.10     42.10      0.00
+                        20      433.16   407        1.06
+cpu_time     43.57     43.57      0.00
+                        21      433.16   407        1.06
+cpu_time     45.03     45.03      0.00
+                        22      433.16   407        1.06
+cpu_time     46.73     46.73      0.00
+                        23      433.16   407        1.06
+cpu_time     48.18     48.18      0.00
+                        24      433.16   407        1.06
+cpu_time     49.66     49.66      0.00
+                        25      433.16   407        1.06
+cpu_time     51.15     51.15      0.00
+                        26      433.16   407        1.06
+cpu_time     52.63     52.63      0.00
+                        27      433.16   407        1.06
+cpu_time     54.08     54.08      0.00
+                        28      433.16   407        1.06
+cpu_time     55.58     55.58      0.00
+                        29      433.16   407        1.06
+cpu_time     57.08     57.08      0.00
+                        30      433.16   407        1.06
+cpu_time     58.53     58.54      0.00
+                        31      433.16   407        1.06
+
+After minimisation     433.16   407     1.064
+
+Dataset    1      4.87( -0.23)     6  NA10-194-0                                      
+Dataset    2      6.16( -0.06)     6  NA10-194-1                                      
+Dataset    3      6.52( -0.07)     7  NA10-194-2                                      
+Dataset    4      6.26( -0.05)     7  NA10-194-3                                      
+Dataset    5      1.60( -0.17)     8  NA10-194-4                                      
+Dataset    6      4.89( -0.20)     8  NA10-194-5                                      
+Dataset    7     21.82( -0.64)     9  NA10-194-6                                      
+Dataset    8     40.81( -2.30)     8  NA10-194-7                                      
+Dataset    9     10.62( -0.97)     8  NA10-194-8                                      
+Dataset   10      3.92( -3.42)    10  WA70-0                                          
+Dataset   11      6.65( -5.25)    10  WA70-1                                          
+Dataset   12      5.09( -4.51)    10  WA70-2                                          
+  Av=1.29657
+  As=0.891686
+  Ag=0.105672
+ <v>=2
+<xv>=0.442153
+<xS>=0.427581
+<xg>=0.130266
+Dataset   13      9.79( -4.18)    10  WA70-3                                          
+Dataset   14      8.62( -1.96)    10  WA70-4                                          
+Dataset   15      9.76( -4.59)    10  WA70-5                                          
+Dataset   16      3.06( -0.73)     8  WA70-6                                          
+Dataset   17      1.89( -1.51)     5  WA70plus-0                                      
+Dataset   18      3.91( -3.10)     5  WA70plus-1                                      
+Dataset   19      2.15( -2.63)     5  WA70plus-2                                      
+Dataset   20      3.64( -1.75)     5  WA70plus-3                                      
+Dataset   21      0.86( -3.04)     5  WA70plus-4                                      
+Dataset   22      2.04( -0.50)     3  WA70plus-5                                      
+Dataset   23      2.95( -1.91)     3  WA70plus-6                                      
+Dataset   24      5.89( -0.53)     4  NA10-286-0                                      
+Dataset   25      2.34( -0.52)     5  NA10-286-1                                      
+Dataset   26      3.04( -0.38)     5  NA10-286-2                                      
+Dataset   27      1.84( -0.56)     6  NA10-286-3                                      
+Dataset   28      3.98( -0.61)     7  NA10-286-4                                      
+Dataset   29     16.39( -0.67)     8  NA10-286-5                                      
+Dataset   30     10.57( -0.82)     8  NA10-286-6                                      
+Dataset   31      5.60( +0.22)     9  NA10-286-7                                      
+Dataset   32     19.53( +1.36)     8  NA10-286-8                                      
+Dataset   33     12.79( +1.24)     9  NA10-286-9                                      
+Dataset   34     13.81( +0.34)     4  NA10-286-10                                     
+Dataset   35     10.06( +0.62)     7  E615-0                                          
+Dataset   36     11.88( +1.63)    10  E615-1                                          
+Dataset   37     12.87( +2.50)    11  E615-2                                          
+Dataset   38     10.55( +1.83)    12  E615-3                                          
+Dataset   39      8.72( +2.17)    11  E615-4                                          
+Dataset   40      9.18( +1.43)    11  E615-5                                          
+Dataset   41     13.60( +0.89)    11  E615-6                                          
+Dataset   42     17.07( -0.59)    11  E615-7                                          
+Dataset   43     18.12( -0.62)    11  E615-8                                          
+Dataset   44     18.33( -1.63)    10  E615-9                                          
+Dataset   45     32.87( -2.46)     8  E615-13                                         
+Dataset   46     18.35( -3.00)     7  E615-14                                         
+Dataset   47      3.40( +0.30)     8  E615-15                                         
+Dataset   48      8.33( -1.91)     6  E615-16                                         
+Dataset   49     16.66( -5.83)     6  E615-17                                         
+Dataset   50      4.14( -0.37)    29  F2pi effective data                             
+ Correlated Chi2    5.0994538645589271     
+ Log penalty Chi2   -49.717375446367591     
+ --------- in store-pdfs -------
+cpu_time     58.53     58.65      0.12
+
+
+            ************************************
+            ***       Messages Summary       ***
+            ************************************
+ 
+ Total number of logged messages:          49
+ Total number of messages not recorded:       0
+
+
+ List of messages sorted by severity level:
+
+ *------------------------------------------------------------------------------
+ *   Module   | Message |Message|
+ *     Name   |    Type | Count | Message Description
+ *------------------------------------------------------------------------------
+
+  Informational messages:
+ *-----------------------
+  xFitter       19092501       2 I: PDF: nCTEQ15FullNuc_1_1 found in this installation
+Thanks for using LHAPDF 6.5.4. Please make sure to cite the paper:
+  Eur.Phys.J. C75 (2015) 3, 132  (http://arxiv.org/abs/1412.7420)
+  xFitter       13080601       1 I: Symmetrise asymmetric uncertainties if present
+  xFitter       15012601       1 I: extra log corr (Poisson) activated with ExtraSystRescale
+  xFitter       12020501       1 I: steering.txt has been read successfully
+  xFitter       12090001       1 I: Some systematic sources are additive
+  xFitter       17041001       1 I: Calculating DIS NC reduced cross section
+  xFitter       12020502       1 I: data tables have been read successfully
+  xFitter       12020515      31 I: FCN is called
+  xFitter      271120123       1 I: Use hessian method for   4 sources
+  xFitter       14121701       4 I:MyDSYEVD: optimal dimensions for work arrays:     2     1
+  xFitter       16042802       1 I: Fit converged
+     [34m
+  Warning messages:      
+ *-----------------------
+  xFitter     1303201701       1 W: Removing old results directory output_OLD
+  xFitter     1303201702       1 W: Backing up previous results to output_OLD
+  xFitter       18091714       1 W: Step not given for a parameter, assuming 1%
+  xFitter       19052700       1 W: LHAPDF6 output: failed to determine error type, assuming symmhessian
+     [33m     [31m     [31m      [0m
+ *------------------------------------------------------------------------------
+
+  End of Message Summary
+

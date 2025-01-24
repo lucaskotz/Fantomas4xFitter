@@ -1,0 +1,22 @@
+# Output card file of Fantomas steering card 
+
+# gluon -- metamorph 0
+# ifl  Nm  MappingMode  xPower  Sc(0)  Sc(1)
+0	1	0	1	-0.366824	4.51509	
+# Xs  Sm  fp  fm	 f()
+0.001	FIX		
+0.8	FIX		
+# sea  -- metamorph 1
+# ifl  Nm  MappingMode  xPower  Sc(0)  Sc(1)
+1	2	0	1	0.733085	3.31685	
+# Xs  Sm  fp  fm	 f()
+0.001	FIX		
+0.3	-0.703074		
+0.8	FIX		
+# valence  -- metamorph 2
+# ifl  Nm  MappingMode  xPower  Sc(0)  Sc(1)
+2	2	0	1	0.654477	0.882171	
+# Xs  Sm  fp  fm	 f()
+0.001	FIX		
+0.3	-0.0230013		
+0.8	FIX		

@@ -66,6 +66,7 @@ double Fantomas_PdfParam::operator()(double x)const{
     std::cout << "Modulator functions have not been set. Make sure Fantomas_PdfParam::atStart() is being called." << std::endl;
   }
   const unsigned int npar=getNPar();
+  std::cout << "npar inside operator(): " << npar << std::endl;
   int ifl = *pars[npar-1];
   // lk22 removed pars[0] from f since normalization is now added to metamorph function.
   double f = fantopara(ifl,x);
@@ -100,6 +101,8 @@ double Fantomas_PdfParam::moment(int n)const{
   return (*pars[0])*exp(lgamma(B)+lgamma(C)-lgamma(B+C))*sum;
   */
   const unsigned int npar=getNPar();
+  unsigned int npartest=getNPar();
+  std::cout << "npartest in Fantomas moment(): " << npartest << std::endl;
   int ifl = *pars[npar-1];
   // int npts = 5000; // Uncomment line to change number of integration points in adxmoment integration. Default is 10000.
   // lk22 removed pars[0] from moment since normalization is now added to metamorph function.

@@ -2,7 +2,7 @@ Minimizer: MINUIT
 MINUIT:
   #doErrors: Pumplin #uncomment to make error bands
   Commands: |
-    minimize #uncomment to run the fit
+    #minimize #uncomment to run the fit
     call fcn 3
     #scan   #uncomment to display chi2 plots for all free parameters in minuit.out.save
     #scan 4
