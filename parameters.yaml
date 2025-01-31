@@ -17,18 +17,21 @@ Parameters:
   delBv: [ 0., 0.03]
   delCv: [ 0., 0.04]
   delDv: 0.
+  delEv: 0.
   As: [  9.82,0.5]
   #Bs: [ 0.27599, 0.1]
   #Cs: [ 6.6988, 3]
   delBs: [ 0., 0.3]
   delCs: [ 0., 3]
   delDs: 0.
+  delEs: 0.
   Ag:  SUMRULE
   #Bg:   0.
   #Cg: [ 2.1447, 1]
   delBg: [ 0., 0.2]
   delCg: [ 0., 1]
   delDg: 0.
+  delEg: 0.
   gifl:  0.
   sifl:  1.
   vifl:  2.
@@ -37,13 +40,13 @@ Parameters:
 Parameterisations:
   v:
     class: Fantomas
-    parameters: [Av,delBv,delCv,delDv,vifl]
+    parameters: [Av,delBv,delCv,delDv,delEv,vifl]
   S:
     class: Fantomas
-    parameters: [As,delBs,delCs,delDs,sifl]
+    parameters: [As,delBs,delCs,delDs,delEs,sifl]
   g:
     class: Fantomas
-    parameters: [Ag,delBg,delCg,delDg,gifl]
+    parameters: [Ag,delBg,delCg,delDg,delEg,gifl]
 
 Decompositions:
   pion:
