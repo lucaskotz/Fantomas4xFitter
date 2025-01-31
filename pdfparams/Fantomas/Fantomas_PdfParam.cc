@@ -100,13 +100,12 @@ double Fantomas_PdfParam::moment(int n)const{
   }
   return (*pars[0])*exp(lgamma(B)+lgamma(C)-lgamma(B+C))*sum;
   */
-  const unsigned int npar=getNPar();
-  unsigned int npartest=getNPar();
-  std::cout << "npartest in Fantomas moment(): " << npartest << std::endl;
+  const size_t npar=getNPar();
   int ifl = *pars[npar-1];
   // int npts = 5000; // Uncomment line to change number of integration points in adxmoment integration. Default is 10000.
   // lk22 removed pars[0] from moment since normalization is now added to metamorph function.
   double moment = fantoMellinMoment(ifl,n/*,npts*/);
+  return moment;
 }
 
 void Fantomas_PdfParam::setMoment(int n,double val){
