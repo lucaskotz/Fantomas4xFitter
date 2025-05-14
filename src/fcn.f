@@ -23,10 +23,6 @@ C---------------------------------------------------------
 #include "fcn.inc"
 #include "endmini.inc"
 #include "for_debug.inc"
-cpn22 
-#ifdef FANTOMAS
-#include "fantomas.inc"
-#endif 
       integer i
       double precision chi2data_theory !function
 
@@ -87,15 +83,7 @@ c will take them from
       endif
       call MntShowVValues(chi2out)
 #endif
-
-#ifdef FANTOMAS
-cpn22 If chi2 has improved, save the Fantomas steering card
-      if (chi2out.lt.chimin) then
-        chimin = chi2out
-        call writefantoout(chimin)
-      endif
-#endif 
-
+      call flush
       return
       end
 C------------------------------------------------------
@@ -212,9 +200,6 @@ c updf stuff
 
 C Penalty from MINUIT extra parameters constraints
       double precision extraparsconstrchi2
-#ifdef FANTOMAS
-      double precision fantochi
-#endif
 C---------------------------------------------------
 
       ! XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXxx to be removed
@@ -403,13 +388,6 @@ C However when/if LHAPDFErrors mode will be combined with minuit, this will need
      $     shift_polRHp**2+shift_polRHm**2+
      $     shift_polLHp**2+shift_polLHm**2+
      $     shift_polL**2+shift_polT**2
-
-clk23 add chi2 penalty from fantomas conditions here
-#ifdef FANTOMAS
-      call getfantochi2(fantochi)
-      chi2out = chi2out + fantochi
-#endif
-
 c If for any reason we got chi2==NaN, set it to +inf so that that
 c a minimizer would treat it as very bad
       if(chi2out/=chi2out)then !if chi2out is NaN
@@ -424,6 +402,7 @@ c Print time, number of calls, chi2
          write(6,'(A20,i6,F12.2,i6,F12.2)') '
      $        xfitter chi2out,ndf,chi2out/ndf ',ifcncount, chi2out,
      $        ndf, chi2out/ndf
+      call flush
 ! ----------------  RESULTS OUTPUT ---------------------------------
 ! Reopen "Results.txt" file if it is not open
 ! It does not get opened by this point when using CERES
@@ -433,6 +412,7 @@ c Print time, number of calls, chi2
       endif
       if (iflag.eq.1) then
          write(85,*) 'First iteration ',chi2out,ndf,chi2out/ndf
+         call flush
       endif
 
       if (iflag.eq.3) then
@@ -531,8 +511,7 @@ c     $           ,chi2_cont/NControlPoints
 
          base_pdfname = TRIM(OutDirName)//'/pdfs_q2val_'
          if (CorSysIndex.eq.0) then
-            open (76,file=TRIM(OutDirName)//'/lhapdf.block.txt',
-     >       status='unknown')
+            open (76,file=TRIM(OutDirName)//'/lhapdf.block.txt',status='unknown')
 
             call store_pdfs(base_pdfname)
             call print_lhapdf6
@@ -599,4 +578,13 @@ C this replaces old subroutine PDF_param_iteration
       do i=1,nExtraParam
         ExtraParamValue(i)=p(iExtraParamMinuit(GetParameterIndex(trim(ExtraParamNames(i)))))
       enddo
+      end
+
+C
+C Reset extra parameters
+C
+      subroutine reset_extra_parameters
+      implicit none
+#include "extrapars.inc"
+      nextraparam = 0
       end
