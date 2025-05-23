@@ -107,6 +107,11 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
   endif()
 endif()
 
+#lk22
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DFANTOMAS")
+set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -DFANTOMAS")
+
+
 # For semaphore in multithreading
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread -lrt")
 

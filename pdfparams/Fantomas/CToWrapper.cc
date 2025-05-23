@@ -6,17 +6,7 @@
 //
 //      Date created: 01/28/2022
 // ==============================================
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <stdio.h>
-#include <vector>
-#include <math.h>
-#include <map>
-#include <string>
-#include <cstring>
-#include "metamorphCollection.h"
-#include "CToFortran.h"
+#include "CToWrapper.h"
 
 // Declaration of global variables inside fantomas.cc
 metamorphCollection *metacol;   

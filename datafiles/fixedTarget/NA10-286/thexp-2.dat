@@ -1,0 +1,32 @@
+!Automatically generated
+&Data
+  Name='NA10-286-2'
+  IndexDataset=2072
+  Reaction='PionOnTungsten'
+
+  TheoryType='expression'
+  TermName  ='A1'
+  TermType  ='reaction'
+  TermSource='APPLgrid'
+  TermInfo  ='GridName=datafiles/fixedTarget/NA10-286/gridNA10_286-2.root:evolution1=negative_pion:evolution2=tungsten_target'
+  TheorExpr ='A1*1e-06'
+
+  NDATA     =5
+  NColumn   =7
+  ColumnType='Flag',2*'Bin','Dummy','Sigma','Error','Error'
+  ColumnName='binFlag','xf_low','xf_high','xf','sigma','uncor','Norm_NA10-286:M'
+  Percent   =False,True
+&End
+&PlotDesc
+   PlotN = 1
+   PlotDefColumn ='xf_low'
+   PlotDefValue  =-1.,1
+   PlotVarColumn ='xf'
+   PlotOptions(1)='Experiment:#sqrt{#tau}#in(0.24:0.27) NA10-286@XTitle: x_{F} @YTitle:#frac{d#sigma}{dx_{F}d#sqrt{#tau}}'
+&End 
+*flag	xf_low	xf_high	xf	sigma	error luminosity-error(multiplicative, in %)
+ 1	-0.1	 0.0	-0.05	 1.35	 0.05	 6.4031242374328485
+ 1	 0.0	 0.1	 0.05	 1.53	 0.05	 6.4031242374328485
+ 1	 0.1	 0.2	 0.15	 1.6	 0.05	 6.4031242374328485
+ 1	 0.2	 0.3	 0.25	 1.5	 0.05	 6.4031242374328485
+ 1	 0.3	 0.4	 0.35	 1.33	 0.06	 6.4031242374328485

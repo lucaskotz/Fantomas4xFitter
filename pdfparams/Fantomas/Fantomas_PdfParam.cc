@@ -9,10 +9,13 @@
 #include "xfitter_cpp_base.h"
 #include <cmath>
 #include <iostream>
-//lk22
-#include "fantomas.h"
+//lk25 changed from fantomas.cc to metamorphCollection.h after pavel's revisions
+#include "metamorphCollection.h"
 bool xFitterCollectionSet = false;
 bool xFitterModulatorSet = false;
+
+//lk25 removed fantomas.cc. Moved metacol object to Fantomas_PdfParam.cc
+metamorphCollection metacol = metamorphCollection();
 
 namespace xfitter{
 //for dynamic loading
@@ -30,7 +33,7 @@ void Fantomas_PdfParam::atStart(){
   }
   if (xFitterCollectionSet == false)
   {  
-    readfantosteer();
+    metacol.ReadCard();
     xFitterCollectionSet = true;
   }
   if (xFitterCollectionSet == true)
@@ -42,8 +45,8 @@ void Fantomas_PdfParam::atStart(){
   
 // Update Fantomas parameters each time minuit varies them
 void Fantomas_PdfParam::atIteration(){
-  const size_t n=getNPar();
-    updateParameters();
+  const unsigned int npar=getNPar();
+  updateParameters();
 }
 
 void Fantomas_PdfParam::updateParameters(){
@@ -51,12 +54,12 @@ void Fantomas_PdfParam::updateParameters(){
   {
     std::cout << "Metamorph Collection not set. Call readfantosteer() before updating modulators." << std::endl;
   }
-  const size_t n=getNPar();
+  const unsigned int n=getNPar();
   int ifl = int (*pars[n-1]);
   double parstmp[n-1]={0};
   for (int i = 0; i < n-1; i++)
     parstmp[i] = *pars[i];
-  updatefantopars(ifl,parstmp);
+  metacol.UpdateParameters(ifl,parstmp);
 }
 
 // Main function to compute PDF
@@ -65,10 +68,19 @@ double Fantomas_PdfParam::operator()(double x)const{
   {
     std::cout << "Modulator functions have not been set. Make sure Fantomas_PdfParam::atStart() is being called." << std::endl;
   }
-  const unsigned int npar=getNPar();
+  const unsigned int npar = getNPar();
+
+if (!pars || pars[npar - 1] == nullptr) {
+    std::cerr << "[ERROR] Null pointer encountered in pars at index " << npar - 1 << std::endl;
+    std::terminate();
+}
+
+  cout << "npar: " << npar <<endl;
   int ifl = *pars[npar-1];
+  cout << "ifl: " << ifl << endl;
+  cout << "x: " << x << endl;
   // lk22 removed pars[0] from f since normalization is now added to metamorph function.
-  double f = fantopara(ifl,x);
+  double f = metacol.f(ifl,x);
   return f;
 }
 double Fantomas_PdfParam::moment(int n)const{
@@ -103,7 +115,8 @@ double Fantomas_PdfParam::moment(int n)const{
   int ifl = *pars[npar-1];
   // int npts = 5000; // Uncomment line to change number of integration points in adxmoment integration. Default is 10000.
   // lk22 removed pars[0] from moment since normalization is now added to metamorph function.
-  double moment = fantoMellinMoment(ifl,n/*,npts*/);
+  double moment = metacol.MellinMoment(ifl,n/*,npts*/);
+  return moment;
 }
 
 void Fantomas_PdfParam::setMoment(int n,double val){
