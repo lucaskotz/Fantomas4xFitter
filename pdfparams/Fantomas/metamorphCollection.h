@@ -70,7 +70,7 @@ private:
   int iPts[maxMet];              // array containing # of entries for each flavor 
 
   string flvcomment[maxMet][3]; // array to store headers for each flavor in fantomas card
-  const unsigned int VerbosityLevel=1; //Set VerbosityLevel=1 to print out diagnostic messages
+  const unsigned int VerbosityLevel=0; //Set VerbosityLevel=1 to print out diagnostic messages
 
   void PushMember();
   // MetamorphCollection::PushMember() is called inside metamorphCollection::ReadCard() to push the
@@ -125,6 +125,9 @@ public:
 
   int GetMetamorphCount();
   //returns the number of metamorph members in MetamorphCollection
+
+  double prior();
+  //returns the total chi2 penalty from all metamorphs.
 
   ~metamorphCollection();
 }; // class metamorphCollection

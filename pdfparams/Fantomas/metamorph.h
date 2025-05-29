@@ -151,7 +151,9 @@ public:
 
   void GetXstretching(double xstrminOut, double xstrmaxOut, double stretchPowerOut);
   //Sets parameters of the stretching function yx
- 
+
+  double prior();
+  //Returns the prior calculated from a metamorph parameter.
   
 
   ~metamorph();

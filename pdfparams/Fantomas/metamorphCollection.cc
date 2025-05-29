@@ -463,6 +463,13 @@ double metamorphCollection::ConditionNumber(int ifl)
   return condnumtmp;
 }
 
+//lk25 added function to add all metamorph priors
+double metamorphCollection::prior()
+{
+  double chi2_tot = 0;
+  return chi2_tot;
+}
+
 metamorphCollection::~metamorphCollection()
 {
   PositionRoster.clear();

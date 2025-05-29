@@ -373,6 +373,14 @@ double metamorph::GetConditionNum()
   return CondNum;
 }// metamorph::GetConditionNum-------------------------------------
 
+//lk25
+double metamorph::prior()
+{
+  double out = 0;
+  return out;
+}// metamorph::priot-------------------------------------
+
+
 metamorph::~metamorph() 
 {
   delete[] P;
