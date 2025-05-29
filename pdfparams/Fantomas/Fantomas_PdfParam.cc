@@ -10,12 +10,13 @@
 #include <cmath>
 #include <iostream>
 //lk25 changed from fantomas.cc to metamorphCollection.h after pavel's revisions
-#include "metamorphCollection.h"
+//#include "metamorphCollection.h"
+#include "CToWrapper.h"
 bool xFitterCollectionSet = false;
 bool xFitterModulatorSet = false;
 
 //lk25 removed fantomas.cc. Moved metacol object to Fantomas_PdfParam.cc
-metamorphCollection metacol = metamorphCollection();
+//metamorphCollection metacol = metamorphCollection();
 
 namespace xfitter{
 //for dynamic loading
@@ -33,7 +34,8 @@ void Fantomas_PdfParam::atStart(){
   }
   if (xFitterCollectionSet == false)
   {  
-    metacol.ReadCard();
+    //metacol.ReadCard();
+    readfantosteer_();
     xFitterCollectionSet = true;
   }
   if (xFitterCollectionSet == true)
@@ -59,7 +61,9 @@ void Fantomas_PdfParam::updateParameters(){
   double parstmp[n-1]={0};
   for (int i = 0; i < n-1; i++)
     parstmp[i] = *pars[i];
-  metacol.UpdateParameters(ifl,parstmp);
+  //std::cout << "[DEBUG] ifl = " << ifl << ", expected deltas size = " << (n-1) << std::endl;
+  //metacol.UpdateParameters(ifl,parstmp);
+  updatefantopars_(ifl,parstmp);
 }
 
 // Main function to compute PDF
@@ -75,12 +79,13 @@ if (!pars || pars[npar - 1] == nullptr) {
     std::terminate();
 }
 
-  cout << "npar: " << npar <<endl;
+  //std::cout << "npar: " << npar <<std::endl;
   int ifl = *pars[npar-1];
-  cout << "ifl: " << ifl << endl;
-  cout << "x: " << x << endl;
+  //std::cout << "ifl: " << ifl << std::endl;
+  //std::cout << "x: " << x << std::endl;
   // lk22 removed pars[0] from f since normalization is now added to metamorph function.
-  double f = metacol.f(ifl,x);
+  //double f = metacol.f(ifl,x);
+  double f = fantopara_(ifl,x);
   return f;
 }
 double Fantomas_PdfParam::moment(int n)const{
@@ -115,7 +120,8 @@ double Fantomas_PdfParam::moment(int n)const{
   int ifl = *pars[npar-1];
   // int npts = 5000; // Uncomment line to change number of integration points in adxmoment integration. Default is 10000.
   // lk22 removed pars[0] from moment since normalization is now added to metamorph function.
-  double moment = metacol.MellinMoment(ifl,n/*,npts*/);
+  //double moment = metacol.MellinMoment(ifl,n/*,npts*/);
+  double moment = fantomellinmoment_(ifl,n);
   return moment;
 }
 

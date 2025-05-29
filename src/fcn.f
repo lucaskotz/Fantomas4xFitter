@@ -94,7 +94,7 @@ c will take them from
 cpn22 If chi2 has improved, save the Fantomas steering card
       if (chi2out.lt.chimin) then
         chimin = chi2out
-        call writefantoout(chimin)
+        call writefantoout()
       endif
 #endif
       
