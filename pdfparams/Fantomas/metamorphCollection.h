@@ -13,6 +13,8 @@ using namespace std;
 #include <sstream>
 #include <stdio.h>
 #include <vector>
+#include <array>
+#include <string>
 #include <math.h>
 #include <map>
 #include <string>
@@ -69,8 +71,8 @@ private:
   int m;                         // counts the number of control points for temporary metamorph
   int iPts[maxMet];              // array containing # of entries for each flavor 
 
-  string flvcomment[maxMet][3]; // array to store headers for each flavor in fantomas card
-  const unsigned int VerbosityLevel=0; //Set VerbosityLevel=1 to print out diagnostic messages
+  array<array<string, 4>, maxMet> flvcomment{}; // TH2025 revised; array to store headers for each flavor in fantomas card
+  unsigned int VerbosityLevel=0; //Set VerbosityLevel=1 to print out diagnostic messages
 
   void PushMember();
   // MetamorphCollection::PushMember() is called inside metamorphCollection::ReadCard() to push the
@@ -120,14 +122,16 @@ public:
   //Returns the Mellin moment <x^(MellinPower+1) f> =\int_0^1 x^(MellinPower+1) f(ifl, x) dx
   //for the metamorph of flavor ifl
 
-  double ConditionNumber(int ifl);
+  double GetConditionNumber(int ifl);
   //Returns the condition number for metamorph of flavor ifl.
 
   int GetMetamorphCount();
   //returns the number of metamorph members in MetamorphCollection
 
-  double prior();
-  //returns the total chi2 penalty from all metamorphs.
+  void SetVerbosity(const unsigned int VerbosityLevelIn=0){
+  //Sets verbosity level for printing out diagnostics  
+    VerbosityLevel=VerbosityLevelIn;
+  }
 
   ~metamorphCollection();
 }; // class metamorphCollection

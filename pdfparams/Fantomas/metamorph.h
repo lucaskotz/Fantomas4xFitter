@@ -8,7 +8,7 @@
  *
  *    Description: the metamorph parametrization class
  *
- * History: April 2025 version 1.0 
+ * History: June 2025 version 1.0 
  ******************************************************************/
 #ifndef METAMORPH_H
 #define METAMORPH_H
@@ -19,9 +19,10 @@ using namespace std;
 #include <cmath>
 #include <math.h>
 #include <fstream>
-#include <omp.h>
+// #include <omp.h>
 #include <cstddef>
 #include <vector>
+#include <string>
 #include "cl2DArray.h"
 #include "LUPinverse.h"
 
@@ -131,7 +132,7 @@ public:
   // metamorph::GetMellinMoment() returns <x^(n+1) f>, i.e., the  integral of x^(n+1) * f(x) * dx
   // over 0 < x < 1, where n=MellinPower.
 
-  double GetConditionNum();
+  double GetConditionNumber();
   // Returns the condition number of the matrix T and T^{-1} using the 
   // Frobenius norm, ||T||, i.e. the square root of the sum of absolute
   //squares of the elements. The condition number is calculated
@@ -151,11 +152,8 @@ public:
 
   void GetXstretching(double xstrminOut, double xstrmaxOut, double stretchPowerOut);
   //Sets parameters of the stretching function yx
-
-  double prior();
-  //Returns the prior calculated from a metamorph parameter.
-  
-
+ 
+ 
   ~metamorph();
 }; //class metamorph -> 
 

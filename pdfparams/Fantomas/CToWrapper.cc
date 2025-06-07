@@ -6,6 +6,16 @@
 //
 //      Date created: 01/28/2022
 // ==============================================
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <stdio.h>
+#include <vector>
+#include <math.h>
+#include <map>
+#include <string>
+#include <cstring>
+#include "metamorphCollection.h"
 #include "CToWrapper.h"
 
 // Declaration of global variables inside fantomas.cc
@@ -18,6 +28,7 @@ extern "C" void readfantosteer_()
 // before PDFs are calculated.
 {
   metacol=new metamorphCollection();
+  metacol->SetVerbosity(0); //set verbosity=0/1 to suppress/print out metamorph diagnostics
 
   metacol->ReadCard();
   //pn25 Update metamorph modulators using the just read parameters

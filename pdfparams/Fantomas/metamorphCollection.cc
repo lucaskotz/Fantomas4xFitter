@@ -43,33 +43,28 @@ metamorphCollection::metamorphCollection()
 void metamorphCollection::PushMember()
 {
   string flagcheck;
-  double Xstmp[maxctrlpts] = {0}, fptmp[maxctrlpts] = {0}, fmtmp[maxctrlpts] = {0};
   vector <int> newpositions;
   
   vector<double> Xsvec, fmvec, fpvec, Scmvec; //temporary vectors used to
                                   //initialize values of new control points
 
-  //Process new Carrier parameters 
-  for (int isc = 0; isc < maxSc; isc++) // loop copies Sc parameters read from ReadCard() to Scm0[NMeta] array; set DSwitches to 1 to update Sc parameters with deltas
-  {
-    double Sctmp = stod(strScm[NMeta][isc]);
-    Scm0[NMeta][isc] = Sctmp;
+  //Read new carrier parameters 
+  for (int isc = 0; isc < maxSc; isc++){ // loop copies Sc parameters read
+               //from ReadCard() to Scm0[NMeta] array; set DSwitches to 1
+               //to update Sc parameters with deltas
+    Scm0[NMeta][isc] = stod(strScm[NMeta][isc]);
     DSwitch[NMeta][isc]=1.0;
   }
 
-  //Process new control point parameters
+  //Parse control point parameters
+  // For each input string strScm[i], the loop checks if strScm[i] contains
+  // a number. If yes, then the input parameters for the corresponding
+  // control point will be pushed into a vector to eliminate empty entries
+  // caused by non-number CPs. The vector values will be copied by the
+  // arrays used to calculate the metamorph objects for each flavor.
+  // If strScm is found to be not a number, it will perform additional parsing
+  // depending on the type of this special CP
   for (int i = 0; i < k; i++) {
-    // For each input string strScm[i], the loop checks if strScm[i] contains a number. If yes, then the 
-    // input parameters for the corresponding control point will be pushed into a vector 
-    // to eliminate empty entries caused by flagged points.
-    // The vector values will be copied by the arrays used to calculate the metamorph 
-    // objects for each flavor.
-    // If strScm is not found to be a number, it will first check to see if it is set to the  
-    // flag to return the metamorph PDF in the output card and not contribute to the metamorph.
-    // If strScm is not set to the flag, the program will exit.
-    Xstmp[i] = Xs0[NMeta][i];
-    fptmp[i] = fp0[NMeta][i];
-    fmtmp[i] = fm0[NMeta][i];
     
     //The string value for the respective CP
     flagcheck = strScm[NMeta][i+maxSc];
@@ -116,10 +111,10 @@ void metamorphCollection::PushMember()
     
     //Push known CP values into vectors for creating new control points
     if (isNumber(flagcheck) || flagcheck == fixflag){
-      Xsvec.push_back(Xstmp[i]);
+      Xsvec.push_back(Xs0[NMeta][i]);
       Scmvec.push_back(Scm0[NMeta][i+maxSc]);
-      fmvec.push_back(fmtmp[i]);
-      fpvec.push_back(fptmp[i]);
+      fpvec.push_back(fp0[NMeta][i]);
+      fmvec.push_back(fm0[NMeta][i]);
     } // if (isNumber(flagcheck) == true)
     
   }// for (int i = 0; i < k; i++)
@@ -141,59 +136,68 @@ void metamorphCollection::PushMember()
   //Compute values for NEW control points
   int Nnew=newpositions.size();
   if (Nnew !=0){
-    //First, check that the counts of numerical, fixed, and new control points add up
-  // to Nm[Meta] +1
+    //First, check that the counts of numerical, fixed, and new control
+    //points add up to Nm[Meta] +1
 
     if ((int)(Xsvec.size() + Nnew) != Nm[NMeta]+1){
-    cerr <<"Something is wrong in metamorphCollection::PushMember()"<<endl;
-    cerr << "Counts of numerical, fixed, new CPs do not add up to Nm+1"<< endl;
-    exit(3);
-  }
-
-  int Nmtmp = Xsvec.size()-1;   // degree of the temporary metamorph
-  double Xstmp[maxctrlpts] = {0}, Scmtmp[maxScm] = {0}, fmtmp[maxctrlpts] = {0}, fptmp[maxctrlpts] = {0};
-
-  for (int i = 0; i < maxSc; i++) //Carrier
-    Scmtmp[i] = Scm0[NMeta][i];
-
-  for (int i = 0; i < Nmtmp+1; i++){
-    Xstmp[i] = Xsvec[i];
-    Scmtmp[i+maxSc] = Scmvec[i];
-    fmtmp[i] = fmvec[i];
-    fptmp[i] = fpvec[i];
-  }
-
-  metamorph metatmp(Nmtmp, Xstmp, (Scmtmp+maxSc), Scmtmp, xPower[NMeta],vstretch);
-  metatmp.SetBoundary(MappingMode[NMeta], fmtmp, fptmp);
-  metatmp.UpdateModulator();
-  
-  //Fill in the values of new points with the values from temporary metamorph
-  for (int ipos = 0; ipos < Nnew; ipos++){
-    int inew=newpositions[ipos];
-    double xtmp = Xstmp[inew];
-    Scm0[NMeta][inew+maxSc] = metatmp.Modulator(xtmp)-1; // sets each Sm parameter to Pi for all control points
+      cerr <<"Something is wrong in metamorphCollection::PushMember()"<<endl;
+      cerr << "Counts of numerical, fixed, new CPs do not add up to Nm+1"<< endl;
+      exit(3);
     }
-  
+
+    int Nmtmp = Xsvec.size()-1;   // degree of the temporary metamorph
+                                  //constructed from old and fixed CPs
+    double Xstmp[maxctrlpts] = {0}, Scmtmp[maxScm] = {0}, fmtmp[maxctrlpts] = {0}, fptmp[maxctrlpts] = {0};
+
+    for (int i = 0; i < maxSc; i++) //Carrier
+      Scmtmp[i] = Scm0[NMeta][i];
+    
+    for (int i = 0; i < Nmtmp+1; i++){
+      Xstmp[i] = Xsvec[i];
+      Scmtmp[i+maxSc] = Scmvec[i];
+      fmtmp[i] = fmvec[i];
+      fptmp[i] = fpvec[i];
+    }
+    
+    metamorph metatmp(Nmtmp, Xstmp, (Scmtmp+maxSc), Scmtmp, xPower[NMeta],vstretch);
+    metatmp.SetBoundary(MappingMode[NMeta], fmtmp, fptmp);
+    metatmp.UpdateModulator();
+    
+    //Fill in the values of new points with the values from temporary metamorph
+    for (int ipos = 0; ipos < Nnew; ipos++){
+      int inew=newpositions[ipos];
+      double xtmp = Xs0[NMeta][inew];
+      Scm0[NMeta][inew+maxSc] = metatmp.Modulator(xtmp)-1; // sets each Sm parameter to Pi for all control points
+    }
+    
   }//if (Nnew !=0)
   
   //Construct the final metamorph and push into metaCollection
   for (int i = 0; i < maxSc; i++)
     Scm[NMeta][i] = Scm0[NMeta][i];
-
+  
   for (int i = 0; i < k; i++)
-  {
-    Xs[NMeta][i] = Xstmp[i];
-    Scm[NMeta][i+maxSc] = Scm0[NMeta][i+maxSc];
-    fm[NMeta][i] = fmtmp[i];
-    fp[NMeta][i] = fptmp[i];
-  }
-        
+    {
+      Xs[NMeta][i] = Xs0[NMeta][i];
+      Scm[NMeta][i+maxSc] = Scm0[NMeta][i+maxSc];
+      fm[NMeta][i] = fm0[NMeta][i];
+      fp[NMeta][i] = fp0[NMeta][i];
+    }
+  
   MetaVector.emplace_back(Nm[NMeta], Xs[NMeta], Scm[NMeta]+maxSc, Scm[NMeta], xPower[NMeta],vstretch);
   MetaVector[NMeta].SetBoundary(MappingMode[NMeta], fm[NMeta], fp[NMeta]);
   MetaRoster.insert(pair<int, metamorph*>(iflavor[NMeta], &(MetaVector[NMeta])));
 
-  //
+  //Set a unique ID for the created metamorph
   MetaVector[NMeta].ID=iflavor[NMeta];
+  
+  //check the condition number for T
+  double condnum=MetaVector[NMeta].GetConditionNumber();
+  if (condnum > 10000){
+    cerr << "WARNING: a high condition number ="<<condnum
+	 << "in metamorph " << MetaVector[NMeta].ID << endl;
+    cerr << "Check x spacing of its control points" << endl;
+  }
   
 } // metamorphCollection::PushMember ----------------------------------------------
 
@@ -341,11 +345,17 @@ void metamorphCollection::WriteCard(const string& outputcard)
     
   ofstream fantosteerout;
   fantosteerout.open(outputcard, ofstream::out);
-
+  
+  ios oldState(nullptr); //save the old i/o format such as significant figures
+  oldState.copyfmt(fantosteerout);
+  
   if (fantosteerout.is_open())
   {
-    fantosteerout << "# Fantomas steering card v. " << vernum << endl;
+    fantosteerout << std::fixed << std::setprecision(1) <<
+      "# Fantomas steering card v. " << vernum << endl;
     fantosteerout << "# " << timeBuffer << endl;
+    fantosteerout.copyfmt(oldState); //restore the old i/o format
+    
     for (int i = 0; i < NMeta; i++)
     // output fantomas parameters into out card and loop over each input flavor
     {
@@ -457,17 +467,10 @@ double metamorphCollection::MellinMoment(int ifl, double MellinPower, int npts)
   return momenttmp;
 } // metamorphCollection::MellinMoment
 
-double metamorphCollection::ConditionNumber(int ifl)
+double metamorphCollection::GetConditionNumber(int ifl)
 {
-  double condnumtmp = MetaRoster[ifl]->GetConditionNum();
+  double condnumtmp = MetaRoster[ifl]->GetConditionNumber();
   return condnumtmp;
-}
-
-//lk25 added function to add all metamorph priors
-double metamorphCollection::prior()
-{
-  double chi2_tot = 0;
-  return chi2_tot;
 }
 
 metamorphCollection::~metamorphCollection()

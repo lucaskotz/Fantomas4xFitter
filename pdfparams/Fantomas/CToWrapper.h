@@ -1,21 +1,10 @@
 /*
-Description: functions for the standalone implementation
-   of the Fantomas parametrizations
+Description: an extern C wrapper for core Fantomas functions
+  suitable for linking to Fortran and other codes
 */
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <stdio.h>
-#include <vector>
-#include <math.h>
-#include <map>
-#include <string>
-#include <cstring>
-#include "metamorphCollection.h"
 
-
-#ifndef FANTOMAS_H
-#define FANTOMAS_H
+#ifndef CTOWRAPPER_H
+#define CTOWRAPPER_H
 
 extern "C"{
   void readfantosteer_();
@@ -25,4 +14,4 @@ extern "C"{
   double fantomellinmoment_(int &flavor, int &MellinPower, int npts=10000);
   //void getfantochi2(double& fantochi2);
 }
-#endif
+#endif //CTOWRAPPER_H

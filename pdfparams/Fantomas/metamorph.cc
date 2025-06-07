@@ -1,4 +1,5 @@
 #include "metamorph.h"
+#include <vector>
 
 using namespace std;
 
@@ -117,7 +118,8 @@ metamorph::metamorph(const int NmIn, const double XsIn[], double SmIn[], double 
     xstrmin=vstretch[0];
 
   //Fill in vector CP with control points at stretched x values (Ys)
-  double Ys[Nm+1];
+  vector<double> Ys(Nm + 1);     // TH added VLA fix, default initialized to 0
+
   for (int icp = 0; icp < Nm+1; icp++){
     Ys[icp] = yx(XsIn[icp]); //stretched X-value for icp-th CP 
     CP.push_back(ControlPoint(Ys[icp], SmIn[icp]));
@@ -140,7 +142,7 @@ metamorph::metamorph(const int NmIn, const double XsIn[], double SmIn[], double 
       else
         (*M)(j,i) = 0.0;
     } //for (int j=0...
-
+  
   C = new double[Nm+1];
   P = new double[Nm+1];
   Pdec = new int[Nm+2];
@@ -212,9 +214,7 @@ void metamorph::UpdateModulator()
 double metamorph::Cs(const int i) 
 // Return the value for the ith Bezier coefficient
 {
-  double Ci;
-  Ci = C[i];
-  return Ci;
+  return C[i];
 } //double C-----------------------------------------------------
 
 double metamorph::Modulator(const double x) 
@@ -349,16 +349,11 @@ double metamorph::GetMellinMoment(double MellinPower, int npts)
   return sum;
 } // metamorph::GetMellinMoment-------------------------------------------
 
-double metamorph::GetConditionNum() 
+double metamorph::GetConditionNumber() 
 {
-  double abst = 0;
-  double absInvt = 0;
-  double T2 = 0;
-  double InvT2 = 0;
-  double Tnorm = 0;
-  double InvTnorm = 0;
-  double CondNum = 0;
-    
+  double abst = 0, absInvt = 0, T2 = 0, InvT2 = 0,
+    Tnorm = 0, InvTnorm = 0, CondNum = 0;
+  
   for (int i = 0; i < Nm+1; i++)
     for (int j = 0; j < Nm+1; j++) 
     {
@@ -372,14 +367,6 @@ double metamorph::GetConditionNum()
   CondNum = Tnorm * InvTnorm;
   return CondNum;
 }// metamorph::GetConditionNum-------------------------------------
-
-//lk25
-double metamorph::prior()
-{
-  double out = 0;
-  return out;
-}// metamorph::priot-------------------------------------
-
 
 metamorph::~metamorph() 
 {
